@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileManager.h" />
