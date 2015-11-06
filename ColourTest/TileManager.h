@@ -13,6 +13,7 @@ private:
 	Tile * m_finish;
 	int m_currentSize;
 public:
+	~TileManager();
 	static TileManager * getInstance();
 	void initialise(int size);
 	Tile * at(int x, int y);

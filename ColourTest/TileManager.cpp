@@ -2,6 +2,20 @@
 
 TileManager * TileManager::m_instance = nullptr;
 
+TileManager::~TileManager(){
+	delete m_instance;
+	m_instance = nullptr;
+	if (!m_tiles.empty()){
+		for (int i = 0; i < m_currentSize; i++)
+		{
+			delete m_tiles[i];
+		}
+		m_tiles.clear();
+	}
+	delete m_start;
+	delete m_finish;
+}
+
 TileManager::TileManager() : m_currentSize(0){
 	
 }
@@ -33,6 +47,8 @@ void TileManager::initialise(int size){
 			above = at(i%m_currentSize, i / m_currentSize - 1)->getColour();
 		m_tiles.push_back(new Tile(150 + (i % m_currentSize) * tileSize, (i / m_currentSize) * tileSize, tileSize, above, left));
 	}
+	delete m_start;
+	delete m_finish;
 	m_start = new Tile(150 - tileSize, (m_currentSize / 2) * tileSize, tileSize, sf::Color::Black);
 	m_finish = new Tile(150 + m_currentSize * tileSize, (m_currentSize / 2) * tileSize, tileSize, sf::Color::Black);
 	m_start->setUsed(true);
