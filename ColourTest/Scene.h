@@ -1,8 +1,10 @@
 #ifndef SCENE_H
 #define SCENE_H
 
-#include <vector>
 #include "Button.h"
+#include <vector>
+
+class Button;
 
 class Scene {
 protected:
@@ -10,7 +12,7 @@ protected:
 public:
 	Scene();
 	virtual ~Scene();
-	void virtual update(sf::Event* e) = 0;
+	void virtual update(sf::Event* e, sf::RenderWindow* window) = 0;
 	void virtual draw(sf::RenderWindow* window) = 0;
 };
 

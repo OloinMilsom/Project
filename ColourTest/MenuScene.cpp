@@ -1,18 +1,33 @@
-#ifndef MENUSCENE_H
-#define MENUSCENE_H
-
 #include "stdafx.h"
-#include "Scene.h"
+#include "MenuScene.h"
 
-class MenuScene : public Scene{
-public:
-	MenuScene();
-	~MenuScene();
-	void update(sf::Event* e);
-	void draw(sf::RenderWindow* window);
+MenuScene::MenuScene(sf::Font* font){
+	m_buttons.push_back(Button(sf::Vector2f(200, 100), sf::Vector2f(100, 50), SceneID::GAME, "Play", font));
+}
 
-private:
+MenuScene::~MenuScene(){
 
-};
+}
 
-#endif
+void MenuScene::update(sf::Event* e, sf::RenderWindow* window){
+	while (window->pollEvent(*e))
+	{
+		// Close window : exit 
+		if (e->type == sf::Event::Closed)
+			window->close();
+
+		if (e->type == sf::Event::KeyPressed) {
+			if (e->key.code == sf::Keyboard::Escape){
+				window->close();
+			}
+		}
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+			m_buttons[0].isClicked(sf::Vector2f(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y));
+		}
+	}
+}
+
+void MenuScene::draw(sf::RenderWindow* window){
+	m_buttons[0].draw(window);
+}

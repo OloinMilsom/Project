@@ -1,7 +1,6 @@
 #ifndef GAMESCENE_H
 #define GAMESCENE_H
 
-#include "stdafx.h"
 #include "Scene.h"
 #include "Player.h"
 
@@ -9,7 +8,7 @@ class GameScene : public Scene{
 public:
 	GameScene();
 	~GameScene();
-	void update(sf::Event* e);
+	void update(sf::Event* e, sf::RenderWindow* window);
 	void draw(sf::RenderWindow* window);
 private:
 

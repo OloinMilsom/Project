@@ -1,10 +1,14 @@
+#include "stdafx.h"
 #include "SceneManager.h"
 #include "GameScene.h"
+#include "MenuScene.h"
 
 SceneManager* SceneManager::m_instance = nullptr;
 
 SceneManager::SceneManager(){
-	m_currentID = SceneID::GAME;
+	m_currentID = SceneID::MENU;
+	m_font.loadFromFile("C:\\Windows\\Fonts\\GARA.TTF");
+	m_scenes.push_back(new MenuScene(&m_font));
 	m_scenes.push_back(new GameScene());
 }
 
@@ -26,10 +30,14 @@ SceneManager::~SceneManager(){
 	}
 }
 
-void SceneManager::update(sf::Event* e){
-	m_scenes[static_cast<int>(m_currentID)]->update(e);
+void SceneManager::update(sf::Event* e, sf::RenderWindow* window){
+	m_scenes[static_cast<int>(m_currentID)]->update(e, window);
 }
 
 void SceneManager::draw(sf::RenderWindow* window){
 	m_scenes[static_cast<int>(m_currentID)]->draw(window);
+}
+
+void SceneManager::goToScene(SceneID goTo){
+	m_currentID = goTo;
 }

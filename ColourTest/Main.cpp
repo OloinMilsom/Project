@@ -38,11 +38,7 @@ int main()
 {
 	// Create the main window 
 	sf::RenderWindow window(sf::VideoMode(800, 600, 32), "ColourTest");
-
-	//load a font
-	sf::Font font;
-	font.loadFromFile("C:\\Windows\\Fonts\\GARA.TTF");
-
+	window.setPosition(sf::Vector2i(0, 0));
 	srand(time(0));
 
 	SceneManager::getInstance();
@@ -52,19 +48,7 @@ int main()
 	{
 		// Process events 
 		sf::Event Event;
-		while (window.pollEvent(Event))
-		{
-			// Close window : exit 
-			if (Event.type == sf::Event::Closed)
-				window.close();
-
-			// Escape key : exit 
-			if (Event.type == sf::Event::KeyPressed) {
-				if (Event.key.code == sf::Keyboard::Escape)
-					window.close();				
-			}
-			SceneManager::getInstance()->update(&Event);
-		}
+		SceneManager::getInstance()->update(&Event, &window);
 
 		//prepare frame
 		window.clear(sf::Color(40, 40, 50));
