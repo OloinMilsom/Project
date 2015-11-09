@@ -3,6 +3,7 @@
 
 GameScene::GameScene(){
 	m_currSize = 3;
+	m_attempts = 15;
 	TileManager::getInstance()->initialise(m_currSize);
 
 	m_player = new Player(0, TileManager::getInstance()->getSize() / 2);
@@ -15,6 +16,7 @@ GameScene::~GameScene(){
 }
 
 void GameScene::update(sf::Event* e, sf::RenderWindow* window){
+
 	while (window->pollEvent(*e))
 	{
 		// Close window : exit 
@@ -43,13 +45,36 @@ void GameScene::update(sf::Event* e, sf::RenderWindow* window){
 			}
 			else if (e->key.code == sf::Keyboard::R)
 			{
-				TileManager::getInstance()->resetRoom();
-				m_player->setPos(sf::Vector2f(-1, TileManager::getInstance()->getSize() / 2));
-				m_player->resetColour();
+				m_attempts--;
+				if (m_attempts < 0){
+					SceneManager::getInstance()->goToScene(SceneID::GAMEOVER);
+					m_attempts = 15;
+					m_currSize = 3;
+					TileManager::getInstance()->initialise(m_currSize);
+					m_player->setPos(sf::Vector2f(0, TileManager::getInstance()->getSize() / 2));
+					m_player->resetColour();
+					m_player->addColour(TileManager::getInstance()->getStartColor());
+					m_player->goalFinder();
+				}
+				else{
+					TileManager::getInstance()->resetRoom();
+					m_player->setPos(sf::Vector2f(-1, TileManager::getInstance()->getSize() / 2));
+					m_player->resetColour();
+				}
 			}
 			else if (e->key.code == sf::Keyboard::F)
 			{
-				if (m_player->getPos() == sf::Vector2f(TileManager::getInstance()->getSize(), TileManager::getInstance()->getSize() / 2)){
+				if (m_currSize == 11){
+					SceneManager::getInstance()->goToScene(SceneID::GAMEWON);
+					m_attempts = 15;
+					m_currSize = 3;
+					TileManager::getInstance()->initialise(m_currSize);
+					m_player->setPos(sf::Vector2f(0, TileManager::getInstance()->getSize() / 2));
+					m_player->resetColour();
+					m_player->addColour(TileManager::getInstance()->getStartColor());
+					m_player->goalFinder();
+				}
+				else if (m_player->getPos() == sf::Vector2f(TileManager::getInstance()->getSize(), TileManager::getInstance()->getSize() / 2)){
 					m_currSize += 2;
 					TileManager::getInstance()->initialise(m_currSize);
 					m_player->resetColour();
@@ -71,6 +96,7 @@ void GameScene::draw(sf::RenderWindow* window){
 			window->draw(TileManager::getInstance()->getDrawAt(x, y));
 		}
 	}
+	window->setTitle(std::to_string(m_attempts));
 	window->draw(TileManager::getInstance()->getStartDraw());
 	window->draw(TileManager::getInstance()->getFinishDraw());
 	sf::RectangleShape rect(sf::Vector2f(100, 100));

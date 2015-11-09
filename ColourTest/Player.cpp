@@ -166,7 +166,7 @@ void Player::addColour(sf::Color c){
 void Player::move(Player::direction d){
 	switch (d){
 	case direction::UP:
-		if (m_pos.y > 0 && !TileManager::getInstance()->at(m_pos.x, m_pos.y - 1)->getUsed()){
+		if (m_pos.x != -1 && m_pos.y > 0 && !TileManager::getInstance()->at(m_pos.x, m_pos.y - 1)->getUsed()){
 			m_pos.y -= 1;
 			addColour(TileManager::getInstance()->colourAt(m_pos.x, m_pos.y));
 			TileManager::getInstance()->setUsed(m_pos);
@@ -182,7 +182,7 @@ void Player::move(Player::direction d){
 		}
 		break;
 	case direction::DOWN:
-		if (m_pos.y < TileManager::getInstance()->getSize() - 1 && !TileManager::getInstance()->at(m_pos.x, m_pos.y + 1)->getUsed()){
+		if (m_pos.x != -1 && m_pos.y < TileManager::getInstance()->getSize() - 1 && !TileManager::getInstance()->at(m_pos.x, m_pos.y + 1)->getUsed()){
 			m_pos.y += 1;
 			addColour(TileManager::getInstance()->colourAt(m_pos.x, m_pos.y));
 			TileManager::getInstance()->setUsed(m_pos);

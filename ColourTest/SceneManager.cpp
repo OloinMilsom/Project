@@ -2,6 +2,7 @@
 #include "SceneManager.h"
 #include "GameScene.h"
 #include "MenuScene.h"
+#include "GameOverScene.h"
 
 SceneManager* SceneManager::m_instance = nullptr;
 
@@ -10,6 +11,8 @@ SceneManager::SceneManager(){
 	m_font.loadFromFile("C:\\Windows\\Fonts\\GARA.TTF");
 	m_scenes.push_back(new MenuScene(&m_font));
 	m_scenes.push_back(new GameScene());
+	m_scenes.push_back(new GameOverScene(&m_font, "You Lose!"));
+	m_scenes.push_back(new GameOverScene(&m_font, "You Win!"));
 }
 
 SceneManager* SceneManager::getInstance(){

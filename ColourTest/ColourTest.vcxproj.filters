@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\ScenesHeaders">
+      <UniqueIdentifier>{f0ceb002-cec7-4686-b79e-74885d4596bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ScenesSource">
+      <UniqueIdentifier>{c72959d4-a674-4a87-ac3c-ec59564a0bb7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -30,20 +36,23 @@
     <ClCompile Include="TileManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GameScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\ScenesSource</Filter>
     </ClCompile>
     <ClCompile Include="MenuScene.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\ScenesSource</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Source Files\ScenesSource</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Source Files\ScenesSource</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files\ScenesSource</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverScene.cpp">
+      <Filter>Source Files\ScenesSource</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -59,23 +68,26 @@
     <ClInclude Include="TileManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="GameOverScene.h">
+      <Filter>Header Files\ScenesHeaders</Filter>
     </ClInclude>
     <ClInclude Include="GameScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\ScenesHeaders</Filter>
     </ClInclude>
     <ClInclude Include="MenuScene.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\ScenesHeaders</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\ScenesHeaders</Filter>
     </ClInclude>
     <ClInclude Include="SceneID.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\ScenesHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Header Files\ScenesHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Header Files\ScenesHeaders</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -12,7 +12,8 @@ public:
 	void draw(sf::RenderWindow* window);
 private:
 	int m_currSize;
-	Player * m_player;// = new Player(0, TileManager::getInstance()->getSize() / 2);
+	int m_attempts;
+	Player * m_player;
 };
 
 #endif
