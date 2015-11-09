@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "MenuScene.h"
+#include <iostream>
 
 MenuScene::MenuScene(sf::Font* font){
 	m_buttons.push_back(Button(sf::Vector2f(200, 100), sf::Vector2f(100, 50), SceneID::GAME, "Play", font));
@@ -23,8 +24,10 @@ void MenuScene::update(sf::Event* e, sf::RenderWindow* window){
 		}
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
-			m_buttons[0].isClicked(sf::Vector2f(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y));
+			m_buttons[0].isClicked(sf::Vector2f(sf::Mouse::getPosition(*window).x, 
+												sf::Mouse::getPosition(*window).y));
 		}
+		//std::cout << "x: " << sf::Mouse::getPosition().x - window->getView().getViewport().left << "y: " << sf::Mouse::getPosition().y - window->getView().getViewport().top << std::endl;
 	}
 }
 

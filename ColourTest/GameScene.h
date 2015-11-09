@@ -11,8 +11,8 @@ public:
 	void update(sf::Event* e, sf::RenderWindow* window);
 	void draw(sf::RenderWindow* window);
 private:
-
-	Player * player;// = new Player(0, TileManager::getInstance()->getSize() / 2);
+	int m_currSize;
+	Player * m_player;// = new Player(0, TileManager::getInstance()->getSize() / 2);
 };
 
 #endif

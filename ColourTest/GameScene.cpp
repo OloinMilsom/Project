@@ -2,16 +2,16 @@
 #include "GameScene.h"
 
 GameScene::GameScene(){
+	m_currSize = 3;
+	TileManager::getInstance()->initialise(m_currSize);
 
-	TileManager::getInstance()->initialise(5);
-
-	player = new Player(0, TileManager::getInstance()->getSize() / 2);
-	player->addColour(TileManager::getInstance()->getStartColor());
-	player->goalFinder();
+	m_player = new Player(0, TileManager::getInstance()->getSize() / 2);
+	m_player->addColour(TileManager::getInstance()->getStartColor());
+	m_player->goalFinder();
 }
 
 GameScene::~GameScene(){
-	delete player;
+	delete m_player;
 }
 
 void GameScene::update(sf::Event* e, sf::RenderWindow* window){
@@ -27,34 +27,36 @@ void GameScene::update(sf::Event* e, sf::RenderWindow* window){
 			}
 			if (e->key.code == sf::Keyboard::W)
 			{
-				player->move(Player::direction::UP);
+				m_player->move(Player::direction::UP);
 			}
 			else if (e->key.code == sf::Keyboard::A)
 			{
-				player->move(Player::direction::LEFT);
+				m_player->move(Player::direction::LEFT);
 			}
 			else if (e->key.code == sf::Keyboard::S)
 			{
-				player->move(Player::direction::DOWN);
+				m_player->move(Player::direction::DOWN);
 			}
 			else if (e->key.code == sf::Keyboard::D)
 			{
-				player->move(Player::direction::RIGHT);
+				m_player->move(Player::direction::RIGHT);
 			}
 			else if (e->key.code == sf::Keyboard::R)
 			{
 				TileManager::getInstance()->resetRoom();
-				player->setPos(sf::Vector2f(-1, TileManager::getInstance()->getSize() / 2));
-				player->resetColour();
+				m_player->setPos(sf::Vector2f(-1, TileManager::getInstance()->getSize() / 2));
+				m_player->resetColour();
 			}
 			else if (e->key.code == sf::Keyboard::F)
 			{
-				if (player->getPos() == sf::Vector2f(TileManager::getInstance()->getSize(), TileManager::getInstance()->getSize() / 2)){
-					player->resetColour();
+				if (m_player->getPos() == sf::Vector2f(TileManager::getInstance()->getSize(), TileManager::getInstance()->getSize() / 2)){
+					m_currSize += 2;
+					TileManager::getInstance()->initialise(m_currSize);
+					m_player->resetColour();
 					TileManager::getInstance()->initialise(TileManager::getInstance()->getSize());
-					player->setPos(sf::Vector2f(0, TileManager::getInstance()->getSize() / 2));
-					player->goalFinder();
-					player->setPos(sf::Vector2f(-1, TileManager::getInstance()->getSize() / 2));
+					m_player->setPos(sf::Vector2f(0, TileManager::getInstance()->getSize() / 2));
+					m_player->goalFinder();
+					m_player->setPos(sf::Vector2f(-1, TileManager::getInstance()->getSize() / 2));
 				}
 			}
 		}
@@ -72,14 +74,14 @@ void GameScene::draw(sf::RenderWindow* window){
 	window->draw(TileManager::getInstance()->getStartDraw());
 	window->draw(TileManager::getInstance()->getFinishDraw());
 	sf::RectangleShape rect(sf::Vector2f(100, 100));
-	rect.setFillColor(player->getColour());
+	rect.setFillColor(m_player->getColour());
 	window->draw(rect);
 	sf::CircleShape circ((500 / TileManager::getInstance()->getSize()) * 0.5f);
-	circ.setPosition(sf::Vector2f(player->getPos().x * (500 / TileManager::getInstance()->getSize()) + 150, player->getPos().y * (500 / TileManager::getInstance()->getSize())));
+	circ.setPosition(sf::Vector2f(m_player->getPos().x * (500 / TileManager::getInstance()->getSize()) + 150, m_player->getPos().y * (500 / TileManager::getInstance()->getSize())));
 	circ.setFillColor(sf::Color(100,100,100));
 	window->draw(circ);
 	sf::RectangleShape r(sf::Vector2f(40, 40));
-	r.setFillColor(player->getColour());
+	r.setFillColor(m_player->getColour());
 	window->draw(r);
 	
 }
