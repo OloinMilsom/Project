@@ -4,6 +4,7 @@
 enum class SceneID{
 	MENU,
 	GAME,
+	TIMEDGAME,
 	GAMEOVER,
 	GAMEWON
 };

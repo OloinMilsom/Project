@@ -4,6 +4,7 @@
 
 MenuScene::MenuScene(sf::Font* font){
 	m_buttons.push_back(Button(sf::Vector2f(200, 100), sf::Vector2f(100, 50), SceneID::GAME, "Play", font));
+	m_buttons.push_back(Button(sf::Vector2f(200, 180), sf::Vector2f(100, 50), SceneID::TIMEDGAME, "Time Trial", font));
 }
 
 MenuScene::~MenuScene(){
@@ -24,13 +25,19 @@ void MenuScene::update(sf::Event* e, sf::RenderWindow* window){
 		}
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
-			m_buttons[0].isClicked(sf::Vector2f(sf::Mouse::getPosition(*window).x, 
-												sf::Mouse::getPosition(*window).y));
+			for (int i = 0; i < m_buttons.size(); i++)
+			{
+				m_buttons[i].isClicked(sf::Vector2f(sf::Mouse::getPosition(*window).x,
+					sf::Mouse::getPosition(*window).y));
+			}
 		}
 		//std::cout << "x: " << sf::Mouse::getPosition().x - window->getView().getViewport().left << "y: " << sf::Mouse::getPosition().y - window->getView().getViewport().top << std::endl;
 	}
 }
 
 void MenuScene::draw(sf::RenderWindow* window){
-	m_buttons[0].draw(window);
+	for (int i = 0; i < m_buttons.size(); i++)
+	{
+		m_buttons[i].draw(window);
+	}
 }
