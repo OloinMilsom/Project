@@ -3,7 +3,7 @@
 
 TimedGameScene::TimedGameScene(){
 	m_currSize = 3;
-	m_timer = 15;
+	m_timer = 9;
 	TileManager::getInstance()->initialise(m_currSize);
 
 	m_player = new Player(0, TileManager::getInstance()->getSize() / 2);
@@ -16,9 +16,22 @@ TimedGameScene::~TimedGameScene(){
 }
 
 void TimedGameScene::update(sf::Event* e, sf::RenderWindow* window){
+	sf::Time dt = m_deltaClock.restart();
+	m_timer -= dt.asSeconds();
+
+	if (m_timer <= 0){
+		SceneManager::getInstance()->goToScene(SceneID::TIMEGAMEOVER);
+		m_timer = 10;
+		m_currSize = 3;
+		TileManager::getInstance()->initialise(m_currSize);
+		m_player->setPos(sf::Vector2f(0, TileManager::getInstance()->getSize() / 2));
+		m_player->resetColour();
+		m_player->addColour(TileManager::getInstance()->getStartColor());
+		m_player->goalFinder();
+	}
+
 	while (window->pollEvent(*e))
 	{
-		m_timer--;
 		// Close window : exit 
 		if (e->type == sf::Event::Closed)
 			window->close();
@@ -44,37 +57,18 @@ void TimedGameScene::update(sf::Event* e, sf::RenderWindow* window){
 				m_player->move(Player::direction::RIGHT);
 			}
 			else if (e->key.code == sf::Keyboard::R)
-			{
-				if (m_timer <= 0){
-					SceneManager::getInstance()->goToScene(SceneID::GAMEOVER);
-					m_timer = 150;
-					m_currSize = 3;
-					TileManager::getInstance()->initialise(m_currSize);
-					m_player->setPos(sf::Vector2f(0, TileManager::getInstance()->getSize() / 2));
-					m_player->resetColour();
-					m_player->addColour(TileManager::getInstance()->getStartColor());
-					m_player->goalFinder();
-				}
-				else{
-					TileManager::getInstance()->resetRoom();
-					m_player->setPos(sf::Vector2f(-1, TileManager::getInstance()->getSize() / 2));
-					m_player->resetColour();
-				}
+			{				
+				TileManager::getInstance()->resetRoom();
+				m_player->setPos(sf::Vector2f(-1, TileManager::getInstance()->getSize() / 2));
+				m_player->resetColour();
+				
 			}
 			else if (e->key.code == sf::Keyboard::F)
 			{
-				if (m_currSize == 11){
-					SceneManager::getInstance()->goToScene(SceneID::GAMEWON);
-					m_timer = 150;
-					m_currSize = 3;
-					TileManager::getInstance()->initialise(m_currSize);
-					m_player->setPos(sf::Vector2f(0, TileManager::getInstance()->getSize() / 2));
-					m_player->resetColour();
-					m_player->addColour(TileManager::getInstance()->getStartColor());
-					m_player->goalFinder();
-				}
-				else if (m_player->getPos() == sf::Vector2f(TileManager::getInstance()->getSize(), TileManager::getInstance()->getSize() / 2)){
-					m_currSize += 2;
+				if (m_player->getPos() == sf::Vector2f(TileManager::getInstance()->getSize(), TileManager::getInstance()->getSize() / 2)){
+					if (m_currSize < 11)
+						m_currSize += 2;
+					m_timer += m_currSize * 3;
 					TileManager::getInstance()->initialise(m_currSize);
 					m_player->resetColour();
 					TileManager::getInstance()->initialise(TileManager::getInstance()->getSize());
@@ -108,4 +102,12 @@ void TimedGameScene::draw(sf::RenderWindow* window){
 	sf::RectangleShape r(sf::Vector2f(40, 40));
 	r.setFillColor(m_player->getColour());
 	window->draw(r);
+}
+
+void TimedGameScene::start(){
+	m_deltaClock.restart();
+}
+
+void TimedGameScene::stop(){
+
 }

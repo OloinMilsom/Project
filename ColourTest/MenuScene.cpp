@@ -41,3 +41,11 @@ void MenuScene::draw(sf::RenderWindow* window){
 		m_buttons[i].draw(window);
 	}
 }
+
+void MenuScene::start(){
+
+}
+
+void MenuScene::stop(){
+
+}

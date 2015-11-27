@@ -1,11 +1,36 @@
-﻿Build started 20/11/2015 16:38:18.
+﻿Build started 27/11/2015 13:54:19.
      1>Project "C:\Users\Evan\Desktop\College\Chromarray\ColourTest\ColourTest.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\SFML-2.3.2\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt MenuScene.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\SFML-2.3.2\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Button.cpp GameOverScene.cpp GameScene.cpp Main.cpp MenuScene.cpp Scene.cpp SceneManager.cpp TimedGameScene.cpp
+         TimedGameScene.cpp
+     1>c:\users\evan\desktop\college\chromarray\colourtest\timedgamescene.cpp(27): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\evan\desktop\college\chromarray\colourtest\timedgamescene.cpp(62): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\evan\desktop\college\chromarray\colourtest\timedgamescene.cpp(68): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\evan\desktop\college\chromarray\colourtest\timedgamescene.cpp(75): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\evan\desktop\college\chromarray\colourtest\timedgamescene.cpp(77): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+         SceneManager.cpp
+     1>c:\users\evan\desktop\college\chromarray\colourtest\scenemanager.cpp(31): warning C4018: '<' : signed/unsigned mismatch
+         GameOverScene.cpp
+     1>c:\users\evan\desktop\college\chromarray\colourtest\gameoverscene.cpp(32): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+         Generating Code...
+         Compiling...
+         Scene.cpp
          MenuScene.cpp
      1>c:\users\evan\desktop\college\chromarray\colourtest\menuscene.cpp(28): warning C4018: '<' : signed/unsigned mismatch
      1>c:\users\evan\desktop\college\chromarray\colourtest\menuscene.cpp(31): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
      1>c:\users\evan\desktop\college\chromarray\colourtest\menuscene.cpp(39): warning C4018: '<' : signed/unsigned mismatch
+         Main.cpp
+     1>c:\users\evan\desktop\college\chromarray\colourtest\main.cpp(42): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+         GameScene.cpp
+     1>c:\users\evan\desktop\college\chromarray\colourtest\gamescene.cpp(54): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\evan\desktop\college\chromarray\colourtest\gamescene.cpp(61): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\evan\desktop\college\chromarray\colourtest\gamescene.cpp(67): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\evan\desktop\college\chromarray\colourtest\gamescene.cpp(72): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\evan\desktop\college\chromarray\colourtest\gamescene.cpp(77): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\evan\desktop\college\chromarray\colourtest\gamescene.cpp(82): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\evan\desktop\college\chromarray\colourtest\gamescene.cpp(84): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+         Button.cpp
+         Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Evan\Desktop\College\Chromarray\Debug\ColourTest.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\SFML-2.3.2\lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Evan\Desktop\College\Chromarray\Debug\ColourTest.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Evan\Desktop\College\Chromarray\Debug\ColourTest.lib" /MACHINE:X86 Debug\Button.obj
          Debug\GameOverScene.obj
@@ -24,4 +49,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.43
+Time Elapsed 00:00:08.50

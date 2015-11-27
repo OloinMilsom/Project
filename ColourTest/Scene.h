@@ -14,6 +14,8 @@ public:
 	virtual ~Scene();
 	void virtual update(sf::Event* e, sf::RenderWindow* window) = 0;
 	void virtual draw(sf::RenderWindow* window) = 0;
+	void virtual start() = 0;
+	void virtual stop() = 0;
 };
 
 #endif

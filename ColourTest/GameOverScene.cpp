@@ -1,7 +1,7 @@
 #include "GameOverScene.h"
 
-GameOverScene::GameOverScene(sf::Font * font, std::string label){
-	m_buttons.push_back(Button(sf::Vector2f(200, 200), sf::Vector2f(100, 50), SceneID::GAME, "Retry?", font));
+GameOverScene::GameOverScene(sf::Font * font, std::string label, SceneID id){
+	m_buttons.push_back(Button(sf::Vector2f(200, 200), sf::Vector2f(100, 50), id, "Retry?", font));
 	m_label.setFont(*font);
 	m_label.setString(label);
 	m_label.setCharacterSize(24);
@@ -37,4 +37,12 @@ void GameOverScene::update(sf::Event* e, sf::RenderWindow* window){
 void GameOverScene::draw(sf::RenderWindow* window){
 	window->draw(m_label);
 	m_buttons[0].draw(window);
+}
+
+void GameOverScene::start(){
+
+}
+
+void GameOverScene::stop(){
+
 }

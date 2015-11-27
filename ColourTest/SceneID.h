@@ -6,7 +6,8 @@ enum class SceneID{
 	GAME,
 	TIMEDGAME,
 	GAMEOVER,
-	GAMEWON
+	GAMEWON,
+	TIMEGAMEOVER
 };
 
 #endif

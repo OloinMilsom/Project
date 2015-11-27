@@ -64,7 +64,7 @@ void GameScene::update(sf::Event* e, sf::RenderWindow* window){
 			}
 			else if (e->key.code == sf::Keyboard::F)
 			{
-				if (m_currSize == 11){
+				if (m_currSize == 11 && m_player->getPos() == sf::Vector2f(TileManager::getInstance()->getSize(), TileManager::getInstance()->getSize() / 2)){
 					SceneManager::getInstance()->goToScene(SceneID::GAMEWON);
 					m_attempts = 15;
 					m_currSize = 3;
@@ -110,4 +110,12 @@ void GameScene::draw(sf::RenderWindow* window){
 	r.setFillColor(m_player->getColour());
 	window->draw(r);
 	
+}
+
+void GameScene::start(){
+
+}
+
+void GameScene::stop(){
+
 }
