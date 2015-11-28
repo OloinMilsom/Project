@@ -3,8 +3,9 @@
 #include <iostream>
 
 MenuScene::MenuScene(sf::Font* font){
-	m_buttons.push_back(Button(sf::Vector2f(200, 100), sf::Vector2f(100, 50), SceneID::GAME, "Play", font));
-	m_buttons.push_back(Button(sf::Vector2f(200, 180), sf::Vector2f(100, 50), SceneID::TIMEDGAME, "Time Trial", font));
+	sf::Texture m_backgroundImg;
+	m_buttons.push_back(Button(sf::Vector2f(340, 200), sf::Vector2f(100, 50), SceneID::GAME, "PLAY", font));
+	m_buttons.push_back(Button(sf::Vector2f(300, 280), sf::Vector2f(180, 50), SceneID::TIMEDGAME, "TIME TRIAL", font));
 }
 
 MenuScene::~MenuScene(){
@@ -36,6 +37,9 @@ void MenuScene::update(sf::Event* e, sf::RenderWindow* window){
 }
 
 void MenuScene::draw(sf::RenderWindow* window){
+	m_backgroundImg.loadFromFile("Title.jpg");
+	sf::Sprite m_sprBackground(m_backgroundImg);
+	window->draw(m_sprBackground);
 	for (int i = 0; i < m_buttons.size(); i++)
 	{
 		m_buttons[i].draw(window);

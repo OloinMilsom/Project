@@ -9,7 +9,7 @@ SceneManager* SceneManager::m_instance = nullptr;
 
 SceneManager::SceneManager(){
 	m_currentID = SceneID::MENU;
-	m_font.loadFromFile("C:\\Windows\\Fonts\\GARA.TTF");
+	m_font.loadFromFile("C:\\Windows\\Fonts\\Arial.TTF");
 	m_scenes.push_back(new MenuScene(&m_font));
 	m_scenes.push_back(new GameScene());
 	m_scenes.push_back(new TimedGameScene());

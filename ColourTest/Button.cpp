@@ -8,9 +8,9 @@ Button::Button(sf::Vector2f pos, sf::Vector2f dims, SceneID goTo, std::string ti
 	m_title.setFont(*font);
 	m_title.setString(title);
 	m_title.setCharacterSize(24);
-	m_title.setColor(sf::Color::White);
+	m_title.setColor(sf::Color::Blue);
 	m_title.setStyle(sf::Text::Bold);
-	m_title.setPosition(m_position);
+	m_title.setPosition(m_position.x + 20, m_position.y + 8);
 }
 
 void Button::isClicked(sf::Vector2f mouse){
@@ -23,7 +23,7 @@ void Button::isClicked(sf::Vector2f mouse){
 void Button::draw(sf::RenderWindow* window){
 	sf::RectangleShape shape(m_dimensions);
 	shape.setPosition(m_position);
-	shape.setFillColor(sf::Color::Blue);
+	shape.setFillColor(sf::Color::White);
 	window->draw(shape);
 	window->draw(m_title);
 }
