@@ -12,23 +12,26 @@ private:
 	Tile * m_start;
 	Tile * m_finish;
 	int m_currentSize;
+
 public:
 	~TileManager();
 	static TileManager * getInstance();
 	void initialise(int size);
-	Tile * at(int x, int y);
-	sf::Color colourAt(int x, int y);
-	sf::RectangleShape getDrawAt(int x, int y);
-	sf::Color getStartColor();
-	sf::Color getFinishColor();
-	sf::RectangleShape getStartDraw();
-	sf::RectangleShape getFinishDraw();
-	int getSize();
+	void draw(sf::RenderWindow * window) const;
+
+	Tile * at(int x, int y) const;
+	sf::Color colourAt(int x, int y) const;
+	sf::Color getStartColor() const;
+	sf::Color getFinishColor() const;
+	int getSize() const;
+
 	void setUsed(sf::Vector2f pos);
 	void setUsedColour(sf::Color current);
 	void setFinalColour(sf::Color current);
-	int checkAdjacent(int x, int y);
-	bool floodFillCheck(int x, int y, int targetX, int targetY);
+
+	//int checkAdjacent(int x, int y) const;
+	bool floodFillCheck(int x, int y, int targetX, int targetY) const;
+
 	void resetUsed();
 	void resetChecked();
 	void resetRoom();

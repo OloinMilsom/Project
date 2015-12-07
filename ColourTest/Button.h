@@ -16,7 +16,7 @@ public:
 			SceneID goTo = SceneID::MENU, std::string m_title = "Title",
 			sf::Font* font = nullptr);
 	void isClicked(sf::Vector2f);
-	void draw(sf::RenderWindow* window);
+	void draw(sf::RenderWindow * window);
 };
 
 #endif

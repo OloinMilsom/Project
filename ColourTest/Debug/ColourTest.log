@@ -1,13 +1,16 @@
-﻿Build started 28-Nov-15 7:16:24 PM.
-     1>Project "C:\Users\Evan\Desktop\College\Chromarray\ColourTest\ColourTest.vcxproj" on node 2 (Build target(s)).
+﻿Build started 07/12/2015 13:16:36.
+     1>Project "C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\ColourTest\ColourTest.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\SFML-2.3.2\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt MenuScene.cpp
-         MenuScene.cpp
-     1>c:\users\evan\desktop\college\chromarray\colourtest\menuscene.cpp(29): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\evan\desktop\college\chromarray\colourtest\menuscene.cpp(32): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\evan\desktop\college\chromarray\colourtest\menuscene.cpp(43): warning C4018: '<' : signed/unsigned mismatch
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\SFML-2.3.2\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt TileManager.cpp
+         TileManager.cpp
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(39): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(48): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(92): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(93): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(98): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(127): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Evan\Desktop\College\Chromarray\Debug\ColourTest.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\SFML-2.3.2\lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Evan\Desktop\College\Chromarray\Debug\ColourTest.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Evan\Desktop\College\Chromarray\Debug\ColourTest.lib" /MACHINE:X86 Debug\Button.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\Debug\ColourTest.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\SFML-2.3.2\lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\Debug\ColourTest.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\Debug\ColourTest.lib" /MACHINE:X86 Debug\Button.obj
          Debug\GameOverScene.obj
          Debug\GameScene.obj
          Debug\Main.obj
@@ -19,9 +22,10 @@
          Debug\Tile.obj
          Debug\TileManager.obj
          Debug\TimedGameScene.obj
-         ColourTest.vcxproj -> C:\Users\Evan\Desktop\College\Chromarray\Debug\ColourTest.exe
-     1>Done Building Project "C:\Users\Evan\Desktop\College\Chromarray\ColourTest\ColourTest.vcxproj" (Build target(s)).
+         Debug\Wall.obj
+         ColourTest.vcxproj -> C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\Debug\ColourTest.exe
+     1>Done Building Project "C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\ColourTest\ColourTest.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:02.05
+Time Elapsed 00:00:01.73

@@ -40,11 +40,15 @@ Tile::Tile(int x, int y, int size, sf::Color above, sf::Color left) : m_pos(sf::
 	m_originalCol = m_col;
 }
 
-sf::RectangleShape Tile::getDraw() const{
+void Tile::draw(sf::RenderWindow * window) const{
 	sf::RectangleShape r(sf::Vector2f(m_size, m_size));
 	r.setPosition(m_pos);
 	r.setFillColor(m_col);
-	return r;
+	window->draw(r);
+	for (int  i = 0; i < m_walls.size(); i++)
+	{
+		m_walls[i].draw(window);
+	}
 }
 
 sf::Color Tile::getColour() const{
@@ -59,6 +63,10 @@ bool Tile::getChecked() const{
 	return m_floodChecked;
 }
 
+int Tile::getWallCount() const{
+	return m_walls.size();
+}
+
 void Tile::setColour(sf::Color col){
 	m_col = col;
 }
@@ -69,6 +77,10 @@ void Tile::setUsed(bool arg){
 
 void Tile::setChecked(bool arg){
 	m_floodChecked = arg;
+}
+
+void Tile::addWalls(Direction direction){
+	m_walls.push_back(Wall(direction, m_pos, m_size));
 }
 
 void Tile::reset(){

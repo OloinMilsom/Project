@@ -57,6 +57,9 @@
     <ClCompile Include="TimedGameScene.cpp">
       <Filter>Source Files\ScenesSource</Filter>
     </ClCompile>
+    <ClCompile Include="Wall.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -93,6 +96,12 @@
       <Filter>Header Files\ScenesHeaders</Filter>
     </ClInclude>
     <ClInclude Include="TimedGameScene.h">
+      <Filter>Header Files\ScenesHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Wall.h">
+      <Filter>Header Files\ScenesHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Direction.h">
       <Filter>Header Files\ScenesHeaders</Filter>
     </ClInclude>
   </ItemGroup>

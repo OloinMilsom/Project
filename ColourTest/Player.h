@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "TileManager.h"
+#include "Direction.h"
 #include <vector>
 
 class Player{
@@ -14,12 +15,6 @@ private:
 	int m_blue;
 	const int m_colourDevision = 3;
 public:
-	enum direction{
-		UP,
-		LEFT,
-		DOWN,
-		RIGHT
-	};
 	Player();
 	Player(int x, int y);
 	sf::Color getColour() const;
@@ -27,7 +22,7 @@ public:
 	void setPos(sf::Vector2f);
 	void resetColour();
 	void addColour(sf::Color c);
-	void move(direction d);
+	void move(Direction d);
 	void goalFinder();
 };
 

@@ -42,19 +42,19 @@ void TimedGameScene::update(sf::Event* e, sf::RenderWindow* window){
 			}
 			if (e->key.code == sf::Keyboard::W)
 			{
-				m_player->move(Player::direction::UP);
+				m_player->move(Direction::UP);
 			}
 			else if (e->key.code == sf::Keyboard::A)
 			{
-				m_player->move(Player::direction::LEFT);
+				m_player->move(Direction::LEFT);
 			}
 			else if (e->key.code == sf::Keyboard::S)
 			{
-				m_player->move(Player::direction::DOWN);
+				m_player->move(Direction::DOWN);
 			}
 			else if (e->key.code == sf::Keyboard::D)
 			{
-				m_player->move(Player::direction::RIGHT);
+				m_player->move(Direction::RIGHT);
 			}
 			else if (e->key.code == sf::Keyboard::R)
 			{				
@@ -82,16 +82,8 @@ void TimedGameScene::update(sf::Event* e, sf::RenderWindow* window){
 }
 
 void TimedGameScene::draw(sf::RenderWindow* window){
-	for (int y = 0; y < TileManager::getInstance()->getSize(); y++)
-	{
-		for (int x = 0; x < TileManager::getInstance()->getSize(); x++)
-		{
-			window->draw(TileManager::getInstance()->getDrawAt(x, y));
-		}
-	}
+	TileManager::getInstance()->draw(window);
 	window->setTitle(std::to_string(m_timer));
-	window->draw(TileManager::getInstance()->getStartDraw());
-	window->draw(TileManager::getInstance()->getFinishDraw());
 	sf::RectangleShape rect(sf::Vector2f(100, 100));
 	rect.setFillColor(m_player->getColour());
 	window->draw(rect);

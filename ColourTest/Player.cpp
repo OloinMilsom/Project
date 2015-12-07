@@ -163,9 +163,9 @@ void Player::addColour(sf::Color c){
 	std::cout << "Red: " << m_red << "\t" << "Green: " << m_green << "\t" << "Blue: " << m_blue << "\t" << std::endl;
 }
 
-void Player::move(Player::direction d){
+void Player::move(Direction d){
 	switch (d){
-	case direction::UP:
+	case Direction::UP:
 		if (m_pos.x != -1 && m_pos.y > 0 && !TileManager::getInstance()->at(m_pos.x, m_pos.y - 1)->getUsed()){
 			m_pos.y -= 1;
 			addColour(TileManager::getInstance()->colourAt(m_pos.x, m_pos.y));
@@ -173,7 +173,7 @@ void Player::move(Player::direction d){
 			TileManager::getInstance()->setUsedColour(getColour());
 		}
 		break;
-	case direction::LEFT:
+	case Direction::LEFT:
 		if (m_pos.x > 0 && !TileManager::getInstance()->at(m_pos.x - 1, m_pos.y)->getUsed()){
 			m_pos.x -= 1;
 			addColour(TileManager::getInstance()->colourAt(m_pos.x, m_pos.y));
@@ -181,7 +181,7 @@ void Player::move(Player::direction d){
 			TileManager::getInstance()->setUsedColour(getColour());
 		}
 		break;
-	case direction::DOWN:
+	case Direction::DOWN:
 		if (m_pos.x != -1 && m_pos.y < TileManager::getInstance()->getSize() - 1 && !TileManager::getInstance()->at(m_pos.x, m_pos.y + 1)->getUsed()){
 			m_pos.y += 1;
 			addColour(TileManager::getInstance()->colourAt(m_pos.x, m_pos.y));
@@ -189,7 +189,7 @@ void Player::move(Player::direction d){
 			TileManager::getInstance()->setUsedColour(getColour());
 		}
 		break;
-	case direction::RIGHT:
+	case Direction::RIGHT:
 		if (m_pos.x < TileManager::getInstance()->getSize() - 1 && !TileManager::getInstance()->at(m_pos.x + 1, m_pos.y)->getUsed()){
 			m_pos.x += 1;
 			addColour(TileManager::getInstance()->colourAt(m_pos.x, m_pos.y));

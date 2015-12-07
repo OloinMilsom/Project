@@ -45,7 +45,47 @@ void TileManager::initialise(int size){
 			left = at(i%m_currentSize - 1, i / m_currentSize)->getColour();
 		if (i / m_currentSize > 0)
 			above = at(i%m_currentSize, i / m_currentSize - 1)->getColour();
-		m_tiles.push_back(new Tile(150 + (i % m_currentSize) * tileSize, (i / m_currentSize) * tileSize, tileSize, above, left));
+		Tile * newTile = new Tile(150 + (i % m_currentSize) * tileSize, (i / m_currentSize) * tileSize, tileSize, above, left);
+		m_tiles.push_back(newTile);		
+	}
+	for (int i = 0; i < m_currentSize * m_currentSize; i++)
+	{
+		int wallCount = at(i % m_currentSize, i / m_currentSize )->getWallCount();
+		if (i % m_currentSize < 1 || i % m_currentSize > m_currentSize - 1){
+			wallCount++;
+		}
+		if (i / m_currentSize < 1 || i / m_currentSize > m_currentSize - 1){
+			wallCount++;
+		}
+		if (wallCount < 2)
+		{
+			switch (static_cast<Direction>(rand() % 4)){
+			case Direction::UP:
+				if (i / m_currentSize > 0 && m_tiles[i - size]->getWallCount() < 3) {
+					m_tiles[i]->addWalls(Direction::UP);
+					m_tiles[i - size]->addWalls(Direction::DOWN);
+				}
+				break;
+			case Direction::LEFT:
+				if (i % m_currentSize > 0 && m_tiles[i - 1]->getWallCount() < 3) {
+					m_tiles[i]->addWalls(Direction::LEFT);
+					m_tiles[i - 1]->addWalls(Direction::RIGHT);
+				}
+				break;
+			case Direction::DOWN:
+				if (i / m_currentSize + 1 < size && m_tiles[i + size]->getWallCount() < 3) {
+					m_tiles[i]->addWalls(Direction::DOWN);
+					m_tiles[i + size]->addWalls(Direction::UP);
+				}
+				break;
+			case Direction::RIGHT:
+				if (i % m_currentSize + 1 < size && m_tiles[i + 1]->getWallCount() < 3) {
+					m_tiles[i]->addWalls(Direction::RIGHT);
+					m_tiles[i + 1]->addWalls(Direction::LEFT);
+				}
+				break;
+			}
+		}
 	}
 	delete m_start;
 	delete m_finish;
@@ -54,35 +94,32 @@ void TileManager::initialise(int size){
 	m_start->setUsed(true);
 }
 
-Tile * TileManager::at(int x, int y){
+void TileManager::draw(sf::RenderWindow * window) const{
+	for (int i = 0; i < m_tiles.size(); i++)
+	{
+		m_tiles[i]->draw(window);
+	}
+	m_start->draw(window);
+	m_finish->draw(window);
+}
+
+Tile * TileManager::at(int x, int y) const {
 	return m_tiles[x + y * m_currentSize];
 }
 
-sf::Color TileManager::colourAt(int x, int y){
+sf::Color TileManager::colourAt(int x, int y) const {
 	return m_tiles[x + y * m_currentSize]->getColour();
 }
 
-sf::RectangleShape TileManager::getDrawAt(int x, int y){
-	return m_tiles[x + y * m_currentSize]->getDraw();
-}
-
-sf::Color TileManager::getStartColor(){
+sf::Color TileManager::getStartColor() const {
 	return m_start->getColour();
 }
 
-sf::Color TileManager::getFinishColor(){
+sf::Color TileManager::getFinishColor() const {
 	return m_finish->getColour();
 }
 
-sf::RectangleShape TileManager::getStartDraw(){
-	return m_start->getDraw();
-}
-
-sf::RectangleShape TileManager::getFinishDraw(){
-	return m_finish->getDraw();
-}
-
-int TileManager::getSize(){
+int TileManager::getSize() const{
 	return m_currentSize;
 }
 
@@ -107,24 +144,24 @@ void TileManager::setFinalColour(sf::Color current){
 	m_finish->setColour(current);
 }
 
-int TileManager::checkAdjacent(int x, int y){
-	int result = 0;
-	if (x > 0 && !m_tiles[(x-1) + y * m_currentSize]->getUsed()){
-		result++;
-	}
-	if (y > 0 && !m_tiles[x + (y-1) * m_currentSize]->getUsed()){
-		result++;
-	}
-	if (x < m_currentSize-1 && !m_tiles[(x+1) + y * m_currentSize]->getUsed()){
-		result++;
-	}
-	if (y < m_currentSize-1 && !m_tiles[x + (y+1) * m_currentSize]->getUsed()){
-		result++;
-	}
-	return result;
-}
+//int TileManager::checkAdjacent(int x, int y) const{
+//	int result = 0;
+//	if (x > 0 && !m_tiles[(x-1) + y * m_currentSize]->getUsed()){
+//		result++;
+//	}
+//	if (y > 0 && !m_tiles[x + (y-1) * m_currentSize]->getUsed()){
+//		result++;
+//	}
+//	if (x < m_currentSize-1 && !m_tiles[(x+1) + y * m_currentSize]->getUsed()){
+//		result++;
+//	}
+//	if (y < m_currentSize-1 && !m_tiles[x + (y+1) * m_currentSize]->getUsed()){
+//		result++;
+//	}
+//	return result;
+//}
 
-bool TileManager::floodFillCheck(int x, int y, int targetX, int targetY){
+bool TileManager::floodFillCheck(int x, int y, int targetX, int targetY) const{
 	m_tiles[x + y * m_currentSize]->setChecked(true);
 	if (x == targetX && y == targetY){
 		return true;
