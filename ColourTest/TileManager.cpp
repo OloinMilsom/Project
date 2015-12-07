@@ -46,44 +46,50 @@ void TileManager::initialise(int size){
 		if (i / m_currentSize > 0)
 			above = at(i%m_currentSize, i / m_currentSize - 1)->getColour();
 		Tile * newTile = new Tile(150 + (i % m_currentSize) * tileSize, (i / m_currentSize) * tileSize, tileSize, above, left);
+		if (i / size != size / 2){
+			if (i % size == 0)
+				newTile->addWalls(Direction::LEFT);
+			if (i / size == 0)
+				newTile->addWalls(Direction::UP);
+			if (i % size == size - 1)
+				newTile->addWalls(Direction::RIGHT);
+			if (i / size == size - 1)
+				newTile->addWalls(Direction::DOWN);
+		}
 		m_tiles.push_back(newTile);		
 	}
 	for (int i = 0; i < m_currentSize * m_currentSize; i++)
 	{
-		int wallCount = at(i % m_currentSize, i / m_currentSize )->getWallCount();
-		if (i % m_currentSize < 1 || i % m_currentSize > m_currentSize - 1){
-			wallCount++;
-		}
-		if (i / m_currentSize < 1 || i / m_currentSize > m_currentSize - 1){
-			wallCount++;
-		}
-		if (wallCount < 2)
-		{
-			switch (static_cast<Direction>(rand() % 4)){
-			case Direction::UP:
-				if (i / m_currentSize > 0 && m_tiles[i - size]->getWallCount() < 3) {
-					m_tiles[i]->addWalls(Direction::UP);
-					m_tiles[i - size]->addWalls(Direction::DOWN);
+		if (!(i / size == size / 2 && (i % size == 0 || i % size == size - 1))){
+			int wallCount = at(i % m_currentSize, i / m_currentSize)->getWallCount();
+			if (wallCount < 2)
+			{
+				switch (static_cast<Direction>(rand() % 4)){
+				case Direction::UP:
+					if (i - size >= 0 && m_tiles[i - size]->getWallCount() < 2){
+						m_tiles[i]->addWalls(Direction::UP);
+						m_tiles[i - size]->addWalls(Direction::DOWN);
+					}
+					break;
+				case Direction::LEFT:
+					if (i - 1 >= 0 && m_tiles[i - 1]->getWallCount() < 2){
+						m_tiles[i]->addWalls(Direction::LEFT);
+						m_tiles[i - 1]->addWalls(Direction::RIGHT);
+					}
+					break;
+				case Direction::DOWN:
+					if (i + size < size * size && m_tiles[i + size]->getWallCount() < 2){
+						m_tiles[i]->addWalls(Direction::DOWN);
+						m_tiles[i + size]->addWalls(Direction::UP);
+					}
+					break;
+				case Direction::RIGHT:
+					if (i + 1 < size * size && m_tiles[i + 1]->getWallCount() < 2){
+						m_tiles[i]->addWalls(Direction::RIGHT);
+						m_tiles[i + 1]->addWalls(Direction::LEFT);
+					}
+					break;
 				}
-				break;
-			case Direction::LEFT:
-				if (i % m_currentSize > 0 && m_tiles[i - 1]->getWallCount() < 3) {
-					m_tiles[i]->addWalls(Direction::LEFT);
-					m_tiles[i - 1]->addWalls(Direction::RIGHT);
-				}
-				break;
-			case Direction::DOWN:
-				if (i / m_currentSize + 1 < size && m_tiles[i + size]->getWallCount() < 3) {
-					m_tiles[i]->addWalls(Direction::DOWN);
-					m_tiles[i + size]->addWalls(Direction::UP);
-				}
-				break;
-			case Direction::RIGHT:
-				if (i % m_currentSize + 1 < size && m_tiles[i + 1]->getWallCount() < 3) {
-					m_tiles[i]->addWalls(Direction::RIGHT);
-					m_tiles[i + 1]->addWalls(Direction::LEFT);
-				}
-				break;
 			}
 		}
 	}

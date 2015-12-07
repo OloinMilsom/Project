@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "GameScene.h"
+#include <iostream>
 
 GameScene::GameScene(){
 	m_currSize = 3;
@@ -23,7 +24,14 @@ void GameScene::update(sf::Event* e, sf::RenderWindow* window){
 		if (e->type == sf::Event::Closed)
 			window->close();
 
+		if (e->type == sf::Event::JoystickButtonPressed){
+			std::cout << e->joystickButton.button;
+		}
+		if (e->type == sf::Event::JoystickMoved){
+			std::cout << sf::Joystick::getAxisPosition(0, sf::Joystick::Z);
+		}
 		if (e->type == sf::Event::KeyPressed) {
+			std::cout << e->key.code;
 			if (e->key.code == sf::Keyboard::Escape){
 				window->close();
 			}

@@ -98,11 +98,11 @@
     <ClInclude Include="TimedGameScene.h">
       <Filter>Header Files\ScenesHeaders</Filter>
     </ClInclude>
-    <ClInclude Include="Wall.h">
-      <Filter>Header Files\ScenesHeaders</Filter>
-    </ClInclude>
     <ClInclude Include="Direction.h">
       <Filter>Header Files\ScenesHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Wall.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

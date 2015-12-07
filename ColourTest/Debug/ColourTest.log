@@ -1,16 +1,17 @@
-﻿Build started 07/12/2015 13:16:36.
-     1>Project "C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\ColourTest\ColourTest.vcxproj" on node 2 (Build target(s)).
+﻿Build started 07/12/2015 22:26:17.
+     1>Project "C:\Users\kepor_000\Desktop\ColourTest\ColourTest\ColourTest.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\SFML-2.3.2\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt TileManager.cpp
-         TileManager.cpp
-     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(39): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(48): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(92): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(93): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(98): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(127): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\SFML-2.3.2\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt GameScene.cpp
+         GameScene.cpp
+     1>c:\users\kepor_000\desktop\colourtest\colourtest\gamescene.cpp(62): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\kepor_000\desktop\colourtest\colourtest\gamescene.cpp(69): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\kepor_000\desktop\colourtest\colourtest\gamescene.cpp(75): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\kepor_000\desktop\colourtest\colourtest\gamescene.cpp(80): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\kepor_000\desktop\colourtest\colourtest\gamescene.cpp(85): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\kepor_000\desktop\colourtest\colourtest\gamescene.cpp(90): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\kepor_000\desktop\colourtest\colourtest\gamescene.cpp(92): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\Debug\ColourTest.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\SFML-2.3.2\lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\Debug\ColourTest.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\Debug\ColourTest.lib" /MACHINE:X86 Debug\Button.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\kepor_000\Desktop\ColourTest\Debug\ColourTest.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\SFML-2.3.2\lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\kepor_000\Desktop\ColourTest\Debug\ColourTest.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\kepor_000\Desktop\ColourTest\Debug\ColourTest.lib" /MACHINE:X86 Debug\Button.obj
          Debug\GameOverScene.obj
          Debug\GameScene.obj
          Debug\Main.obj
@@ -23,9 +24,9 @@
          Debug\TileManager.obj
          Debug\TimedGameScene.obj
          Debug\Wall.obj
-         ColourTest.vcxproj -> C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\Debug\ColourTest.exe
-     1>Done Building Project "C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\ColourTest\ColourTest.vcxproj" (Build target(s)).
+         ColourTest.vcxproj -> C:\Users\kepor_000\Desktop\ColourTest\Debug\ColourTest.exe
+     1>Done Building Project "C:\Users\kepor_000\Desktop\ColourTest\ColourTest\ColourTest.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.73
+Time Elapsed 00:00:02.51
