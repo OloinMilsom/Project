@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "GameScene.h"
 #include <iostream>
+#include "fmod.hpp"
 
 GameScene::GameScene(){
 	m_currSize = 3;
