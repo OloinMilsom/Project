@@ -1,12 +1,39 @@
 #include "stdafx.h"
 #include "GameScene.h"
 #include <iostream>
+
+
+//FMOD includes
+
+#pragma comment(lib,"fmodex_vc.lib")
+
 #include "fmod.hpp"
+
+#include "fmod_errors.h"
 
 GameScene::GameScene(){
 	m_currSize = 3;
 	m_attempts = 15;
 	TileManager::getInstance()->initialise(m_currSize);
+
+	//setup FMOD
+
+	FMOD_RESULT result;
+	result = FMOD::System_Create(&system);         // Create the main system object.
+	if (result != FMOD_OK)	{
+		std::cout << "FMOD error!" << result << FMOD_ErrorString(result);
+		exit(-1);
+	}
+	result = system->init(100, FMOD_INIT_NORMAL, 0);   // Initialize FMOD.
+	if (result != FMOD_OK){
+		std::cout << "FMOD error!" << result << FMOD_ErrorString(result);
+		exit(-1);
+	}
+	result = system->createSound("res/sounds/sound.mp3", FMOD_DEFAULT, 0, &audio);
+	if (result != FMOD_OK){
+		std::cout << "FMOD error! (%d) %s\n" << result;
+		exit(-1);
+	}
 
 	m_player = new Player(0, TileManager::getInstance()->getSize() / 2);
 	m_player->addColour(TileManager::getInstance()->getStartColor());
@@ -32,6 +59,9 @@ void GameScene::update(sf::Event* e, sf::RenderWindow* window){
 			std::cout << sf::Joystick::getAxisPosition(0, sf::Joystick::Z);
 		}
 		if (e->type == sf::Event::KeyPressed) {
+
+			FMOD::Channel *channel;
+			system->playSound(FMOD_CHANNEL_FREE, audio, false, &channel);
 			std::cout << e->key.code;
 			if (e->key.code == sf::Keyboard::Escape){
 				window->close();

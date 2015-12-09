@@ -37,7 +37,7 @@ void MenuScene::update(sf::Event* e, sf::RenderWindow* window){
 }
 
 void MenuScene::draw(sf::RenderWindow* window){
-	m_backgroundImg.loadFromFile("Title.jpg");
+	m_backgroundImg.loadFromFile("res/images/Title.jpg");
 	sf::Sprite m_sprBackground(m_backgroundImg);
 	window->draw(m_sprBackground);
 	for (int i = 0; i < m_buttons.size(); i++)
