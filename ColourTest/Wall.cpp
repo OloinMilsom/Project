@@ -29,3 +29,7 @@ Wall::Wall(Direction dir, sf::Vector2f pos, int size) :
 void Wall::draw(sf::RenderWindow * window) const{
 	window->draw(m_shape);
 }
+
+Direction Wall::getDir() const{
+	return m_dir;
+}

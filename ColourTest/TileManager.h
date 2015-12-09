@@ -20,6 +20,7 @@ public:
 	void draw(sf::RenderWindow * window) const;
 
 	Tile * at(int x, int y) const;
+	bool checkWallAt(int x, int y, Direction dir) const;
 	sf::Color colourAt(int x, int y) const;
 	sf::Color getStartColor() const;
 	sf::Color getFinishColor() const;

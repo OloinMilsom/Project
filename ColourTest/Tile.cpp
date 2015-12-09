@@ -67,6 +67,16 @@ int Tile::getWallCount() const{
 	return m_walls.size();
 }
 
+bool Tile::checkWall(Direction dir) const{
+	for (int i = 0; i < m_walls.size(); i++)
+	{
+		if (m_walls[i].getDir() == dir){
+			return true;
+		}
+	}
+	return false;
+}
+
 void Tile::setColour(sf::Color col){
 	m_col = col;
 }

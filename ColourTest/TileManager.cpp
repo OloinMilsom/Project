@@ -62,29 +62,29 @@ void TileManager::initialise(int size){
 	{
 		if (!(i / size == size / 2 && (i % size == 0 || i % size == size - 1))){
 			int wallCount = at(i % m_currentSize, i / m_currentSize)->getWallCount();
-			if (wallCount < 2)
+			if (wallCount < 1)
 			{
 				switch (static_cast<Direction>(rand() % 4)){
 				case Direction::UP:
-					if (i - size >= 0 && m_tiles[i - size]->getWallCount() < 2){
+					if (i - size >= 0 && m_tiles[i - size]->getWallCount() < 1){
 						m_tiles[i]->addWalls(Direction::UP);
 						m_tiles[i - size]->addWalls(Direction::DOWN);
 					}
 					break;
 				case Direction::LEFT:
-					if (i - 1 >= 0 && m_tiles[i - 1]->getWallCount() < 2){
+					if (i - 1 >= 0 && m_tiles[i - 1]->getWallCount() < 1){
 						m_tiles[i]->addWalls(Direction::LEFT);
 						m_tiles[i - 1]->addWalls(Direction::RIGHT);
 					}
 					break;
 				case Direction::DOWN:
-					if (i + size < size * size && m_tiles[i + size]->getWallCount() < 2){
+					if (i + size < size * size && m_tiles[i + size]->getWallCount() < 1){
 						m_tiles[i]->addWalls(Direction::DOWN);
 						m_tiles[i + size]->addWalls(Direction::UP);
 					}
 					break;
 				case Direction::RIGHT:
-					if (i + 1 < size * size && m_tiles[i + 1]->getWallCount() < 2){
+					if (i + 1 < size * size && m_tiles[i + 1]->getWallCount() < 1){
 						m_tiles[i]->addWalls(Direction::RIGHT);
 						m_tiles[i + 1]->addWalls(Direction::LEFT);
 					}
@@ -111,6 +111,10 @@ void TileManager::draw(sf::RenderWindow * window) const{
 
 Tile * TileManager::at(int x, int y) const {
 	return m_tiles[x + y * m_currentSize];
+}
+
+bool TileManager::checkWallAt(int x, int y, Direction dir) const{
+	return m_tiles[x + y * m_currentSize]->checkWall(dir);
 }
 
 sf::Color TileManager::colourAt(int x, int y) const {

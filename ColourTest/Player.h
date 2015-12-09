@@ -22,6 +22,7 @@ public:
 	void setPos(sf::Vector2f);
 	void resetColour();
 	void addColour(sf::Color c);
+	bool canMove(Direction dir);
 	void move(Direction d);
 	void goalFinder();
 };

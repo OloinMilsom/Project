@@ -61,7 +61,7 @@ void GameScene::update(sf::Event* e, sf::RenderWindow* window){
 		if (e->type == sf::Event::KeyPressed) {
 
 			FMOD::Channel *channel;
-			system->playSound(FMOD_CHANNEL_FREE, audio, false, &channel);
+			//system->playSound(FMOD_CHANNEL_FREE, audio, false, &channel);
 			std::cout << e->key.code;
 			if (e->key.code == sf::Keyboard::Escape){
 				window->close();

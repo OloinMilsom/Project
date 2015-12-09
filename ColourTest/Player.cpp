@@ -163,10 +163,31 @@ void Player::addColour(sf::Color c){
 	std::cout << "Red: " << m_red << "\t" << "Green: " << m_green << "\t" << "Blue: " << m_blue << "\t" << std::endl;
 }
 
+bool Player::canMove(Direction dir){
+	switch (dir){
+	case Direction::UP:
+		return !TileManager::getInstance()->checkWallAt(m_pos.x, m_pos.y, Direction::UP) &&
+			!TileManager::getInstance()->at(m_pos.x, m_pos.y - 1)->getUsed();
+		break;
+	case Direction::LEFT:
+		return !TileManager::getInstance()->checkWallAt(m_pos.x, m_pos.y, Direction::LEFT) &&
+			!TileManager::getInstance()->at(m_pos.x - 1, m_pos.y)->getUsed();
+		break;
+	case Direction::DOWN:
+		return !TileManager::getInstance()->checkWallAt(m_pos.x, m_pos.y, Direction::DOWN) &&
+			!TileManager::getInstance()->at(m_pos.x, m_pos.y + 1)->getUsed();
+		break;
+	case Direction::RIGHT:
+		return !TileManager::getInstance()->checkWallAt(m_pos.x, m_pos.y, Direction::RIGHT) &&
+			!TileManager::getInstance()->at(m_pos.x + 1, m_pos.y)->getUsed();
+		break;
+	}
+}
+
 void Player::move(Direction d){
 	switch (d){
 	case Direction::UP:
-		if (m_pos.x != -1 && m_pos.y > 0 && !TileManager::getInstance()->at(m_pos.x, m_pos.y - 1)->getUsed()){
+		if (m_pos.x != -1 && canMove(d)){
 			m_pos.y -= 1;
 			addColour(TileManager::getInstance()->colourAt(m_pos.x, m_pos.y));
 			TileManager::getInstance()->setUsed(m_pos);
@@ -174,7 +195,7 @@ void Player::move(Direction d){
 		}
 		break;
 	case Direction::LEFT:
-		if (m_pos.x > 0 && !TileManager::getInstance()->at(m_pos.x - 1, m_pos.y)->getUsed()){
+		if (m_pos.x != -1 && m_pos.x != 0 && canMove(d)){
 			m_pos.x -= 1;
 			addColour(TileManager::getInstance()->colourAt(m_pos.x, m_pos.y));
 			TileManager::getInstance()->setUsed(m_pos);
@@ -182,7 +203,7 @@ void Player::move(Direction d){
 		}
 		break;
 	case Direction::DOWN:
-		if (m_pos.x != -1 && m_pos.y < TileManager::getInstance()->getSize() - 1 && !TileManager::getInstance()->at(m_pos.x, m_pos.y + 1)->getUsed()){
+		if (m_pos.x != -1 && canMove(d)){
 			m_pos.y += 1;
 			addColour(TileManager::getInstance()->colourAt(m_pos.x, m_pos.y));
 			TileManager::getInstance()->setUsed(m_pos);
@@ -190,15 +211,17 @@ void Player::move(Direction d){
 		}
 		break;
 	case Direction::RIGHT:
-		if (m_pos.x < TileManager::getInstance()->getSize() - 1 && !TileManager::getInstance()->at(m_pos.x + 1, m_pos.y)->getUsed()){
+		if (m_pos.x == TileManager::getInstance()->getSize() - 1 && m_pos.y == TileManager::getInstance()->getSize() / 2){
+			if (getColour() == TileManager::getInstance()->getFinishColor()){
+				m_pos.x += 1;
+			}
+		}
+		else if (m_pos.x == -1 || canMove(d) && m_pos.x < TileManager::getInstance()->getSize()){
 			m_pos.x += 1;
 			addColour(TileManager::getInstance()->colourAt(m_pos.x, m_pos.y));
 			TileManager::getInstance()->setUsed(m_pos);
 			TileManager::getInstance()->setUsedColour(getColour());
-		}
-		else if (m_pos.x == TileManager::getInstance()->getSize() - 1 && m_pos.y == TileManager::getInstance()->getSize() / 2 &&
-			getColour() == TileManager::getInstance()->getFinishColor()){
-			m_pos.x += 1;
+
 		}
 		break;
 	}
@@ -219,28 +242,28 @@ void Player::goalFinder(){
 		// choose a random direction
 		int random = rand() % 4;
 		// left
-		if (random == 0 && m_pos.x > 0 && !TileManager::getInstance()->at(m_pos.x - 1, m_pos.y)->getUsed() && 
+		if (random == 0 && m_pos.x > 0 && canMove(Direction::LEFT) &&
 			TileManager::getInstance()->floodFillCheck(m_pos.x - 1, m_pos.y, finalPos.x, finalPos.y)){
 			m_pos.x--;
 			addColour(TileManager::getInstance()->colourAt(m_pos.x, m_pos.y));
 			TileManager::getInstance()->setUsed(m_pos);
 		}
 		// up
-		else if (random == 1 && m_pos.y > 0 && !TileManager::getInstance()->at(m_pos.x , m_pos.y - 1)->getUsed() &&
+		else if (random == 1 && canMove(Direction::UP) &&
 			TileManager::getInstance()->floodFillCheck(m_pos.x, m_pos.y - 1, finalPos.x, finalPos.y)){
 			m_pos.y--;
 			addColour(TileManager::getInstance()->colourAt(m_pos.x, m_pos.y));
 			TileManager::getInstance()->setUsed(m_pos);
 		}
 		//right
-		else if (random == 2 && m_pos.x < size - 1 && !TileManager::getInstance()->at(m_pos.x + 1, m_pos.y)->getUsed() &&
+		else if (random == 2 && canMove(Direction::RIGHT) &&
 			TileManager::getInstance()->floodFillCheck(m_pos.x + 1, m_pos.y, finalPos.x, finalPos.y)){
 			m_pos.x++;
 			addColour(TileManager::getInstance()->colourAt(m_pos.x, m_pos.y));
 			TileManager::getInstance()->setUsed(m_pos);
 		}
 		// down
-		else if (random == 3 && m_pos.y < size - 1 && !TileManager::getInstance()->at(m_pos.x, m_pos.y + 1)->getUsed() &&
+		else if (random == 3 && canMove(Direction::DOWN) &&
 			TileManager::getInstance()->floodFillCheck(m_pos.x, m_pos.y + 1, finalPos.x, finalPos.y)){
 			m_pos.y++;
 			addColour(TileManager::getInstance()->colourAt(m_pos.x, m_pos.y));
