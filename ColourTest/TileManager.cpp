@@ -66,25 +66,25 @@ void TileManager::initialise(int size){
 			{
 				switch (static_cast<Direction>(rand() % 4)){
 				case Direction::UP:
-					if (i - size >= 0 && m_tiles[i - size]->getWallCount() < 1){
+					if (i - size >= 0 && i / size != 0 && m_tiles[i - size]->getWallCount() < 1){
 						m_tiles[i]->addWalls(Direction::UP);
 						m_tiles[i - size]->addWalls(Direction::DOWN);
 					}
 					break;
 				case Direction::LEFT:
-					if (i - 1 >= 0 && m_tiles[i - 1]->getWallCount() < 1){
+					if (i - 1 >= 0 && i % size != 0 && m_tiles[i - 1]->getWallCount() < 1){
 						m_tiles[i]->addWalls(Direction::LEFT);
 						m_tiles[i - 1]->addWalls(Direction::RIGHT);
 					}
 					break;
 				case Direction::DOWN:
-					if (i + size < size * size && m_tiles[i + size]->getWallCount() < 1){
+					if (i + size < size * size && i / size != size - 1 && m_tiles[i + size]->getWallCount() < 1){
 						m_tiles[i]->addWalls(Direction::DOWN);
 						m_tiles[i + size]->addWalls(Direction::UP);
 					}
 					break;
 				case Direction::RIGHT:
-					if (i + 1 < size * size && m_tiles[i + 1]->getWallCount() < 1){
+					if (i + 1 < size * size && i % size != size - 1 && m_tiles[i + 1]->getWallCount() < 1){
 						m_tiles[i]->addWalls(Direction::RIGHT);
 						m_tiles[i + 1]->addWalls(Direction::LEFT);
 					}
@@ -176,19 +176,27 @@ bool TileManager::floodFillCheck(int x, int y, int targetX, int targetY) const{
 	if (x == targetX && y == targetY){
 		return true;
 	}
-	if (y > 0 && !m_tiles[x + (y - 1) * m_currentSize]->getUsed() && !m_tiles[x + (y - 1) * m_currentSize]->getChecked()){
+	//up
+	if (y > 0 && !m_tiles[x + y * m_currentSize]->checkWall(Direction::UP) && 
+		!m_tiles[x + (y - 1) * m_currentSize]->getUsed() && !m_tiles[x + (y - 1) * m_currentSize]->getChecked()){
 		if (floodFillCheck(x, y - 1, targetX, targetY))
 			return true;
 	}
-	if (x > 0 && !m_tiles[(x - 1) + y * m_currentSize]->getUsed() && !m_tiles[(x - 1) + y * m_currentSize]->getChecked()){
+	//left
+	if (x > 0 && !m_tiles[x + y * m_currentSize]->checkWall(Direction::LEFT) && 
+		!m_tiles[(x - 1) + y * m_currentSize]->getUsed() && !m_tiles[(x - 1) + y * m_currentSize]->getChecked()){
 		if (floodFillCheck(x - 1, y, targetX, targetY))
 			return true;
 	}
-	if (y < m_currentSize - 1 && !m_tiles[x + (y + 1) * m_currentSize]->getUsed() && !m_tiles[x + (y + 1) * m_currentSize]->getChecked()){
+	//down
+	if (y < m_currentSize - 1 && !m_tiles[x + y * m_currentSize]->checkWall(Direction::DOWN) && 
+		!m_tiles[x + (y + 1) * m_currentSize]->getUsed() && !m_tiles[x + (y + 1) * m_currentSize]->getChecked()){
 		if (floodFillCheck(x, y + 1, targetX, targetY))
 			return true;
 	}
-	if (x < m_currentSize - 1 && !m_tiles[(x + 1) + y * m_currentSize]->getUsed() && !m_tiles[(x + 1) + y * m_currentSize]->getChecked()){
+	//right
+	if (x < m_currentSize - 1 && !m_tiles[x + y * m_currentSize]->checkWall(Direction::RIGHT) && 
+		!m_tiles[(x + 1) + y * m_currentSize]->getUsed() && !m_tiles[(x + 1) + y * m_currentSize]->getChecked()){
 		if (floodFillCheck(x + 1, y, targetX, targetY))
 			return true;
 	}

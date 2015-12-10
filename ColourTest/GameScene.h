@@ -3,7 +3,6 @@
 
 #include "Scene.h"
 #include "Player.h"
-#include "fmod.hpp"
 
 class GameScene : public Scene{
 public:
@@ -17,8 +16,6 @@ private:
 	int m_currSize;
 	int m_attempts;
 	Player * m_player;
-	FMOD::Sound *audio;
-	FMOD::System * system;
 };
 
 #endif
