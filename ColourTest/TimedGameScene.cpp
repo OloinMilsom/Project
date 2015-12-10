@@ -40,6 +40,12 @@ void TimedGameScene::update(sf::Event* e, sf::RenderWindow* window){
 			if (e->key.code == sf::Keyboard::Escape){
 				window->close();
 			}
+			if (e->key.code == sf::Keyboard::Num1){
+				SoundManager::getInstance()->muteEffects();
+			}
+			if (e->key.code == sf::Keyboard::Num2){
+				SoundManager::getInstance()->muteMusic();
+			}
 			if (e->key.code == sf::Keyboard::W)
 			{
 				m_player->move(Direction::UP);

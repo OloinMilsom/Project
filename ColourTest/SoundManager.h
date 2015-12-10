@@ -17,12 +17,16 @@ private:
 	FMOD::System * m_system;
 	FMOD::Channel * m_effectsChannel;
 	FMOD::Channel * m_musicChannel;
+	bool m_effectsMute;
+	bool m_musicMute;
 	//FMOD::ChannelGroup *channelMusic;
 public:
 	~SoundManager();
 	static SoundManager * getInstance();
 	void playEffect(int i);
 	void playMusic(int i);
+	void muteEffects();
+	void muteMusic();
 };
 
 #endif

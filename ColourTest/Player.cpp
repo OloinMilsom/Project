@@ -187,7 +187,7 @@ bool Player::canMove(Direction dir){
 void Player::move(Direction d){
 	switch (d){
 	case Direction::UP:
-		if (m_pos.x != -1 && canMove(d)){
+		if (m_pos.x != -1 && m_pos.x < TileManager::getInstance()->getSize() && canMove(d)){
 			m_pos.y -= 1;
 			addColour(TileManager::getInstance()->colourAt(m_pos.x, m_pos.y));
 			TileManager::getInstance()->setUsed(m_pos);
@@ -203,7 +203,7 @@ void Player::move(Direction d){
 		}
 		break;
 	case Direction::DOWN:
-		if (m_pos.x != -1 && canMove(d)){
+		if (m_pos.x != -1 && m_pos.x < TileManager::getInstance()->getSize() && canMove(d)){
 			m_pos.y += 1;
 			addColour(TileManager::getInstance()->colourAt(m_pos.x, m_pos.y));
 			TileManager::getInstance()->setUsed(m_pos);

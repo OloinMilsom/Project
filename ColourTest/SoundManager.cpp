@@ -46,15 +46,26 @@ SoundManager * SoundManager::getInstance(){
 }
 
 void SoundManager::playEffect(int i){
-	if (i >= 0 && i < m_effects.size())
-		m_system->playSound(FMOD_CHANNEL_FREE, m_effects[i], false, &m_effectsChannel);
+	if (!m_effectsMute){
+		if (i >= 0 && i < m_effects.size())
+			m_system->playSound(FMOD_CHANNEL_FREE, m_effects[i], false, &m_effectsChannel);
+	}
 }
 
 void SoundManager::playMusic(int i){
 	if (i >= 0 && i < m_music.size()){
 		//m_musicChannel->setPaused(false);
-		m_system->playSound(FMOD_CHANNEL_FREE, m_music[0], false, &m_musicChannel);
+		m_system->playSound(FMOD_CHANNEL_FREE, m_music[i], false, &m_musicChannel);
 		m_musicChannel->setMode(FMOD_LOOP_NORMAL);
 		m_musicChannel->setLoopCount(-1);
 	}
+}
+
+void SoundManager::muteEffects(){
+	m_effectsMute = !m_effectsMute;
+}
+
+void SoundManager::muteMusic(){
+	m_musicMute = !m_musicMute;
+	m_musicChannel->setMute(m_musicMute);
 }

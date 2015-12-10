@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "GameScene.h"
-#include "SoundManager.h"
 #include <iostream>
 
 GameScene::GameScene(){
@@ -39,6 +38,12 @@ void GameScene::update(sf::Event* e, sf::RenderWindow* window){
 			std::cout << e->key.code;
 			if (e->key.code == sf::Keyboard::Escape){
 				window->close();
+			}
+			if (e->key.code == sf::Keyboard::Num1){
+				SoundManager::getInstance()->muteEffects();
+			}
+			if (e->key.code == sf::Keyboard::Num2){
+				SoundManager::getInstance()->muteMusic();
 			}
 			if (e->key.code == sf::Keyboard::W)
 			{

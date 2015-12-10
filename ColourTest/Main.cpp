@@ -7,6 +7,7 @@
 #include "TileManager.h"
 #include <ctime>
 #include "SceneManager.h"
+#include "SoundManager.h"
 
 #ifdef _DEBUG 
 #pragma comment(lib,"sfml-graphics-d.lib") 
@@ -49,6 +50,13 @@ int main()
 		// Process events 
 		sf::Event Event;
 		SceneManager::getInstance()->update(&Event, &window);
+		while (window.pollEvent(Event))
+		{
+			if (Event.type == sf::Event::KeyPressed)
+			{
+				
+			}
+		}
 
 		//prepare frame
 		window.clear(sf::Color(40, 40, 50));
