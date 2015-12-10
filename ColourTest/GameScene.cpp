@@ -7,7 +7,6 @@ GameScene::GameScene(){
 	m_attempts = 15;
 	TileManager::getInstance()->initialise(m_currSize);
 
-	SoundManager::getInstance()->playMusic(0);
 
 	
 
@@ -21,7 +20,7 @@ GameScene::~GameScene(){
 }
 
 void GameScene::update(sf::Event* e, sf::RenderWindow* window){
-
+	SoundManager::getInstance()->updateSpatial(m_player->getWorldPos(), sf::Vector2f(0, 0), TileManager::getInstance()->getFinishPos());
 	while (window->pollEvent(*e))
 	{
 		// Close window : exit 
@@ -123,7 +122,7 @@ void GameScene::draw(sf::RenderWindow* window){
 }
 
 void GameScene::start(){
-
+	SoundManager::getInstance()->playSpatial(0);
 }
 
 void GameScene::stop(){

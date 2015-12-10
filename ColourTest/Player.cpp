@@ -18,6 +18,10 @@ sf::Vector2f Player::getPos() const{
 	return m_pos;
 }
 
+sf::Vector2f Player::getWorldPos() const{
+	return sf::Vector2f(m_pos.x * (500 / TileManager::getInstance()->getSize()) + 150, m_pos.y * (500 / TileManager::getInstance()->getSize()));
+}
+
 void Player::setPos(sf::Vector2f pos){
 	m_pos = pos;
 }

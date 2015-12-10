@@ -23,6 +23,7 @@ public:
 	bool getUsed() const;
 	bool getChecked() const;
 	int getWallCount() const;
+	sf::Vector2f getPos() const;
 	bool checkWall(Direction dir) const;
 	void setColour(sf::Color);
 	void setUsed(bool);

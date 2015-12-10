@@ -14,19 +14,25 @@ private:
 
 	std::vector<FMOD::Sound *> m_effects;
 	std::vector<FMOD::Sound *> m_music;
+	std::vector<FMOD::Sound *> m_spatial;
 	FMOD::System * m_system;
 	FMOD::Channel * m_effectsChannel;
 	FMOD::Channel * m_musicChannel;
+	FMOD::Channel * m_spatialChannel;
 	bool m_effectsMute;
 	bool m_musicMute;
+	bool m_spatialMute;
 	//FMOD::ChannelGroup *channelMusic;
 public:
 	~SoundManager();
 	static SoundManager * getInstance();
 	void playEffect(int i);
 	void playMusic(int i);
+	void playSpatial(int i);
+	void updateSpatial(sf::Vector2f listenerPos, sf::Vector2f listenerVel, sf::Vector2f sourcePos);
 	void muteEffects();
 	void muteMusic();
+	void muteSpatial();
 };
 
 #endif

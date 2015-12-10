@@ -25,6 +25,7 @@ public:
 	sf::Color getStartColor() const;
 	sf::Color getFinishColor() const;
 	int getSize() const;
+	sf::Vector2f getFinishPos() const;
 
 	void setUsed(sf::Vector2f pos);
 	void setUsedColour(sf::Color current);

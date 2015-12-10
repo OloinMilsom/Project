@@ -19,6 +19,7 @@ public:
 	Player(int x, int y);
 	sf::Color getColour() const;
 	sf::Vector2f getPos() const;
+	sf::Vector2f getWorldPos() const;
 	void setPos(sf::Vector2f);
 	void resetColour();
 	void addColour(sf::Color c);

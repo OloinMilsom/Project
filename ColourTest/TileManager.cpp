@@ -133,6 +133,10 @@ int TileManager::getSize() const{
 	return m_currentSize;
 }
 
+sf::Vector2f TileManager::getFinishPos() const{
+	return m_finish->getPos();
+}
+
 void TileManager::setUsed(sf::Vector2f pos ){
 	m_tiles[pos.x + pos.y * m_currentSize]->setUsed(true);
 	//m_tiles[pos.x + pos.y * m_currentSize]->setColour(current);

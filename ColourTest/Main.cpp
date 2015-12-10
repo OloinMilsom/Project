@@ -43,6 +43,7 @@ int main()
 	srand(time(0));
 
 	SceneManager::getInstance();
+	SoundManager::getInstance()->playMusic(0);
 
 	// Start game loop 
 	while (window.isOpen())

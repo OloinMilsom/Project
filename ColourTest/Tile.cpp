@@ -67,6 +67,10 @@ int Tile::getWallCount() const{
 	return m_walls.size();
 }
 
+sf::Vector2f Tile::getPos() const{
+	return m_pos;
+}
+
 bool Tile::checkWall(Direction dir) const{
 	for (int i = 0; i < m_walls.size(); i++)
 	{
