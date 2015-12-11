@@ -64,6 +64,7 @@ void SoundManager::playMusic(int i){
 		m_system->playSound(FMOD_CHANNEL_FREE, m_music[i], false, &m_musicChannel);
 		m_musicChannel->setMode(FMOD_LOOP_NORMAL);
 		m_musicChannel->setLoopCount(-1);
+		m_musicChannel->setVolume(0.1f);
 	}
 }
 
@@ -90,9 +91,9 @@ void SoundManager::updateSpatial(sf::Vector2f listenerPos, sf::Vector2f listener
 		FMOD_VECTOR  sourcePosition = { sourcePos.x, 0.0f, sourcePos.y };
 		//source is fixed so velocity is zero
 		m_spatialChannel->set3DAttributes(&sourcePosition, 0);
-		m_spatialChannel->set3DMinMaxDistance(1, 800);
+		m_spatialChannel->set3DMinMaxDistance(50, 8000);
 	}
-	FMOD::Reverb *reverb;
+	/*FMOD::Reverb *reverb;
 	m_system->createReverb(&reverb);
 	FMOD_REVERB_PROPERTIES prop = FMOD_PRESET_UNDERWATER;
 	reverb->setProperties(&prop);
@@ -101,7 +102,8 @@ void SoundManager::updateSpatial(sf::Vector2f listenerPos, sf::Vector2f listener
 	float maxdist = 150.0f;
 	reverb->set3DAttributes(&pos, mindist, maxdist);
 
-	reverb->setActive(true);
+	reverb->setActive(true);*/
+	m_system->update();
 }
 
 void SoundManager::muteEffects(){
