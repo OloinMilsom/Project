@@ -78,20 +78,30 @@ void SoundManager::playSpatial(int i){
 	}
 }
 
-void SoundManager::updateSpatial(sf::Vector2f listenerPos, sf::Vector2f listenerVel, sf::Vector2f sourcePos){
+void SoundManager::updateSpatial(sf::Vector2f listenerPos, sf::Vector2f listenerVel, sf::Vector2f sourcePos, Direction dir){
 	FMOD_VECTOR  listenervel = { listenerVel.x, 0.0f, listenerVel.y };
 	//update position & velocity of listener
 	//position of listener needed for spatial & reverb effects
 	//velocity of listener needed for dopper effects
 	FMOD_VECTOR  listenerpos = { listenerPos.x, 0.0f, listenerPos.y };
 	//final pair of parameters are forward direction and up direction of listener (not needed in 2D)
-	m_system->set3DListenerAttributes(0, &listenerpos, &listenervel, 0, 0);
+	FMOD_VECTOR forward;
+	if (dir == Direction::UP)
+		forward = { 0, 0, 1 };
+	if (dir == Direction::LEFT)
+		forward = { 1, 0, 0 };
+	if (dir == Direction::DOWN)
+		forward = { 0, 0, -1 };
+	if (dir == Direction::RIGHT)
+		forward = { -1, 0, 0 };
+	m_system->set3DListenerAttributes(0, &listenerpos, &listenervel, &forward, 0);
 	//update position of sound
 	if (m_spatialChannel){
 		FMOD_VECTOR  sourcePosition = { sourcePos.x, 0.0f, sourcePos.y };
 		//source is fixed so velocity is zero
 		m_spatialChannel->set3DAttributes(&sourcePosition, 0);
 		m_spatialChannel->set3DMinMaxDistance(50, 8000);
+		m_spatial[0]->
 	}
 	/*FMOD::Reverb *reverb;
 	m_system->createReverb(&reverb);

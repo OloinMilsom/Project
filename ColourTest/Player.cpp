@@ -10,6 +10,24 @@ Player::Player(int x, int y){
 	//int t = m_colourDevision;
 }
 
+void Player::draw(sf::RenderWindow * window) const{
+	sf::CircleShape circ((500 / TileManager::getInstance()->getSize()) * 0.5f);
+	sf::CircleShape facingCirc((500 / TileManager::getInstance()->getSize()) * 0.25f);
+	circ.setPosition(getWorldPos());
+	if (m_dir == Direction::UP)
+		facingCirc.setPosition(getWorldPos() + sf::Vector2f(facingCirc.getRadius(), 0));
+	if (m_dir == Direction::LEFT)
+		facingCirc.setPosition(getWorldPos() + sf::Vector2f(0, facingCirc.getRadius()));
+	if (m_dir == Direction::DOWN)
+		facingCirc.setPosition(getWorldPos() + sf::Vector2f(facingCirc.getRadius(), 2 * facingCirc.getRadius()));
+	if (m_dir == Direction::RIGHT)
+		facingCirc.setPosition(getWorldPos() + sf::Vector2f(2 * facingCirc.getRadius(), facingCirc.getRadius()));
+	circ.setFillColor(sf::Color(100, 100, 100));
+	facingCirc.setFillColor(sf::Color(50, 50, 50));
+	window->draw(circ);
+	window->draw(facingCirc);
+}
+
 sf::Color Player::getColour() const{
 	return sf::Color(m_red * 255 / m_colourDevision, m_green * 255 / m_colourDevision, m_blue * 255 / m_colourDevision);
 }
@@ -20,6 +38,10 @@ sf::Vector2f Player::getPos() const{
 
 sf::Vector2f Player::getWorldPos() const{
 	return sf::Vector2f(m_pos.x * (500 / TileManager::getInstance()->getSize()) + 150, m_pos.y * (500 / TileManager::getInstance()->getSize()));
+}
+
+Direction Player::getDir() const{
+	return m_dir;
 }
 
 void Player::setPos(sf::Vector2f pos){
@@ -189,6 +211,7 @@ bool Player::canMove(Direction dir){
 }
 
 void Player::move(Direction d){
+	m_dir = d;
 	switch (d){
 	case Direction::UP:
 		if (m_pos.x != -1 && m_pos.x < TileManager::getInstance()->getSize() && canMove(d)){

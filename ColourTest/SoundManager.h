@@ -7,6 +7,8 @@
 #include "fmod_errors.h"
 #include <vector>
 
+#include "Direction.h"
+
 class SoundManager{
 private:
 	static SoundManager * m_instance;
@@ -29,7 +31,7 @@ public:
 	void playEffect(int i);
 	void playMusic(int i);
 	void playSpatial(int i);
-	void updateSpatial(sf::Vector2f listenerPos, sf::Vector2f listenerVel, sf::Vector2f sourcePos);
+	void updateSpatial(sf::Vector2f listenerPos, sf::Vector2f listenerVel, sf::Vector2f sourcePos, Direction dir);
 	void muteEffects();
 	void muteMusic();
 	void muteSpatial();
