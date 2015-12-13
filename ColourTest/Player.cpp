@@ -7,25 +7,40 @@ Player::Player(){
 
 Player::Player(int x, int y){
 	m_pos = sf::Vector2f(x, y);
-	//int t = m_colourDevision;
+	m_moving = false;
 }
 
 void Player::draw(sf::RenderWindow * window) const{
-	sf::CircleShape circ((500 / TileManager::getInstance()->getSize()) * 0.5f);
-	sf::CircleShape facingCirc((500 / TileManager::getInstance()->getSize()) * 0.25f);
-	circ.setPosition(getWorldPos());
-	if (m_dir == Direction::UP)
-		facingCirc.setPosition(getWorldPos() + sf::Vector2f(facingCirc.getRadius(), 0));
-	if (m_dir == Direction::LEFT)
-		facingCirc.setPosition(getWorldPos() + sf::Vector2f(0, facingCirc.getRadius()));
-	if (m_dir == Direction::DOWN)
-		facingCirc.setPosition(getWorldPos() + sf::Vector2f(facingCirc.getRadius(), 2 * facingCirc.getRadius()));
-	if (m_dir == Direction::RIGHT)
-		facingCirc.setPosition(getWorldPos() + sf::Vector2f(2 * facingCirc.getRadius(), facingCirc.getRadius()));
+	sf::CircleShape circ((500 / TileManager::getInstance()->getSize()) * 0.25f);
+	sf::CircleShape facingCirc((500 / TileManager::getInstance()->getSize()) * 0.125f);
+
+	circ.setPosition(getWorldPos() + sf::Vector2f(circ.getRadius(), circ.getRadius()));
+	facingCirc.setPosition(getWorldPos() + sf::Vector2f(circ.getRadius() * 2 + m_vel.x * facingCirc.getRadius() - facingCirc.getRadius(),
+										circ.getRadius() * 2 + m_vel.y * facingCirc.getRadius() - facingCirc.getRadius()));
+
 	circ.setFillColor(sf::Color(100, 100, 100));
 	facingCirc.setFillColor(sf::Color(50, 50, 50));
+
 	window->draw(circ);
 	window->draw(facingCirc);
+}
+
+void Player::update(){
+	if (m_worldPos.x > m_targetPos.x - 5 && m_worldPos.x < m_targetPos.x + 5 && 
+		m_worldPos.y > m_targetPos.y - 5 && m_worldPos.y < m_targetPos.y + 5){
+		m_moving = false;
+		m_worldPos = m_targetPos;
+	}
+	if (m_moving){
+		sf::Vector2f towards = m_targetPos - m_worldPos;
+		float towardsLength = sqrt(towards.x * towards.x + towards.y * towards.y);
+		towards /= towardsLength * 10.0f;
+		m_vel += towards;
+		float velLength = sqrt(m_vel.x * m_vel.x + m_vel.y * m_vel.y);
+		m_vel /= velLength;
+		m_worldPos += m_vel;
+		
+	}
 }
 
 sf::Color Player::getColour() const{
@@ -37,15 +52,23 @@ sf::Vector2f Player::getPos() const{
 }
 
 sf::Vector2f Player::getWorldPos() const{
-	return sf::Vector2f(m_pos.x * (500 / TileManager::getInstance()->getSize()) + 150, m_pos.y * (500 / TileManager::getInstance()->getSize()));
+	return m_worldPos;
 }
 
 Direction Player::getDir() const{
 	return m_dir;
 }
 
+sf::Vector2f Player::getVel() const{
+	return m_vel;
+}
+
 void Player::setPos(sf::Vector2f pos){
 	m_pos = pos;
+	m_worldPos = sf::Vector2f(m_pos.x * (500 / TileManager::getInstance()->getSize()) + 150,
+		m_pos.y * (500 / TileManager::getInstance()->getSize()));
+	m_targetPos = m_worldPos;
+	m_moving = false;
 }
 
 void Player::resetColour(){
@@ -211,46 +234,57 @@ bool Player::canMove(Direction dir){
 }
 
 void Player::move(Direction d){
-	m_dir = d;
-	switch (d){
-	case Direction::UP:
-		if (m_pos.x != -1 && m_pos.x < TileManager::getInstance()->getSize() && canMove(d)){
-			m_pos.y -= 1;
-			addColour(TileManager::getInstance()->colourAt(m_pos.x, m_pos.y));
-			TileManager::getInstance()->setUsed(m_pos);
-			TileManager::getInstance()->setUsedColour(getColour());
-		}
-		break;
-	case Direction::LEFT:
-		if (m_pos.x != -1 && m_pos.x != 0 && canMove(d)){
-			m_pos.x -= 1;
-			addColour(TileManager::getInstance()->colourAt(m_pos.x, m_pos.y));
-			TileManager::getInstance()->setUsed(m_pos);
-			TileManager::getInstance()->setUsedColour(getColour());
-		}
-		break;
-	case Direction::DOWN:
-		if (m_pos.x != -1 && m_pos.x < TileManager::getInstance()->getSize() && canMove(d)){
-			m_pos.y += 1;
-			addColour(TileManager::getInstance()->colourAt(m_pos.x, m_pos.y));
-			TileManager::getInstance()->setUsed(m_pos);
-			TileManager::getInstance()->setUsedColour(getColour());
-		}
-		break;
-	case Direction::RIGHT:
-		if (m_pos.x == TileManager::getInstance()->getSize() - 1 && m_pos.y == TileManager::getInstance()->getSize() / 2){
-			if (getColour() == TileManager::getInstance()->getFinishColor()){
-				m_pos.x += 1;
+	if (!m_moving) {
+		m_dir = d;
+		switch (d){
+		case Direction::UP:
+			if (m_pos.x != -1 && m_pos.x < TileManager::getInstance()->getSize() && canMove(d)){
+				m_pos.y -= 1;
+				m_targetPos.y -= 500 / TileManager::getInstance()->getSize();
+				m_moving = true;
+				addColour(TileManager::getInstance()->colourAt(m_pos.x, m_pos.y));
+				TileManager::getInstance()->setUsed(m_pos);
+				TileManager::getInstance()->setUsedColour(getColour());
 			}
+			break;
+		case Direction::LEFT:
+			if (m_pos.x != -1 && m_pos.x != 0 && canMove(d)){
+				m_pos.x -= 1;
+				m_targetPos.x -= 500 / TileManager::getInstance()->getSize();
+				m_moving = true;
+				addColour(TileManager::getInstance()->colourAt(m_pos.x, m_pos.y));
+				TileManager::getInstance()->setUsed(m_pos);
+				TileManager::getInstance()->setUsedColour(getColour());
+			}
+			break;
+		case Direction::DOWN:
+			if (m_pos.x != -1 && m_pos.x < TileManager::getInstance()->getSize() && canMove(d)){
+				m_pos.y += 1;
+				m_targetPos.y += 500 / TileManager::getInstance()->getSize();
+				m_moving = true;
+				addColour(TileManager::getInstance()->colourAt(m_pos.x, m_pos.y));
+				TileManager::getInstance()->setUsed(m_pos);
+				TileManager::getInstance()->setUsedColour(getColour());
+			}
+			break;
+		case Direction::RIGHT:
+			if (m_pos.x == TileManager::getInstance()->getSize() - 1 && m_pos.y == TileManager::getInstance()->getSize() / 2){
+				if (getColour() == TileManager::getInstance()->getFinishColor()){
+					m_pos.x += 1;
+					m_targetPos.x += 500 / TileManager::getInstance()->getSize();
+					m_moving = true;
+				}
+			}
+			else if (m_pos.x == -1 || canMove(d) && m_pos.x < TileManager::getInstance()->getSize()){
+				m_pos.x += 1;
+				m_targetPos.x += 500 / TileManager::getInstance()->getSize();
+				addColour(TileManager::getInstance()->colourAt(m_pos.x, m_pos.y));
+				m_moving = true;
+				TileManager::getInstance()->setUsed(m_pos);
+				TileManager::getInstance()->setUsedColour(getColour());
+			}
+			break;
 		}
-		else if (m_pos.x == -1 || canMove(d) && m_pos.x < TileManager::getInstance()->getSize()){
-			m_pos.x += 1;
-			addColour(TileManager::getInstance()->colourAt(m_pos.x, m_pos.y));
-			TileManager::getInstance()->setUsed(m_pos);
-			TileManager::getInstance()->setUsedColour(getColour());
-
-		}
-		break;
 	}
 }
 
@@ -306,6 +340,11 @@ void Player::goalFinder(){
 	m_pos.x = -1;
 	// reset the player colour
 	m_red = m_green = m_blue = 0;
+	// set the player world position
+	m_worldPos = sf::Vector2f(m_pos.x * (500 / TileManager::getInstance()->getSize()) + 150,
+		m_pos.y * (500 / TileManager::getInstance()->getSize()));
+	m_targetPos = m_worldPos;
+	m_moving = false;
 }
 
 

@@ -93,10 +93,7 @@ void TimedGameScene::draw(sf::RenderWindow* window){
 	sf::RectangleShape rect(sf::Vector2f(100, 100));
 	rect.setFillColor(m_player->getColour());
 	window->draw(rect);
-	sf::CircleShape circ((500 / TileManager::getInstance()->getSize()) * 0.5f);
-	circ.setPosition(sf::Vector2f(m_player->getPos().x * (500 / TileManager::getInstance()->getSize()) + 150, m_player->getPos().y * (500 / TileManager::getInstance()->getSize())));
-	circ.setFillColor(sf::Color(100, 100, 100));
-	window->draw(circ);
+	m_player->draw(window);
 	sf::RectangleShape r(sf::Vector2f(40, 40));
 	r.setFillColor(m_player->getColour());
 	window->draw(r);

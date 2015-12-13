@@ -20,7 +20,10 @@ GameScene::~GameScene(){
 }
 
 void GameScene::update(sf::Event* e, sf::RenderWindow* window){
-	SoundManager::getInstance()->updateSpatial(m_player->getWorldPos(), sf::Vector2f(0, 0), TileManager::getInstance()->getFinishPos(), m_player->getDir());
+	m_player->update();
+	int tileSize = 500 / TileManager::getInstance()->getSize();
+	SoundManager::getInstance()->updateSpatial(m_player->getWorldPos() + sf::Vector2f(tileSize, tileSize), 
+		m_player->getVel(), TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize), m_player->getDir());
 	while (window->pollEvent(*e))
 	{
 		// Close window : exit 

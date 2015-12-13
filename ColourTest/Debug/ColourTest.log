@@ -1,4 +1,4 @@
-﻿Build started 12/12/2015 20:57:36.
+﻿Build started 13/12/2015 18:08:15.
      1>Project "C:\Users\kepor_000\Desktop\ColourTest\ColourTest\ColourTest.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\SFML-2.3.2\include" /I"C:\FMOD_SoundSystem\FMOD Programmers API Windows\api\inc" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt SoundManager.cpp
@@ -30,4 +30,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:02.99
+Time Elapsed 00:00:02.68
