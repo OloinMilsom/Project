@@ -56,6 +56,15 @@ void TimedGameScene::update(sf::Event* e, sf::RenderWindow* window){
 			if (e->key.code == sf::Keyboard::Num4){
 				SoundManager::getInstance()->muteReverb();
 			}
+			if (e->key.code == sf::Keyboard::P){
+				SoundManager::getInstance()->updateReverb(FMOD_PRESET_SEWERPIPE);
+			}
+			if (e->key.code == sf::Keyboard::O){
+				SoundManager::getInstance()->updateReverb(FMOD_PRESET_PSP_SPACE);
+			}
+			if (e->key.code == sf::Keyboard::I){
+				SoundManager::getInstance()->updateReverb(FMOD_PRESET_UNDERWATER);
+			}
 			if (e->key.code == sf::Keyboard::W)
 			{
 				m_player->move(Direction::UP);

@@ -45,6 +45,8 @@ SoundManager::SoundManager(){
 	//m_musicChannel->setChannelGroup(channelMusic);
 	//m_effectsChannel->setChannelGroup(channelEffects);
 	
+	m_prop = FMOD_PRESET_SEWERPIPE;
+	m_spatialMute = false;
 }
 
 SoundManager::~SoundManager(){
@@ -100,15 +102,15 @@ void SoundManager::initSpatial(sf::Vector2f sourcePos){
 		m_spatialChannel->setChannelGroup(temp);
 		temp->setPitch(1.0f);*/
 	}
-	m_system->createReverb(&reverb);
-	FMOD_REVERB_PROPERTIES prop = FMOD_PRESET_SEWERPIPE;
-	reverb->setProperties(&prop);
+	m_system->createReverb(&m_reverb);
+	//FMOD_REVERB_PROPERTIES prop = FMOD_PRESET_SEWERPIPE;
+	m_reverb->setProperties(&m_prop);
 	FMOD_VECTOR pos = { sourcePos.x, 0.0f, sourcePos.y };
 	float mindist = 100.0f;
 	float maxdist = 600.0f;
-	reverb->set3DAttributes(&pos, mindist, maxdist);
+	m_reverb->set3DAttributes(&pos, mindist, maxdist);
 
-	reverb->setActive(m_effectsMute);
+	m_reverb->setActive(m_effectsMute);
 
 	m_system->update();
 }
@@ -127,6 +129,11 @@ void SoundManager::updateSpatial(sf::Vector2f listenerPos, sf::Vector2f listener
 	m_system->update();
 }
 
+void SoundManager::updateReverb(FMOD_REVERB_PROPERTIES p){
+	m_prop = p;
+	m_reverb->setProperties(&m_prop);
+}
+
 void SoundManager::muteEffects(){
 	m_effectsMute = !m_effectsMute;
 }
@@ -143,5 +150,5 @@ void SoundManager::muteSpatial(){
 
 void SoundManager::muteReverb(){
 	m_reverbMute = !m_reverbMute;
-	reverb->setActive(m_reverbMute);
+	m_reverb->setActive(m_reverbMute);
 }
