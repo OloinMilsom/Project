@@ -39,6 +39,7 @@ void Player::update(){
 		float velLength = sqrt(m_vel.x * m_vel.x + m_vel.y * m_vel.y);
 		m_vel /= velLength;
 		m_worldPos += m_vel;
+		//m_worldPos += sf::Vector2f(5, 0);
 		
 	}
 }

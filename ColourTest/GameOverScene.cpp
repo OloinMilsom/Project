@@ -32,6 +32,10 @@ void GameOverScene::update(sf::Event* e, sf::RenderWindow* window){
 			if (e->key.code == sf::Keyboard::Num2){
 				SoundManager::getInstance()->muteMusic();
 			}
+			if (e->key.code == sf::Keyboard::Num3){
+				SoundManager::getInstance()->muteSpatial();
+			}
+			
 		}
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{

@@ -21,9 +21,11 @@ private:
 	FMOD::Channel * m_effectsChannel;
 	FMOD::Channel * m_musicChannel;
 	FMOD::Channel * m_spatialChannel;
+	FMOD::Reverb * reverb;
 	bool m_effectsMute;
 	bool m_musicMute;
 	bool m_spatialMute;
+	bool m_reverbMute;
 	//FMOD::ChannelGroup *channelMusic;
 public:
 	~SoundManager();
@@ -31,10 +33,13 @@ public:
 	void playEffect(int i);
 	void playMusic(int i);
 	void playSpatial(int i);
-	void updateSpatial(sf::Vector2f listenerPos, sf::Vector2f listenerVel, sf::Vector2f sourcePos, Direction dir);
+	void stopSpatial();
+	void initSpatial(sf::Vector2f sourcePos);
+	void updateSpatial(sf::Vector2f listenerPos, sf::Vector2f listenerVel);
 	void muteEffects();
 	void muteMusic();
 	void muteSpatial();
+	void muteReverb();
 };
 
 #endif

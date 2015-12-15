@@ -7,9 +7,6 @@ GameScene::GameScene(){
 	m_attempts = 15;
 	TileManager::getInstance()->initialise(m_currSize);
 
-
-	
-
 	m_player = new Player(0, TileManager::getInstance()->getSize() / 2);
 	m_player->addColour(TileManager::getInstance()->getStartColor());
 	m_player->goalFinder();
@@ -22,8 +19,7 @@ GameScene::~GameScene(){
 void GameScene::update(sf::Event* e, sf::RenderWindow* window){
 	m_player->update();
 	int tileSize = 500 / TileManager::getInstance()->getSize();
-	SoundManager::getInstance()->updateSpatial(m_player->getWorldPos() + sf::Vector2f(tileSize, tileSize), 
-		m_player->getVel(), TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize), m_player->getDir());
+	SoundManager::getInstance()->updateSpatial(m_player->getWorldPos() + sf::Vector2f(tileSize, tileSize), m_player->getVel());
 	while (window->pollEvent(*e))
 	{
 		// Close window : exit 
@@ -46,6 +42,12 @@ void GameScene::update(sf::Event* e, sf::RenderWindow* window){
 			}
 			if (e->key.code == sf::Keyboard::Num2){
 				SoundManager::getInstance()->muteMusic();
+			}
+			if (e->key.code == sf::Keyboard::Num3){
+				SoundManager::getInstance()->muteSpatial();
+			}
+			if (e->key.code == sf::Keyboard::Num4){
+				SoundManager::getInstance()->muteReverb();
 			}
 			if (e->key.code == sf::Keyboard::W)
 			{
@@ -71,6 +73,8 @@ void GameScene::update(sf::Event* e, sf::RenderWindow* window){
 					m_attempts = 15;
 					m_currSize = 3;
 					TileManager::getInstance()->initialise(m_currSize);
+					int tileSize = 500 / TileManager::getInstance()->getSize();
+					SoundManager::getInstance()->initSpatial(TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize));
 					m_player->setPos(sf::Vector2f(0, TileManager::getInstance()->getSize() / 2));
 					m_player->resetColour();
 					m_player->addColour(TileManager::getInstance()->getStartColor());
@@ -89,6 +93,9 @@ void GameScene::update(sf::Event* e, sf::RenderWindow* window){
 					m_attempts = 15;
 					m_currSize = 3;
 					TileManager::getInstance()->initialise(m_currSize);
+					int tileSize = 500 / TileManager::getInstance()->getSize();
+					SoundManager::getInstance()->initSpatial(TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize));
+					SoundManager::getInstance()->playEffect(1);
 					m_player->setPos(sf::Vector2f(0, TileManager::getInstance()->getSize() / 2));
 					m_player->resetColour();
 					m_player->addColour(TileManager::getInstance()->getStartColor());
@@ -96,7 +103,10 @@ void GameScene::update(sf::Event* e, sf::RenderWindow* window){
 				}
 				else if (m_player->getPos() == sf::Vector2f(TileManager::getInstance()->getSize(), TileManager::getInstance()->getSize() / 2)){
 					m_currSize += 2;
-					TileManager::getInstance()->initialise(m_currSize);
+					TileManager::getInstance()->initialise(m_currSize); 
+					int tileSize = 500 / TileManager::getInstance()->getSize();
+					SoundManager::getInstance()->initSpatial(TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize));
+					SoundManager::getInstance()->playEffect(1);
 					m_player->resetColour();
 					TileManager::getInstance()->initialise(TileManager::getInstance()->getSize());
 					m_player->setPos(sf::Vector2f(0, TileManager::getInstance()->getSize() / 2));
@@ -123,8 +133,10 @@ void GameScene::draw(sf::RenderWindow* window){
 
 void GameScene::start(){
 	SoundManager::getInstance()->playSpatial(0);
+	int tileSize = 500 / TileManager::getInstance()->getSize();
+	SoundManager::getInstance()->initSpatial(TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize));
 }
 
 void GameScene::stop(){
-
+	SoundManager::getInstance()->stopSpatial();
 }

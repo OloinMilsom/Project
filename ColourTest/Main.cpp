@@ -42,8 +42,8 @@ int main()
 	window.setPosition(sf::Vector2i(0, 0));
 	srand(time(0));
 
-	SceneManager::getInstance();
 	SoundManager::getInstance()->playMusic(0);
+	SceneManager::getInstance();
 
 	// Start game loop 
 	while (window.isOpen())
