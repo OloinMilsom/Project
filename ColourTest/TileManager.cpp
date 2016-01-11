@@ -37,6 +37,8 @@ void TileManager::initialise(int size){
 	}
 	m_currentSize = size;
 	float tileSize = 500 / m_currentSize;
+	tex.loadFromFile("res/images/path.png");
+	sf::Sprite spr(tex);
 	for (int i = 0; i < m_currentSize * m_currentSize; i++)
 	{
 		sf::Color above = sf::Color(1, 2, 3);
@@ -45,7 +47,7 @@ void TileManager::initialise(int size){
 			left = at(i%m_currentSize - 1, i / m_currentSize)->getColour();
 		if (i / m_currentSize > 0)
 			above = at(i%m_currentSize, i / m_currentSize - 1)->getColour();
-		Tile * newTile = new Tile(150 + (i % m_currentSize) * tileSize, (i / m_currentSize) * tileSize, tileSize, above, left);
+		Tile * newTile = new Tile(150 + (i % m_currentSize) * tileSize, (i / m_currentSize) * tileSize, tileSize, above, left, spr);
 		if (i / size != size / 2){
 			if (i % size == 0)
 				newTile->addWalls(Direction::LEFT);

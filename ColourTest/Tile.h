@@ -10,6 +10,7 @@ private:
 	sf::Color m_originalCol;
 	sf::Vector2f m_pos;
 	std::vector<Wall> m_walls;
+	sf::Sprite m_sprite;
 	int m_size;
 	bool m_used;
 	bool m_floodChecked;
@@ -17,7 +18,7 @@ public:
 	Tile();
 	Tile(int x, int y, int size, sf::Color);
 	//constructor used to prevent two colours next to eachother
-	Tile(int x, int y, int size, sf::Color above, sf::Color left);
+	Tile(int x, int y, int size, sf::Color above, sf::Color left, sf::Sprite);
 	void draw(sf::RenderWindow * window) const;
 	sf::Color getColour() const;
 	bool getUsed() const;

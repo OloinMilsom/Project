@@ -12,6 +12,7 @@ private:
 	Tile * m_start;
 	Tile * m_finish;
 	int m_currentSize;
+	sf::Texture tex;
 
 public:
 	~TileManager();

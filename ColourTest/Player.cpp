@@ -38,9 +38,7 @@ void Player::update(){
 		m_vel += towards;
 		float velLength = sqrt(m_vel.x * m_vel.x + m_vel.y * m_vel.y);
 		m_vel /= velLength;
-		m_worldPos += m_vel;
-		//m_worldPos += sf::Vector2f(5, 0);
-		
+		m_worldPos += m_vel;		
 	}
 }
 

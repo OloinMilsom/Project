@@ -8,7 +8,10 @@ Tile::Tile(){
 Tile::Tile(int x, int y, int size, sf::Color col) : m_pos(sf::Vector2f(x, y)), m_size(size), m_col(col), m_used(false) {
 }
 
-Tile::Tile(int x, int y, int size, sf::Color above, sf::Color left) : m_pos(sf::Vector2f(x, y)), m_size(size), m_used(false) {
+Tile::Tile(int x, int y, int size, sf::Color above, sf::Color left, sf::Sprite sprite) : 
+	m_pos(sf::Vector2f(x, y)), 
+	m_size(size), m_used(false) , 
+	m_sprite(sprite) {
 	m_col = above;
 	while (m_col == above || m_col == left){
 		int random = rand() % 8;
@@ -38,6 +41,11 @@ Tile::Tile(int x, int y, int size, sf::Color above, sf::Color left) : m_pos(sf::
 		}
 	}
 	m_originalCol = m_col;
+	m_sprite.setPosition(m_pos);
+	float scale = size / 24;
+	m_sprite.setTextureRect(sf::IntRect(24,0,24,24));
+
+	m_sprite.setScale(scale, scale);
 }
 
 void Tile::draw(sf::RenderWindow * window) const{
@@ -45,6 +53,7 @@ void Tile::draw(sf::RenderWindow * window) const{
 	r.setPosition(m_pos);
 	r.setFillColor(m_col);
 	window->draw(r);
+	window->draw(m_sprite);
 	for (int  i = 0; i < m_walls.size(); i++)
 	{
 		m_walls[i].draw(window);
