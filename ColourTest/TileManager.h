@@ -30,6 +30,8 @@ public:
 
 	void setUsed(sf::Vector2f pos);
 	void setUsedColour(sf::Color current);
+	void setEnterDirection(sf::Vector2f pos, Direction dir);
+	void setExitDirection(sf::Vector2f pos, Direction dir);
 	void setFinalColour(sf::Color current);
 
 	//int checkAdjacent(int x, int y) const;

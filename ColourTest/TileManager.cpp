@@ -36,7 +36,7 @@ void TileManager::initialise(int size){
 		m_tiles.clear();
 	}
 	m_currentSize = size;
-	float tileSize = 500 / m_currentSize;
+	float tileSize = 500.0f / m_currentSize;
 	tex.loadFromFile("res/images/path.png");
 	sf::Sprite spr(tex);
 	for (int i = 0; i < m_currentSize * m_currentSize; i++)
@@ -97,8 +97,8 @@ void TileManager::initialise(int size){
 	}
 	delete m_start;
 	delete m_finish;
-	m_start = new Tile(150 - tileSize, (m_currentSize / 2) * tileSize, tileSize, sf::Color::Black);
-	m_finish = new Tile(150 + m_currentSize * tileSize, (m_currentSize / 2) * tileSize, tileSize, sf::Color::Black);
+	m_start = new Tile(150 - tileSize, (m_currentSize / 2) * tileSize, tileSize, sf::Color::Black, spr);
+	m_finish = new Tile(150 + m_currentSize * tileSize, (m_currentSize / 2) * tileSize, tileSize, sf::Color::Black, spr);
 	m_start->setUsed(true);
 }
 
@@ -139,7 +139,7 @@ sf::Vector2f TileManager::getFinishPos() const{
 	return m_finish->getPos();
 }
 
-void TileManager::setUsed(sf::Vector2f pos ){
+void TileManager::setUsed(sf::Vector2f pos){
 	m_tiles[pos.x + pos.y * m_currentSize]->setUsed(true);
 	//m_tiles[pos.x + pos.y * m_currentSize]->setColour(current);
 	
@@ -155,6 +155,13 @@ void TileManager::setUsedColour(sf::Color current){
 	m_start->setColour(current);
 }
 
+void TileManager::setEnterDirection(sf::Vector2f pos, Direction dir){
+	m_tiles[pos.x + pos.y * m_currentSize]->setEnterDirection(dir);
+}
+
+void TileManager::setExitDirection(sf::Vector2f pos, Direction dir){
+	m_tiles[pos.x + pos.y * m_currentSize]->setExitDirection(dir);
+}
 
 void TileManager::setFinalColour(sf::Color current){
 	m_finish->setColour(current);

@@ -5,10 +5,18 @@ Tile::Tile(){
 
 }
 
-Tile::Tile(int x, int y, int size, sf::Color col) : m_pos(sf::Vector2f(x, y)), m_size(size), m_col(col), m_used(false) {
+Tile::Tile(int x, int y, float size, sf::Color col, sf::Sprite sprite ) : m_pos(sf::Vector2f(x, y)), m_size(size), m_col(col), m_used(false), m_sprite(sprite) {
+	m_sprite.setPosition(m_pos);
+	float scale = size / 24;
+	m_sprite.setTextureRect(sf::IntRect(24, 24, 24, 24));
+
+	m_sprite.setScale(scale, scale);
+
+	m_enterDir = Direction::NONE;
+	m_exitDir = Direction::NONE;
 }
 
-Tile::Tile(int x, int y, int size, sf::Color above, sf::Color left, sf::Sprite sprite) : 
+Tile::Tile(int x, int y, float size, sf::Color above, sf::Color left, sf::Sprite sprite) : 
 	m_pos(sf::Vector2f(x, y)), 
 	m_size(size), m_used(false) , 
 	m_sprite(sprite) {
@@ -42,10 +50,12 @@ Tile::Tile(int x, int y, int size, sf::Color above, sf::Color left, sf::Sprite s
 	}
 	m_originalCol = m_col;
 	m_sprite.setPosition(m_pos);
-	float scale = size / 24;
-	m_sprite.setTextureRect(sf::IntRect(24,0,24,24));
+	float scale = ceil(size) / 24;
+	m_sprite.setTextureRect(sf::IntRect(24,24,24,24));
 
 	m_sprite.setScale(scale, scale);
+	m_enterDir = Direction::NONE;
+	m_exitDir = Direction::NONE;
 }
 
 void Tile::draw(sf::RenderWindow * window) const{
@@ -102,6 +112,68 @@ void Tile::setChecked(bool arg){
 	m_floodChecked = arg;
 }
 
+void Tile::setEnterDirection(Direction arg) {
+	m_enterDir = arg;
+	switch (arg) {
+	case Direction::UP :
+		m_sprite.setTextureRect(sf::IntRect(24, 96, 24, 24));
+		break;
+	case Direction::LEFT:
+		m_sprite.setTextureRect(sf::IntRect(24, 72, 24, 24));
+		break;
+	case Direction::DOWN:
+		m_sprite.setTextureRect(sf::IntRect(0, 96, 24, 24));
+		break;
+	case Direction::RIGHT:
+		m_sprite.setTextureRect(sf::IntRect(0, 72, 24, 24));
+		break;
+	}
+}
+
+void Tile::setExitDirection(Direction arg) {
+	m_exitDir = arg;
+	if (m_enterDir == Direction::UP) {
+		if (m_exitDir == Direction::LEFT) 
+			m_sprite.setTextureRect(sf::IntRect(48, 48, 24, 24));
+
+		else if (m_exitDir == Direction::DOWN)
+			m_sprite.setTextureRect(sf::IntRect(0, 24, 24, 24));
+
+		else if (m_exitDir == Direction::RIGHT)
+			m_sprite.setTextureRect(sf::IntRect(0, 48, 24, 24));
+	}
+	else if (m_enterDir == Direction::LEFT) {
+		if (m_exitDir == Direction::DOWN)
+			m_sprite.setTextureRect(sf::IntRect(48, 0, 24, 24));
+
+		else if (m_exitDir == Direction::RIGHT)
+			m_sprite.setTextureRect(sf::IntRect(24, 0, 24, 24));
+
+		else if (m_exitDir == Direction::UP)
+			m_sprite.setTextureRect(sf::IntRect(48, 48, 24, 24));
+	}
+	else if (m_enterDir == Direction::DOWN) {
+		if (m_exitDir == Direction::RIGHT)
+			m_sprite.setTextureRect(sf::IntRect(0, 0, 24, 24));
+
+		else if (m_exitDir == Direction::UP)
+			m_sprite.setTextureRect(sf::IntRect(0, 24, 24, 24));
+
+		else if (m_exitDir == Direction::LEFT)
+			m_sprite.setTextureRect(sf::IntRect(48, 0, 24, 24));
+	}
+	else if (m_enterDir == Direction::RIGHT) {
+		if (m_exitDir == Direction::UP)
+			m_sprite.setTextureRect(sf::IntRect(0, 48, 24, 24));
+
+		else if (m_exitDir == Direction::LEFT)
+			m_sprite.setTextureRect(sf::IntRect(24, 0, 24, 24));
+
+		else if (m_exitDir == Direction::DOWN)
+			m_sprite.setTextureRect(sf::IntRect(0, 0, 24, 24));
+	}
+}
+
 void Tile::addWalls(Direction direction){
 	m_walls.push_back(Wall(direction, m_pos, m_size));
 }
@@ -109,4 +181,8 @@ void Tile::addWalls(Direction direction){
 void Tile::reset(){
 	m_col = m_originalCol;
 	m_used = false;
+	m_enterDir = Direction::NONE;
+	m_enterDir = Direction::NONE;
+
+	m_sprite.setTextureRect(sf::IntRect(24, 24, 24, 24));
 }

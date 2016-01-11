@@ -238,36 +238,43 @@ void Player::move(Direction d){
 		switch (d){
 		case Direction::UP:
 			if (m_pos.x != -1 && m_pos.x < TileManager::getInstance()->getSize() && canMove(d)){
+				TileManager::getInstance()->setExitDirection(m_pos, d);
 				m_pos.y -= 1;
 				m_targetPos.y -= 500 / TileManager::getInstance()->getSize();
 				m_moving = true;
 				addColour(TileManager::getInstance()->colourAt(m_pos.x, m_pos.y));
 				TileManager::getInstance()->setUsed(m_pos);
 				TileManager::getInstance()->setUsedColour(getColour());
+				TileManager::getInstance()->setEnterDirection(m_pos, Direction::DOWN);
 			}
 			break;
 		case Direction::LEFT:
 			if (m_pos.x != -1 && m_pos.x != 0 && canMove(d)){
+				TileManager::getInstance()->setExitDirection(m_pos, d);
 				m_pos.x -= 1;
 				m_targetPos.x -= 500 / TileManager::getInstance()->getSize();
 				m_moving = true;
 				addColour(TileManager::getInstance()->colourAt(m_pos.x, m_pos.y));
 				TileManager::getInstance()->setUsed(m_pos);
 				TileManager::getInstance()->setUsedColour(getColour());
+				TileManager::getInstance()->setEnterDirection(m_pos, Direction::RIGHT);
 			}
 			break;
 		case Direction::DOWN:
 			if (m_pos.x != -1 && m_pos.x < TileManager::getInstance()->getSize() && canMove(d)){
+				TileManager::getInstance()->setExitDirection(m_pos, d);
 				m_pos.y += 1;
 				m_targetPos.y += 500 / TileManager::getInstance()->getSize();
 				m_moving = true;
 				addColour(TileManager::getInstance()->colourAt(m_pos.x, m_pos.y));
 				TileManager::getInstance()->setUsed(m_pos);
 				TileManager::getInstance()->setUsedColour(getColour());
+				TileManager::getInstance()->setEnterDirection(m_pos, Direction::UP);
 			}
 			break;
 		case Direction::RIGHT:
 			if (m_pos.x == TileManager::getInstance()->getSize() - 1 && m_pos.y == TileManager::getInstance()->getSize() / 2){
+				TileManager::getInstance()->setExitDirection(m_pos, d);
 				if (getColour() == TileManager::getInstance()->getFinishColor()){
 					m_pos.x += 1;
 					m_targetPos.x += 500 / TileManager::getInstance()->getSize();
@@ -275,12 +282,14 @@ void Player::move(Direction d){
 				}
 			}
 			else if (m_pos.x == -1 || canMove(d) && m_pos.x < TileManager::getInstance()->getSize()){
+				TileManager::getInstance()->setExitDirection(m_pos, d);
 				m_pos.x += 1;
 				m_targetPos.x += 500 / TileManager::getInstance()->getSize();
 				addColour(TileManager::getInstance()->colourAt(m_pos.x, m_pos.y));
 				m_moving = true;
 				TileManager::getInstance()->setUsed(m_pos);
 				TileManager::getInstance()->setUsedColour(getColour());
+				TileManager::getInstance()->setEnterDirection(m_pos, Direction::LEFT);
 			}
 			break;
 		}
