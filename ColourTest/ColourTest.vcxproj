@@ -26,6 +26,7 @@
     <ClInclude Include="TileManager.h" />
     <ClInclude Include="TimedGameScene.h" />
     <ClInclude Include="Wall.h" />
+    <ClInclude Include="XBoxController.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
@@ -42,6 +43,7 @@
     <ClCompile Include="TileManager.cpp" />
     <ClCompile Include="TimedGameScene.cpp" />
     <ClCompile Include="Wall.cpp" />
+    <ClCompile Include="XboxController.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3C2B8948-3BCF-481C-AACA-5430A376222B}</ProjectGuid>

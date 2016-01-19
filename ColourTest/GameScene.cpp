@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "GameScene.h"
 #include <iostream>
+#include "XBoxController.h"
 
 GameScene::GameScene(){
 	m_currSize = 3;
@@ -20,6 +21,12 @@ void GameScene::update(sf::Event* e, sf::RenderWindow* window){
 	m_player->update();
 	int tileSize = 500 / TileManager::getInstance()->getSize();
 	SoundManager::getInstance()->updateSpatial(m_player->getWorldPos() + sf::Vector2f(tileSize, tileSize), m_player->getVel());
+
+	if (XBoxController::isButtonPressed(0, XBoxController::XboxButton::A))
+	{
+		SoundManager::getInstance()->playEffect(0);
+	}
+
 	while (window->pollEvent(*e))
 	{
 		// Close window : exit 
