@@ -1,5 +1,7 @@
 #include "XBoxController.h"
 
+std::vector<bool> XBoxController::wasPressed(10, false);
+
 bool XBoxController::isStickMoving(unsigned int joystick, XBoxStick stick){
 	float x;
 	float y;
@@ -41,7 +43,16 @@ sf::Vector2f XBoxController::getStickDirection(unsigned int joystick, XBoxStick 
 }
 
 bool XBoxController::isButtonPressed(unsigned int joystick, XboxButton button){
-	return Joystick::isButtonPressed(joystick, static_cast<int>(button));
+	if (Joystick::isButtonPressed(joystick, static_cast<int>(button))) {
+		if (!wasPressed[static_cast<int>(button)]) {
+			wasPressed[static_cast<int>(button)] = true;
+			return true;
+		}
+	}
+	else {
+		wasPressed[static_cast<int>(button)] = false;
+	}
+	return false;
 }
 
 bool XBoxController::isDPadPressed(unsigned int joystick, Direction direction){

@@ -3,10 +3,12 @@
 
 #include "stdafx.h"
 #include "Direction.h"
+#include <vector>
 
 class XBoxController : public sf::Joystick {
 private:
 	static const int DEAD_ZONE = 20;
+	static std::vector<bool> wasPressed;
 
 public:
 	enum XboxButton

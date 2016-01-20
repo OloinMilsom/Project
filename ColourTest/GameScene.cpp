@@ -22,9 +22,73 @@ void GameScene::update(sf::Event* e, sf::RenderWindow* window){
 	int tileSize = 500 / TileManager::getInstance()->getSize();
 	SoundManager::getInstance()->updateSpatial(m_player->getWorldPos() + sf::Vector2f(tileSize, tileSize), m_player->getVel());
 
-	if (XBoxController::isButtonPressed(0, XBoxController::XboxButton::A))
-	{
-		SoundManager::getInstance()->playEffect(0);
+	if (XBoxController::isConnected(0)) {
+		if (XBoxController::isStickMoving(0, XBoxController::XBoxStick::Left)) {
+			sf::Vector2f dir = XBoxController::getStickDirection(0, XBoxController::XBoxStick::Left);
+			if (dir.x * dir.x > dir.y * dir.y) {
+				if (dir.x > 0) {
+					m_player->move(Direction::RIGHT);
+				}
+				else {
+					m_player->move(Direction::LEFT);
+				}
+			}
+			else {
+				if (dir.y > 0) {
+					m_player->move(Direction::DOWN);
+				}
+				else {
+					m_player->move(Direction::UP);
+				}
+			}
+		}
+		if (XBoxController::isButtonPressed(0, XBoxController::XboxButton::A)){
+			if (m_currSize == 11 && m_player->getPos() == sf::Vector2f(TileManager::getInstance()->getSize(), TileManager::getInstance()->getSize() / 2)){
+				SceneManager::getInstance()->goToScene(SceneID::GAMEWON);
+				m_attempts = 15;
+				m_currSize = 3;
+				TileManager::getInstance()->initialise(m_currSize);
+				int tileSize = 500 / TileManager::getInstance()->getSize();
+				SoundManager::getInstance()->initSpatial(TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize));
+				SoundManager::getInstance()->playEffect(1);
+				m_player->setPos(sf::Vector2f(0, TileManager::getInstance()->getSize() / 2));
+				m_player->resetColour();
+				m_player->addColour(TileManager::getInstance()->getStartColor());
+				m_player->goalFinder();
+			}
+			else if (m_player->getPos() == sf::Vector2f(TileManager::getInstance()->getSize(), TileManager::getInstance()->getSize() / 2)){
+				m_currSize += 2;
+				TileManager::getInstance()->initialise(m_currSize);
+				int tileSize = 500 / TileManager::getInstance()->getSize();
+				SoundManager::getInstance()->initSpatial(TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize));
+				SoundManager::getInstance()->playEffect(1);
+				m_player->resetColour();
+				TileManager::getInstance()->initialise(TileManager::getInstance()->getSize());
+				m_player->setPos(sf::Vector2f(0, TileManager::getInstance()->getSize() / 2));
+				m_player->goalFinder();
+				m_player->setPos(sf::Vector2f(-1, TileManager::getInstance()->getSize() / 2));
+			}
+		}
+		if (XBoxController::isButtonPressed(0, XBoxController::XboxButton::B)){
+			m_attempts--;
+			if (m_attempts < 0){
+				SceneManager::getInstance()->goToScene(SceneID::GAMEOVER);
+				m_attempts = 15;
+				m_currSize = 3;
+				TileManager::getInstance()->initialise(m_currSize);
+				int tileSize = 500 / TileManager::getInstance()->getSize();
+				SoundManager::getInstance()->initSpatial(TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize));
+				m_player->setPos(sf::Vector2f(0, TileManager::getInstance()->getSize() / 2));
+				m_player->resetColour();
+				m_player->addColour(TileManager::getInstance()->getStartColor());
+				m_player->goalFinder();
+			}
+			else{
+				TileManager::getInstance()->resetRoom();
+				m_player->setPos(sf::Vector2f(-1, TileManager::getInstance()->getSize() / 2));
+				m_player->resetColour();
+			}
+		}
 	}
 
 	while (window->pollEvent(*e))
