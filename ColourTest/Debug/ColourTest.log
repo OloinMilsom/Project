@@ -1,3 +1,56 @@
-﻿  XboxController.cpp
-  ColourTest.vcxproj -> C:\Users\kepor_000\Desktop\ColourTest\Debug\ColourTest.exe
-          1 file(s) copied.
+﻿Build started 21/01/2016 15:24:59.
+     1>Project "C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\ColourTest\ColourTest.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\SFML-2.3.2\include" /I"C:\FMOD_SoundSystem\FMOD Programmers API Windows\api\inc" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt GameScene.cpp XboxController.cpp
+         GameScene.cpp
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(23): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(58): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(64): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(66): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(71): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(75): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(79): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(81): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(92): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(93): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(100): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(169): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(170): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(177): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(183): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(189): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(191): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(196): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(200): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(204): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(206): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(229): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+         Generating Code...
+         Skipping... (no relevant changes detected)
+         XboxController.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\Debug\ColourTest.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\SFML-2.3.2\lib" /LIBPATH:"C:\FMOD_SoundSystem\FMOD Programmers API Windows\api\lib" fmodex_vc.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\Debug\ColourTest.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\Debug\ColourTest.lib" /MACHINE:X86 Debug\Button.obj
+         Debug\GameOverScene.obj
+         Debug\GameScene.obj
+         Debug\Main.obj
+         Debug\MenuScene.obj
+         Debug\Player.obj
+         Debug\Scene.obj
+         Debug\SceneManager.obj
+         Debug\SoundManager.obj
+         Debug\stdafx.obj
+         Debug\Tile.obj
+         Debug\TileManager.obj
+         Debug\TimedGameScene.obj
+         Debug\Wall.obj
+         Debug\XboxController.obj
+         ColourTest.vcxproj -> C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\Debug\ColourTest.exe
+       PostBuildEvent:
+         copy /y "C:\FMOD_SoundSystem\FMOD Programmers API Windows\api\fmodex.dll" "C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\Debug\"
+         :VCEnd
+                 1 file(s) copied.
+     1>Done Building Project "C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\ColourTest\ColourTest.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:02.02

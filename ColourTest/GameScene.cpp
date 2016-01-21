@@ -42,6 +42,18 @@ void GameScene::update(sf::Event* e, sf::RenderWindow* window){
 				}
 			}
 		}
+		if (XBoxController::isDPadPressed(0, Direction::LEFT)){
+			m_player->move(Direction::LEFT);
+		}
+		if (XBoxController::isDPadPressed(0, Direction::UP)){
+			m_player->move(Direction::UP);
+		}
+		if (XBoxController::isDPadPressed(0, Direction::RIGHT)){
+			m_player->move(Direction::RIGHT);
+		}
+		if (XBoxController::isDPadPressed(0, Direction::DOWN)){
+			m_player->move(Direction::DOWN);
+		}
 		if (XBoxController::isButtonPressed(0, XBoxController::XboxButton::A)){
 			if (m_currSize == 11 && m_player->getPos() == sf::Vector2f(TileManager::getInstance()->getSize(), TileManager::getInstance()->getSize() / 2)){
 				SceneManager::getInstance()->goToScene(SceneID::GAMEWON);
