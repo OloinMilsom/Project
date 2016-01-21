@@ -4,18 +4,18 @@ std::vector<bool> XBoxController::wasPressed(10, false);
 
 bool XBoxController::isStickMoving(unsigned int joystick, XBoxStick stick){
 	float x;
-	float y;
+	float y;		
 	switch (stick) {
 	case XBoxStick::Left:
 		x = getAxisPosition(joystick, Axis::X);
 		y = getAxisPosition(joystick, Axis::Y);
-		if (sqrt(x * x + y * y) > DEAD_ZONE)
+		if (sqrt((x * x) + (y * y)) > DEAD_ZONE)
 			return true;
 		break;
 	case XBoxStick::Right:
 		x = getAxisPosition(joystick, Axis::U);
 		y = getAxisPosition(joystick, Axis::R);
-		if (sqrt(x * x + y * y) > DEAD_ZONE)
+		if (sqrt((x * x) + (y * y)) > DEAD_ZONE)
 			return true;
 		break;
 	default:

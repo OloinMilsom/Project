@@ -6,6 +6,10 @@ Tile::Tile(){
 }
 
 Tile::Tile(int x, int y, float size, sf::Color col, sf::Sprite sprite ) : m_pos(sf::Vector2f(x, y)), m_size(size), m_col(col), m_used(false), m_sprite(sprite) {
+	m_shape = sf::RectangleShape(sf::Vector2f(m_size, m_size));
+	m_shape.setPosition(m_pos);
+	m_shape.setFillColor(m_col);
+	
 	m_sprite.setPosition(m_pos);
 	float scale = size / 24;
 	m_sprite.setTextureRect(sf::IntRect(24, 24, 24, 24));
@@ -48,6 +52,10 @@ Tile::Tile(int x, int y, float size, sf::Color above, sf::Color left, sf::Sprite
 			m_col = sf::Color::White;
 		}
 	}
+	m_shape = sf::RectangleShape(sf::Vector2f(m_size, m_size));
+	m_shape.setPosition(m_pos);
+	m_shape.setFillColor(m_col);
+
 	m_originalCol = m_col;
 	m_sprite.setPosition(m_pos);
 	float scale = ceil(size) / 24;
@@ -59,10 +67,8 @@ Tile::Tile(int x, int y, float size, sf::Color above, sf::Color left, sf::Sprite
 }
 
 void Tile::draw(sf::RenderWindow * window) const{
-	sf::RectangleShape r(sf::Vector2f(m_size, m_size));
-	r.setPosition(m_pos);
-	r.setFillColor(m_col);
-	window->draw(r);
+	
+	window->draw(m_shape);
 	window->draw(m_sprite);
 	for (int  i = 0; i < m_walls.size(); i++)
 	{
@@ -102,6 +108,7 @@ bool Tile::checkWall(Direction dir) const{
 
 void Tile::setColour(sf::Color col){
 	m_col = col;
+	m_shape.setFillColor(col);
 }
 
 void Tile::setUsed(bool arg){
@@ -180,6 +187,7 @@ void Tile::addWalls(Direction direction){
 
 void Tile::reset(){
 	m_col = m_originalCol;
+	m_shape.setFillColor(m_col);
 	m_used = false;
 	m_enterDir = Direction::NONE;
 	m_enterDir = Direction::NONE;

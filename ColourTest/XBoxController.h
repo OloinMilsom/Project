@@ -7,7 +7,7 @@
 
 class XBoxController : public sf::Joystick {
 private:
-	static const int DEAD_ZONE = 40;
+	static const int DEAD_ZONE = 90;
 	static std::vector<bool> wasPressed;
 
 public:

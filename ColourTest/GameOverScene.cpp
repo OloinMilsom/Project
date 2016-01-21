@@ -1,8 +1,10 @@
 #include "GameOverScene.h"
+#include "XBoxController.h"
 
-GameOverScene::GameOverScene(sf::Font * font, std::string label, SceneID id){
-	m_buttons.push_back(Button(sf::Vector2f(200, 200), sf::Vector2f(100, 50), id, "Retry", font));
-	m_buttons.push_back(Button(sf::Vector2f(200, 275), sf::Vector2f(100, 50), SceneID::MENU, "Quit", font));
+GameOverScene::GameOverScene(sf::Font * font, std::string label, SceneID id) : m_cameFrom(id)
+{
+	m_buttons.push_back(Button(sf::Vector2f(200, 200), sf::Vector2f(100, 50), "Retry", font));
+	m_buttons.push_back(Button(sf::Vector2f(200, 275), sf::Vector2f(100, 50), "Quit", font));
 	m_label.setFont(*font);
 	m_label.setString(label);
 	m_label.setCharacterSize(24);
@@ -39,9 +41,17 @@ void GameOverScene::update(sf::Event* e, sf::RenderWindow* window){
 		}
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
+			if (m_buttons[0].isClicked(sf::Vector2f(sf::Mouse::getPosition(*window).x, sf::Mouse::getPosition(*window).y))) {
+				SceneManager::getInstance()->goToScene(m_cameFrom);
+			}
+			if (m_buttons[1].isClicked(sf::Vector2f(sf::Mouse::getPosition(*window).x, sf::Mouse::getPosition(*window).y))) {
+				SceneManager::getInstance()->goToScene(SceneID::MENU);
+			}
+		}
+		if (e->type == sf::Event::MouseMoved) {
 			for (int i = 0; i < m_buttons.size(); i++)
 			{
-				m_buttons[i].isClicked(sf::Vector2f(sf::Mouse::getPosition(*window).x,
+				m_buttons[i].isMouseOver(sf::Vector2f(sf::Mouse::getPosition(*window).x,
 					sf::Mouse::getPosition(*window).y));
 			}
 		}

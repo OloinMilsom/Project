@@ -11,6 +11,7 @@ private:
 	sf::Vector2f m_pos;
 	std::vector<Wall> m_walls;
 	sf::Sprite m_sprite;
+	sf::RectangleShape m_shape;
 	float m_size;
 	bool m_used;
 	bool m_floodChecked;

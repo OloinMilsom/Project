@@ -1,11 +1,13 @@
 #include "stdafx.h"
 #include "MenuScene.h"
+#include "XBoxController.h"
 #include <iostream>
 
 MenuScene::MenuScene(sf::Font* font){
 	sf::Texture m_backgroundImg;
-	m_buttons.push_back(Button(sf::Vector2f(340, 200), sf::Vector2f(100, 50), SceneID::GAME, "PLAY", font));
-	m_buttons.push_back(Button(sf::Vector2f(300, 280), sf::Vector2f(180, 50), SceneID::TIMEDGAME, "TIME TRIAL", font));
+	m_buttons.push_back(Button(sf::Vector2f(340, 200), sf::Vector2f(100, 50), "PLAY", font));
+	m_buttons.push_back(Button(sf::Vector2f(300, 280), sf::Vector2f(180, 50), "TIME TRIAL", font));
+	m_buttons.push_back(Button(sf::Vector2f(300, 360), sf::Vector2f(180, 50), "TEST", font));
 }
 
 MenuScene::~MenuScene(){
@@ -35,13 +37,53 @@ void MenuScene::update(sf::Event* e, sf::RenderWindow* window){
 		}
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
+			if (m_buttons[0].isClicked(sf::Vector2f(sf::Mouse::getPosition(*window).x, sf::Mouse::getPosition(*window).y))) {
+				SceneManager::getInstance()->goToScene(SceneID::GAME);
+			}
+			if (m_buttons[1].isClicked(sf::Vector2f(sf::Mouse::getPosition(*window).x, sf::Mouse::getPosition(*window).y))) {
+				SceneManager::getInstance()->goToScene(SceneID::TIMEDGAME);
+			}
+		}
+		if (e->type == sf::Event::MouseMoved) {
 			for (int i = 0; i < m_buttons.size(); i++)
 			{
-				m_buttons[i].isClicked(sf::Vector2f(sf::Mouse::getPosition(*window).x,
+				m_buttons[i].isMouseOver(sf::Vector2f(sf::Mouse::getPosition(*window).x,
 					sf::Mouse::getPosition(*window).y));
 			}
 		}
 		//std::cout << "x: " << sf::Mouse::getPosition().x - window->getView().getViewport().left << "y: " << sf::Mouse::getPosition().y - window->getView().getViewport().top << std::endl;
+	}
+	if (XBoxController::isConnected(0)) {
+		if (XBoxController::isStickMoving(0, XBoxController::XBoxStick::Left)){
+			bool anySelected = false;
+			for (int i = 0; i < m_buttons.size(); i++)
+			{
+				if (m_buttons[i].getSelected())
+				{
+					if (XBoxController::getStickDirection(0, XBoxController::XBoxStick::Left).y < 0 && i > 0) {
+						m_buttons[i - 1].setSelected(true);
+						m_buttons[i].setSelected(false);
+					}
+					else if (XBoxController::getStickDirection(0, XBoxController::XBoxStick::Left).y > 0 && i < m_buttons.size() - 1 ) {
+						m_buttons[i + 1].setSelected(true);
+						m_buttons[i].setSelected(false);
+					}
+					anySelected = true;
+					break;
+				}
+			}
+			if (!anySelected) {
+				m_buttons[0].setSelected(true);
+			}
+		}
+		if (XBoxController::isButtonPressed(0, XBoxController::XboxButton::A)) {
+			if (m_buttons[0].getSelected()){
+				SceneManager::getInstance()->goToScene(SceneID::GAME);
+			}
+			if (m_buttons[1].getSelected()){
+				SceneManager::getInstance()->goToScene(SceneID::TIMEDGAME);
+			}
+		}
 	}
 }
 

@@ -13,6 +13,7 @@ public:
 	void stop();
 private:
 	sf::Text m_label;
+	SceneID m_cameFrom;
 };
 
 #endif
