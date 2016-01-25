@@ -1,10 +1,13 @@
-﻿  MenuScene.cpp
-c:\users\kepor_000\desktop\colourtest\colourtest\menuscene.cpp(40): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-c:\users\kepor_000\desktop\colourtest\colourtest\menuscene.cpp(43): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-c:\users\kepor_000\desktop\colourtest\colourtest\menuscene.cpp(48): warning C4018: '<' : signed/unsigned mismatch
-c:\users\kepor_000\desktop\colourtest\colourtest\menuscene.cpp(51): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-c:\users\kepor_000\desktop\colourtest\colourtest\menuscene.cpp(59): warning C4018: '<' : signed/unsigned mismatch
-c:\users\kepor_000\desktop\colourtest\colourtest\menuscene.cpp(67): warning C4018: '<' : signed/unsigned mismatch
-c:\users\kepor_000\desktop\colourtest\colourtest\menuscene.cpp(94): warning C4018: '<' : signed/unsigned mismatch
-  ColourTest.vcxproj -> C:\Users\kepor_000\Desktop\ColourTest\Debug\ColourTest.exe
-          1 file(s) copied.
+﻿Build started 25/01/2016 10:47:40.
+     1>Project "C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\ColourTest\ColourTest.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         ColourTest.vcxproj -> C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\Debug\ColourTest.exe
+       PostBuildEvent:
+         copy /y "C:\FMOD_SoundSystem\FMOD Programmers API Windows\api\fmodex.dll" "C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\Debug\"
+         :VCEnd
+                 1 file(s) copied.
+     1>Done Building Project "C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\ColourTest\ColourTest.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.09
