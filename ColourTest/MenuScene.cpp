@@ -4,14 +4,24 @@
 #include <iostream>
 
 MenuScene::MenuScene(sf::Font* font){
-	sf::Texture m_backgroundImg;
-	m_buttons.push_back(Button(sf::Vector2f(340, 200), sf::Vector2f(100, 50), "PLAY", font));
-	m_buttons.push_back(Button(sf::Vector2f(300, 280), sf::Vector2f(180, 50), "TIME TRIAL", font));
-	m_buttons.push_back(Button(sf::Vector2f(300, 360), sf::Vector2f(180, 50), "TEST", font));
+	m_buttons.push_back(Button(sf::Vector2f(400, 200), sf::Vector2f(100, 50), "PLAY", font));
+	m_buttons.push_back(Button(sf::Vector2f(400, 260), sf::Vector2f(180, 50), "TIME TRIAL", font));
+	m_buttons.push_back(Button(sf::Vector2f(400, 320), sf::Vector2f(220, 50), "ACHIEVEMENTS", font));
+	m_buttons.push_back(Button(sf::Vector2f(400, 380), sf::Vector2f(160, 50), "OPTIONS", font));
+
+	sf::Texture * backgroundImg = new sf::Texture;
+	backgroundImg->loadFromFile("res/images/Title.jpg");
+
+	m_sprBackground = sf::Sprite();
+	m_sprBackground.setTexture(*backgroundImg);
+	m_sprBackground.setPosition(0, 0);
+	m_sprBackground.setTextureRect(sf::IntRect(0, 0, m_sprBackground.getLocalBounds().width, m_sprBackground.getLocalBounds().height));
+	m_sprBackground.setScale(800 / m_sprBackground.getLocalBounds().width, 640 / m_sprBackground.getLocalBounds().height);
+	
 }
 
 MenuScene::~MenuScene(){
-
+	int x = 0;
 }
 
 void MenuScene::update(sf::Event* e, sf::RenderWindow* window){
@@ -25,15 +35,6 @@ void MenuScene::update(sf::Event* e, sf::RenderWindow* window){
 			if (e->key.code == sf::Keyboard::Escape){
 				window->close();
 			}
-			if (e->key.code == sf::Keyboard::Num1){
-				SoundManager::getInstance()->muteEffects();
-			}
-			if (e->key.code == sf::Keyboard::Num2){
-				SoundManager::getInstance()->muteMusic();
-			}
-			if (e->key.code == sf::Keyboard::Num3){
-				SoundManager::getInstance()->muteSpatial();
-			}
 		}
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
@@ -42,6 +43,12 @@ void MenuScene::update(sf::Event* e, sf::RenderWindow* window){
 			}
 			if (m_buttons[1].isClicked(sf::Vector2f(sf::Mouse::getPosition(*window).x, sf::Mouse::getPosition(*window).y))) {
 				SceneManager::getInstance()->goToScene(SceneID::TIMEDGAME);
+			}
+			if (m_buttons[2].isClicked(sf::Vector2f(sf::Mouse::getPosition(*window).x, sf::Mouse::getPosition(*window).y))) {
+				SceneManager::getInstance()->goToScene(SceneID::ACHIEVEMENTS);
+			}
+			if (m_buttons[3].isClicked(sf::Vector2f(sf::Mouse::getPosition(*window).x, sf::Mouse::getPosition(*window).y))) {
+				SceneManager::getInstance()->goToScene(SceneID::OPTIONS);
 			}
 		}
 		if (e->type == sf::Event::MouseMoved) {
@@ -83,13 +90,17 @@ void MenuScene::update(sf::Event* e, sf::RenderWindow* window){
 			if (m_buttons[1].getSelected()){
 				SceneManager::getInstance()->goToScene(SceneID::TIMEDGAME);
 			}
+			if (m_buttons[2].getSelected()){
+				SceneManager::getInstance()->goToScene(SceneID::ACHIEVEMENTS);
+			}
+			if (m_buttons[3].getSelected()){
+				SceneManager::getInstance()->goToScene(SceneID::OPTIONS);
+			}
 		}
 	}
 }
 
 void MenuScene::draw(sf::RenderWindow* window){
-	m_backgroundImg.loadFromFile("res/images/Title.jpg");
-	sf::Sprite m_sprBackground(m_backgroundImg);
 	window->draw(m_sprBackground);
 	for (int i = 0; i < m_buttons.size(); i++)
 	{

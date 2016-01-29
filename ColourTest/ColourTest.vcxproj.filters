@@ -69,6 +69,12 @@
     <ClInclude Include="XBoxController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="OptionsScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="AchievementsScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp">
@@ -115,6 +121,12 @@
     </ClCompile>
     <ClCompile Include="XboxController.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="AchievementsScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

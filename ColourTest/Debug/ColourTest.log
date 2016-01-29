@@ -1,13 +1,21 @@
-﻿Build started 25/01/2016 10:47:40.
-     1>Project "C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\ColourTest\ColourTest.vcxproj" on node 2 (Build target(s)).
-     1>Link:
-         ColourTest.vcxproj -> C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\Debug\ColourTest.exe
-       PostBuildEvent:
-         copy /y "C:\FMOD_SoundSystem\FMOD Programmers API Windows\api\fmodex.dll" "C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\Debug\"
-         :VCEnd
-                 1 file(s) copied.
-     1>Done Building Project "C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\ColourTest\ColourTest.vcxproj" (Build target(s)).
-
-Build succeeded.
-
-Time Elapsed 00:00:00.09
+﻿  OptionsScene.cpp
+c:\users\kepor_000\desktop\colourtest\colourtest\optionsscene.cpp(17): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\optionsscene.cpp(41): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\optionsscene.cpp(44): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\optionsscene.cpp(47): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\optionsscene.cpp(52): warning C4018: '<' : signed/unsigned mismatch
+c:\users\kepor_000\desktop\colourtest\colourtest\optionsscene.cpp(54): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\optionsscene.cpp(62): warning C4018: '<' : signed/unsigned mismatch
+c:\users\kepor_000\desktop\colourtest\colourtest\optionsscene.cpp(70): warning C4018: '<' : signed/unsigned mismatch
+c:\users\kepor_000\desktop\colourtest\colourtest\optionsscene.cpp(98): warning C4018: '<' : signed/unsigned mismatch
+  AchievementsScene.cpp
+c:\users\kepor_000\desktop\colourtest\colourtest\achievementsscene.cpp(15): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\achievementsscene.cpp(39): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\achievementsscene.cpp(44): warning C4018: '<' : signed/unsigned mismatch
+c:\users\kepor_000\desktop\colourtest\colourtest\achievementsscene.cpp(46): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\achievementsscene.cpp(54): warning C4018: '<' : signed/unsigned mismatch
+c:\users\kepor_000\desktop\colourtest\colourtest\achievementsscene.cpp(62): warning C4018: '<' : signed/unsigned mismatch
+c:\users\kepor_000\desktop\colourtest\colourtest\achievementsscene.cpp(84): warning C4018: '<' : signed/unsigned mismatch
+  Generating Code...
+  ColourTest.vcxproj -> C:\Users\kepor_000\Desktop\ColourTest\Debug\ColourTest.exe
+          1 file(s) copied.

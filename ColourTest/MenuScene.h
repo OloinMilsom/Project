@@ -7,7 +7,6 @@ class MenuScene : public Scene{
 public:
 	MenuScene(sf::Font* font);
 	~MenuScene();
-	sf::Texture m_backgroundImg;
 	void update(sf::Event* e, sf::RenderWindow* window);
 	void draw(sf::RenderWindow* window);
 	void start();
@@ -15,6 +14,7 @@ public:
 
 private:
 
+	sf::Sprite m_sprBackground;
 };
 
 #endif

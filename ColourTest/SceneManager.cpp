@@ -4,6 +4,8 @@
 #include "MenuScene.h"
 #include "GameOverScene.h"
 #include "TimedGameScene.h"
+#include "OptionsScene.h"
+#include "AchievementsScene.h"
 
 SceneManager* SceneManager::m_instance = nullptr;
 
@@ -16,6 +18,8 @@ SceneManager::SceneManager(){
 	m_scenes.push_back(new GameOverScene(&m_font, "You Lose!", SceneID::GAME));
 	m_scenes.push_back(new GameOverScene(&m_font, "You Win!", SceneID::GAME));
 	m_scenes.push_back(new GameOverScene(&m_font, "You Win!", SceneID::TIMEDGAME));
+	m_scenes.push_back(new OptionsScene(&m_font));
+	m_scenes.push_back(new AchievementsScene(&m_font));
 }
 
 SceneManager* SceneManager::getInstance(){

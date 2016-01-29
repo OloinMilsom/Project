@@ -44,18 +44,6 @@ void TimedGameScene::update(sf::Event* e, sf::RenderWindow* window){
 			if (e->key.code == sf::Keyboard::Escape){
 				window->close();
 			}
-			if (e->key.code == sf::Keyboard::Num1){
-				SoundManager::getInstance()->muteEffects();
-			}
-			if (e->key.code == sf::Keyboard::Num2){
-				SoundManager::getInstance()->muteMusic();
-			}
-			if (e->key.code == sf::Keyboard::Num3){
-				SoundManager::getInstance()->muteSpatial();
-			}
-			if (e->key.code == sf::Keyboard::Num4){
-				SoundManager::getInstance()->muteReverb();
-			}
 			if (e->key.code == sf::Keyboard::P){
 				SoundManager::getInstance()->updateReverb(FMOD_PRESET_SEWERPIPE);
 			}

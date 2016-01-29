@@ -27,17 +27,7 @@ void GameOverScene::update(sf::Event* e, sf::RenderWindow* window){
 		if (e->type == sf::Event::KeyPressed) {
 			if (e->key.code == sf::Keyboard::Escape){
 				window->close();
-			}
-			if (e->key.code == sf::Keyboard::Num1){
-				SoundManager::getInstance()->muteEffects();
-			}
-			if (e->key.code == sf::Keyboard::Num2){
-				SoundManager::getInstance()->muteMusic();
-			}
-			if (e->key.code == sf::Keyboard::Num3){
-				SoundManager::getInstance()->muteSpatial();
-			}
-			
+			}			
 		}
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{

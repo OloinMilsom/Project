@@ -3,16 +3,16 @@
 #include "SoundManager.h"
 
 Button::Button(sf::Vector2f pos, sf::Vector2f dims, std::string title, sf::Font* font)
-: m_position(pos),
+: m_position(pos-dims*0.5f),
   m_dimensions(dims){
 	m_title.setFont(*font);
 	m_title.setString(title);
 	m_title.setCharacterSize(24);
 	m_title.setColor(sf::Color::Blue);
 	m_title.setStyle(sf::Text::Bold);
-	m_title.setPosition(m_position.x + 20, m_position.y + 8);
+	m_title.setPosition(m_position.x + 0.5f * (dims.x - m_title.getLocalBounds().width), m_position.y + 0.5f * (dims.y - m_title.getLocalBounds().height));
 	m_shape = sf::RectangleShape(dims);
-	m_shape.setPosition(pos);
+	m_shape.setPosition(m_position);
 	m_shape.setFillColor(sf::Color(128, 128, 128));
 	m_shape.setOutlineColor(sf::Color::White);
 }

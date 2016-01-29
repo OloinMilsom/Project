@@ -11,11 +11,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AchievementsScene.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Direction.h" />
     <ClInclude Include="GameOverScene.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="MenuScene.h" />
+    <ClInclude Include="OptionsScene.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneID.h" />
@@ -29,11 +31,13 @@
     <ClInclude Include="XBoxController.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AchievementsScene.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="GameOverScene.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MenuScene.cpp" />
+    <ClCompile Include="OptionsScene.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
