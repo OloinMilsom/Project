@@ -6,7 +6,7 @@
 
 class GameScene : public Scene{
 public:
-	GameScene();
+	GameScene(sf::Font* font);
 	~GameScene();
 	void update(sf::Event* e, sf::RenderWindow* window);
 	void draw(sf::RenderWindow* window);

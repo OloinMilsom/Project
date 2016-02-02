@@ -3,7 +3,9 @@
 #include <iostream>
 #include "XBoxController.h"
 
-GameScene::GameScene(){
+GameScene::GameScene(sf::Font* font){
+	m_buttons.push_back(Button(sf::Vector2f(800 - 50, 600 - 50), sf::Vector2f(50, 50), "||", font));
+
 	m_currSize = 3;
 	m_attempts = 15;
 	TileManager::getInstance()->initialise(m_currSize);
@@ -170,16 +172,9 @@ void GameScene::update(sf::Event* e, sf::RenderWindow* window){
 			{
 				if (m_currSize == 11 && m_player->getPos() == sf::Vector2f(TileManager::getInstance()->getSize(), TileManager::getInstance()->getSize() / 2)){
 					SceneManager::getInstance()->goToScene(SceneID::GAMEWON);
-					m_attempts = 15;
-					m_currSize = 3;
-					TileManager::getInstance()->initialise(m_currSize);
-					int tileSize = 500 / TileManager::getInstance()->getSize();
 					SoundManager::getInstance()->initSpatial(TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize));
 					SoundManager::getInstance()->playEffect(1);
-					m_player->setPos(sf::Vector2f(0, TileManager::getInstance()->getSize() / 2));
-					m_player->resetColour();
-					m_player->addColour(TileManager::getInstance()->getStartColor());
-					m_player->goalFinder();
+					
 				}
 				else if (m_player->getPos() == sf::Vector2f(TileManager::getInstance()->getSize(), TileManager::getInstance()->getSize() / 2)){
 					m_currSize += 2;
@@ -195,6 +190,19 @@ void GameScene::update(sf::Event* e, sf::RenderWindow* window){
 				}
 			}
 		}
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+			if (m_buttons[0].isClicked(sf::Vector2f(sf::Mouse::getPosition(*window).x, sf::Mouse::getPosition(*window).y))) {
+				SceneManager::getInstance()->goToPause(SceneID::GAME);
+			}
+		}
+		if (e->type == sf::Event::MouseMoved) {
+			for (int i = 0; i < m_buttons.size(); i++)
+			{
+				m_buttons[i].isMouseOver(sf::Vector2f(sf::Mouse::getPosition(*window).x,
+					sf::Mouse::getPosition(*window).y));
+			}
+		}
 	}
 }
 
@@ -208,7 +216,10 @@ void GameScene::draw(sf::RenderWindow* window){
 	sf::RectangleShape r(sf::Vector2f(40, 40));
 	r.setFillColor(m_player->getColour());
 	window->draw(r);
-	
+	for (int i = 0; i < m_buttons.size(); i++)
+	{
+		m_buttons[i].draw(window);
+	}
 }
 
 void GameScene::start(){
@@ -218,5 +229,13 @@ void GameScene::start(){
 }
 
 void GameScene::stop(){
+	m_attempts = 15;
+	m_currSize = 3;
 	SoundManager::getInstance()->stopSpatial();
+	TileManager::getInstance()->initialise(m_currSize);
+	int tileSize = 500 / TileManager::getInstance()->getSize();
+	m_player->setPos(sf::Vector2f(0, TileManager::getInstance()->getSize() / 2));
+	m_player->resetColour();
+	m_player->addColour(TileManager::getInstance()->getStartColor());
+	m_player->goalFinder();
 }
