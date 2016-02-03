@@ -16,6 +16,9 @@ private:
 	int m_currSize;
 	int m_attempts;
 	Player * m_player;
+
+	void nextRoom();
+	void resetRoom();
 };
 
 #endif

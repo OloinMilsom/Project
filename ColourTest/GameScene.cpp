@@ -57,51 +57,10 @@ void GameScene::update(sf::Event* e, sf::RenderWindow* window){
 			m_player->move(Direction::DOWN);
 		}
 		if (XBoxController::isButtonPressed(0, XBoxController::XboxButton::A)){
-			if (m_currSize == 11 && m_player->getPos() == sf::Vector2f(TileManager::getInstance()->getSize(), TileManager::getInstance()->getSize() / 2)){
-				SceneManager::getInstance()->goToScene(SceneID::GAMEWON);
-				m_attempts = 15;
-				m_currSize = 3;
-				TileManager::getInstance()->initialise(m_currSize);
-				int tileSize = 500 / TileManager::getInstance()->getSize();
-				SoundManager::getInstance()->initSpatial(TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize));
-				SoundManager::getInstance()->playEffect(1);
-				m_player->setPos(sf::Vector2f(0, TileManager::getInstance()->getSize() / 2));
-				m_player->resetColour();
-				m_player->addColour(TileManager::getInstance()->getStartColor());
-				m_player->goalFinder();
-			}
-			else if (m_player->getPos() == sf::Vector2f(TileManager::getInstance()->getSize(), TileManager::getInstance()->getSize() / 2)){
-				m_currSize += 2;
-				TileManager::getInstance()->initialise(m_currSize);
-				int tileSize = 500 / TileManager::getInstance()->getSize();
-				SoundManager::getInstance()->initSpatial(TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize));
-				SoundManager::getInstance()->playEffect(1);
-				m_player->resetColour();
-				TileManager::getInstance()->initialise(TileManager::getInstance()->getSize());
-				m_player->setPos(sf::Vector2f(0, TileManager::getInstance()->getSize() / 2));
-				m_player->goalFinder();
-				m_player->setPos(sf::Vector2f(-1, TileManager::getInstance()->getSize() / 2));
-			}
+			nextRoom();
 		}
 		if (XBoxController::isButtonPressed(0, XBoxController::XboxButton::B)){
-			m_attempts--;
-			if (m_attempts < 0){
-				SceneManager::getInstance()->goToScene(SceneID::GAMEOVER);
-				m_attempts = 15;
-				m_currSize = 3;
-				TileManager::getInstance()->initialise(m_currSize);
-				int tileSize = 500 / TileManager::getInstance()->getSize();
-				SoundManager::getInstance()->initSpatial(TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize));
-				m_player->setPos(sf::Vector2f(0, TileManager::getInstance()->getSize() / 2));
-				m_player->resetColour();
-				m_player->addColour(TileManager::getInstance()->getStartColor());
-				m_player->goalFinder();
-			}
-			else{
-				TileManager::getInstance()->resetRoom();
-				m_player->setPos(sf::Vector2f(-1, TileManager::getInstance()->getSize() / 2));
-				m_player->resetColour();
-			}
+			resetRoom();
 		}
 	}
 
@@ -149,45 +108,11 @@ void GameScene::update(sf::Event* e, sf::RenderWindow* window){
 			}
 			else if (e->key.code == sf::Keyboard::R)
 			{
-				m_attempts--;
-				if (m_attempts < 0){
-					SceneManager::getInstance()->goToScene(SceneID::GAMEOVER);
-					m_attempts = 15;
-					m_currSize = 3;
-					TileManager::getInstance()->initialise(m_currSize);
-					int tileSize = 500 / TileManager::getInstance()->getSize();
-					SoundManager::getInstance()->initSpatial(TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize));
-					m_player->setPos(sf::Vector2f(0, TileManager::getInstance()->getSize() / 2));
-					m_player->resetColour();
-					m_player->addColour(TileManager::getInstance()->getStartColor());
-					m_player->goalFinder();
-				}
-				else{
-					TileManager::getInstance()->resetRoom();
-					m_player->setPos(sf::Vector2f(-1, TileManager::getInstance()->getSize() / 2));
-					m_player->resetColour();
-				}
+				resetRoom();
 			}
 			else if (e->key.code == sf::Keyboard::F)
 			{
-				if (m_currSize == 11 && m_player->getPos() == sf::Vector2f(TileManager::getInstance()->getSize(), TileManager::getInstance()->getSize() / 2)){
-					SceneManager::getInstance()->goToScene(SceneID::GAMEWON);
-					SoundManager::getInstance()->initSpatial(TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize));
-					SoundManager::getInstance()->playEffect(1);
-					
-				}
-				else if (m_player->getPos() == sf::Vector2f(TileManager::getInstance()->getSize(), TileManager::getInstance()->getSize() / 2)){
-					m_currSize += 2;
-					TileManager::getInstance()->initialise(m_currSize); 
-					int tileSize = 500 / TileManager::getInstance()->getSize();
-					SoundManager::getInstance()->initSpatial(TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize));
-					SoundManager::getInstance()->playEffect(1);
-					m_player->resetColour();
-					TileManager::getInstance()->initialise(TileManager::getInstance()->getSize());
-					m_player->setPos(sf::Vector2f(0, TileManager::getInstance()->getSize() / 2));
-					m_player->goalFinder();
-					m_player->setPos(sf::Vector2f(-1, TileManager::getInstance()->getSize() / 2));
-				}
+				nextRoom();
 			}
 		}
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
@@ -238,4 +163,64 @@ void GameScene::stop(){
 	m_player->resetColour();
 	m_player->addColour(TileManager::getInstance()->getStartColor());
 	m_player->goalFinder();
+
+	AchievementManager::getInstance()->roomOver();
+}
+
+void GameScene::nextRoom(){
+	int tileSize = 500 / TileManager::getInstance()->getSize();
+	// room complete
+	if (m_player->getPos() == sf::Vector2f(TileManager::getInstance()->getSize(), TileManager::getInstance()->getSize() / 2)) {
+		// game complete
+		if (m_currSize == 11){
+			// switch scene
+			SceneManager::getInstance()->goToScene(SceneID::GAMEWON);
+			SoundManager::getInstance()->initSpatial(TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize));
+			SoundManager::getInstance()->playEffect(1);
+
+		}
+		// move to next room
+		else {
+			// increase the size of the rooms
+			m_currSize += 2;
+			TileManager::getInstance()->initialise(m_currSize);
+			
+			// find new tile size
+			tileSize = 500 / TileManager::getInstance()->getSize();
+
+			// update spatial sound effects
+			SoundManager::getInstance()->initSpatial(TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize));
+			SoundManager::getInstance()->playEffect(1);
+
+			// find the new path
+			m_player->resetColour();
+			m_player->setPos(sf::Vector2f(0, TileManager::getInstance()->getSize() / 2));
+			m_player->goalFinder();
+			m_player->setPos(sf::Vector2f(-1, TileManager::getInstance()->getSize() / 2));
+		}
+		AchievementManager::getInstance()->roomOver();
+	}
+}
+
+void GameScene::resetRoom() {
+	m_attempts--;
+	if (m_attempts < 0){
+		SceneManager::getInstance()->goToScene(SceneID::GAMEOVER);
+		m_attempts = 15;
+		m_currSize = 3;
+		TileManager::getInstance()->initialise(m_currSize);
+		int tileSize = 500 / TileManager::getInstance()->getSize();
+		SoundManager::getInstance()->initSpatial(TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize));
+		m_player->setPos(sf::Vector2f(0, TileManager::getInstance()->getSize() / 2));
+		m_player->resetColour();
+		m_player->addColour(TileManager::getInstance()->getStartColor());
+		m_player->goalFinder();
+	}
+	else{
+		TileManager::getInstance()->resetRoom();
+		m_player->setPos(sf::Vector2f(-1, TileManager::getInstance()->getSize() / 2));
+		m_player->resetColour();
+	}
+
+	AchievementManager::getInstance()->roomOver();
 }

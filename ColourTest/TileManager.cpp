@@ -100,6 +100,8 @@ void TileManager::initialise(int size){
 	m_start = new Tile(150 - tileSize, (m_currentSize / 2) * tileSize, tileSize, sf::Color::Black, spr);
 	m_finish = new Tile(150 + m_currentSize * tileSize, (m_currentSize / 2) * tileSize, tileSize, sf::Color::Black, spr);
 	m_start->setUsed(true);
+
+	AchievementManager::getInstance()->setRoomSize(size);
 }
 
 void TileManager::draw(sf::RenderWindow * window) const{

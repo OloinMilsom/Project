@@ -1,5 +1,6 @@
 #include "Player.h"
 #include <iostream>
+#include "AchievementManager.h"
 
 Player::Player(){
 
@@ -246,6 +247,7 @@ void Player::move(Direction d){
 				TileManager::getInstance()->setUsed(m_pos);
 				TileManager::getInstance()->setUsedColour(getColour());
 				TileManager::getInstance()->setEnterDirection(m_pos, Direction::DOWN);
+				AchievementManager::getInstance()->incrementSteps();
 			}
 			break;
 		case Direction::LEFT:
@@ -258,6 +260,7 @@ void Player::move(Direction d){
 				TileManager::getInstance()->setUsed(m_pos);
 				TileManager::getInstance()->setUsedColour(getColour());
 				TileManager::getInstance()->setEnterDirection(m_pos, Direction::RIGHT);
+				AchievementManager::getInstance()->incrementSteps();
 			}
 			break;
 		case Direction::DOWN:
@@ -270,15 +273,18 @@ void Player::move(Direction d){
 				TileManager::getInstance()->setUsed(m_pos);
 				TileManager::getInstance()->setUsedColour(getColour());
 				TileManager::getInstance()->setEnterDirection(m_pos, Direction::UP);
+				AchievementManager::getInstance()->incrementSteps();
 			}
 			break;
 		case Direction::RIGHT:
 			if (m_pos.x == TileManager::getInstance()->getSize() - 1 && m_pos.y == TileManager::getInstance()->getSize() / 2){
-				TileManager::getInstance()->setExitDirection(m_pos, d);
 				if (getColour() == TileManager::getInstance()->getFinishColor()){
+					TileManager::getInstance()->setExitDirection(m_pos, d);
 					m_pos.x += 1;
 					m_targetPos.x += 500 / TileManager::getInstance()->getSize();
 					m_moving = true;
+					AchievementManager::getInstance()->incrementSteps();
+					AchievementManager::getInstance()->setRoomComplete(true);
 				}
 			}
 			else if (m_pos.x == -1 || canMove(d) && m_pos.x < TileManager::getInstance()->getSize()){
@@ -290,6 +296,7 @@ void Player::move(Direction d){
 				TileManager::getInstance()->setUsed(m_pos);
 				TileManager::getInstance()->setUsedColour(getColour());
 				TileManager::getInstance()->setEnterDirection(m_pos, Direction::LEFT);
+				AchievementManager::getInstance()->incrementSteps();
 			}
 			break;
 		}

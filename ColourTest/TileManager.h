@@ -3,6 +3,7 @@
 
 #include "Tile.h"
 #include <vector>
+#include "AchievementManager.h"
 
 class TileManager {
 private:

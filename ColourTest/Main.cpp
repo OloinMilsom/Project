@@ -8,6 +8,8 @@
 #include <ctime>
 #include "SceneManager.h"
 #include "SoundManager.h"
+#include "AchievementManager.h"
+#include <cstdlib>
 
 #ifdef _DEBUG 
 #pragma comment(lib,"sfml-graphics-d.lib") 
@@ -35,6 +37,10 @@
 ///Entrypoint of application 
 //////////////////////////////////////////////////////////// 
 
+void exiting() {
+	AchievementManager::getInstance()->saveToFile();
+}
+
 int main()
 {
 	// Create the main window 
@@ -44,6 +50,9 @@ int main()
 
 	SoundManager::getInstance()->playMusic(0);
 	SceneManager::getInstance();
+	AchievementManager::getInstance();
+
+	std::atexit(exiting);
 
 	// Start game loop 
 	while (window.isOpen())
@@ -51,6 +60,7 @@ int main()
 		// Process events 
 		sf::Event Event;
 		SceneManager::getInstance()->update(&Event, &window);
+		AchievementManager::getInstance()->update();
 		while (window.pollEvent(Event))
 		{
 			if (Event.type == sf::Event::KeyPressed)
@@ -71,3 +81,5 @@ int main()
 
 	return EXIT_SUCCESS;
 }
+
+
