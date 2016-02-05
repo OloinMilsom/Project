@@ -21,6 +21,7 @@
     <ClInclude Include="OptionsScene.h" />
     <ClInclude Include="PauseScene.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PowerUp.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneID.h" />
     <ClInclude Include="SceneManager.h" />

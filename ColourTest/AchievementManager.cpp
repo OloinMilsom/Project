@@ -17,7 +17,16 @@ AchievementManager::AchievementManager(){
 }
 
 void AchievementManager::saveToFile(){
-	int i = 0;
+	std::ofstream myfile;
+	myfile.open("res/achievements.txt");
+
+	std::string line;
+	for (std::map<std::string,bool>::iterator iter = m_achievements.begin(); iter != m_achievements.end(); iter++)
+	{
+		line = iter->first + "," + (iter->second ? "1" : "0") + "\n";
+		myfile << line;
+	}
+	myfile.close();
 }
 
 AchievementManager* AchievementManager::getInstance(){
@@ -29,11 +38,11 @@ AchievementManager* AchievementManager::getInstance(){
 }
 
 void AchievementManager::update(){
-	if (m_roomComplete && m_roomSize == 3 && m_numberOfSteps == 4)
+	if (!m_achievements["3x3 Straight Across"] && m_roomComplete && m_roomSize == 3 && m_numberOfSteps == 4)
 	{
 		m_achievements["3x3 Straight Across"] = true;
 	}
-	if (m_roomComplete && m_roomSize == 5 && m_numberOfSteps == 4)
+	if (!m_achievements["5x5 Straight Across"] && m_roomComplete && m_roomSize == 5 && m_numberOfSteps == 4)
 	{
 		m_achievements["5x5 Straight Across"] = true;
 	}

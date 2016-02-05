@@ -1,2 +1,3 @@
-3x3 Straight Across,0
+,0
+3x3 Straight Across,1
 5x5 Straight Across,0

@@ -17,6 +17,9 @@ private:
 	float m_timer;
 	Player * m_player;
 	sf::Clock m_deltaClock;
+
+	void nextRoom();
+	void resetRoom();
 };
 
 #endif // !TIMEDGAMESCENE_H

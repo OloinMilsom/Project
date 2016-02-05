@@ -16,6 +16,8 @@ private:
 	int m_currSize;
 	int m_attempts;
 	Player * m_player;
+	sf::RectangleShape m_finishColour;
+	sf::RectangleShape m_playerColour;
 
 	void nextRoom();
 	void resetRoom();

@@ -2,6 +2,7 @@
 #define ACHIEVEMENTMANAGER_H
 
 #include "stdafx.h"
+#include "SceneID.h"
 #include <map>
 #include <fstream>
 
@@ -29,6 +30,7 @@ private:
 	int m_roomSize;
 	int m_numberOfSteps;
 	bool m_roomComplete;
+	SceneID m_currentScene;
 };
 
 #endif
