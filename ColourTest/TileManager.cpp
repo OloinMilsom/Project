@@ -28,6 +28,7 @@ TileManager * TileManager::getInstance(){
 }
 
 void TileManager::initialise(int size){
+	m_powerUps.clear();
 	if (!m_tiles.empty()){
 		for (int i = 0; i < m_currentSize; i++)
 		{
@@ -58,7 +59,12 @@ void TileManager::initialise(int size){
 			if (i / size == size - 1)
 				newTile->addWalls(Direction::DOWN);
 		}
-		m_tiles.push_back(newTile);		
+		m_tiles.push_back(newTile);
+
+		if (rand() % 25 > 23 ){
+
+			m_powerUps.push_back(PowerUp(tileSize / 8, m_tiles[i]->getPos(), sf::Vector2f(i % m_currentSize, i / m_currentSize)));
+		}
 	}
 	for (int i = 0; i < m_currentSize * m_currentSize; i++)
 	{
@@ -108,6 +114,10 @@ void TileManager::draw(sf::RenderWindow * window) const{
 	for (int i = 0; i < m_tiles.size(); i++)
 	{
 		m_tiles[i]->draw(window);
+	}
+	for (int i = 0; i < m_powerUps.size(); i++)
+	{
+		m_powerUps[i].draw(window);
 	}
 	m_start->draw(window);
 	m_finish->draw(window);
@@ -216,6 +226,16 @@ bool TileManager::floodFillCheck(int x, int y, int targetX, int targetY) const{
 			return true;
 	}
 	return false;
+}
+
+void TileManager::updatePowerUp(int x, int y){
+	for (std::vector<PowerUp>::iterator iter = m_powerUps.begin(); iter !=  m_powerUps.end(); iter++)
+	{
+		if (iter->isSteppedOn(x, y)){
+			m_powerUps.erase(iter);
+			break;
+		}
+	}
 }
 
 void TileManager::resetUsed(){

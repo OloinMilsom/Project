@@ -96,6 +96,10 @@ sf::Vector2f Tile::getPos() const{
 	return m_pos;
 }
 
+bool Tile::getHasPowerUp() const{
+	return m_hasPowerUp;
+}
+
 bool Tile::checkWall(Direction dir) const{
 	for (int i = 0; i < m_walls.size(); i++)
 	{
@@ -179,6 +183,10 @@ void Tile::setExitDirection(Direction arg) {
 		else if (m_exitDir == Direction::DOWN)
 			m_sprite.setTextureRect(sf::IntRect(0, 0, 24, 24));
 	}
+}
+
+void Tile::setHasPowerUp(bool arg){
+	m_hasPowerUp = arg;
 }
 
 void Tile::addWalls(Direction direction){

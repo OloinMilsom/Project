@@ -247,6 +247,7 @@ void Player::move(Direction d){
 				TileManager::getInstance()->setUsed(m_pos);
 				TileManager::getInstance()->setUsedColour(getColour());
 				TileManager::getInstance()->setEnterDirection(m_pos, Direction::DOWN);
+				TileManager::getInstance()->updatePowerUp(m_pos.x, m_pos.y);
 				AchievementManager::getInstance()->incrementSteps();
 			}
 			break;
@@ -260,6 +261,7 @@ void Player::move(Direction d){
 				TileManager::getInstance()->setUsed(m_pos);
 				TileManager::getInstance()->setUsedColour(getColour());
 				TileManager::getInstance()->setEnterDirection(m_pos, Direction::RIGHT);
+				TileManager::getInstance()->updatePowerUp(m_pos.x, m_pos.y);
 				AchievementManager::getInstance()->incrementSteps();
 			}
 			break;
@@ -273,6 +275,7 @@ void Player::move(Direction d){
 				TileManager::getInstance()->setUsed(m_pos);
 				TileManager::getInstance()->setUsedColour(getColour());
 				TileManager::getInstance()->setEnterDirection(m_pos, Direction::UP);
+				TileManager::getInstance()->updatePowerUp(m_pos.x, m_pos.y);
 				AchievementManager::getInstance()->incrementSteps();
 			}
 			break;
@@ -296,6 +299,7 @@ void Player::move(Direction d){
 				TileManager::getInstance()->setUsed(m_pos);
 				TileManager::getInstance()->setUsedColour(getColour());
 				TileManager::getInstance()->setEnterDirection(m_pos, Direction::LEFT);
+				TileManager::getInstance()->updatePowerUp(m_pos.x, m_pos.y);
 				AchievementManager::getInstance()->incrementSteps();
 			}
 			break;
