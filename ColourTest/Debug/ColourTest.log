@@ -1,12 +1,6 @@
-﻿  TileManager.cpp
-c:\users\kepor_000\desktop\colourtest\colourtest\tilemanager.cpp(51): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
-c:\users\kepor_000\desktop\colourtest\colourtest\tilemanager.cpp(66): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-c:\users\kepor_000\desktop\colourtest\colourtest\tilemanager.cpp(106): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
-c:\users\kepor_000\desktop\colourtest\colourtest\tilemanager.cpp(107): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
-c:\users\kepor_000\desktop\colourtest\colourtest\tilemanager.cpp(114): warning C4018: '<' : signed/unsigned mismatch
-c:\users\kepor_000\desktop\colourtest\colourtest\tilemanager.cpp(118): warning C4018: '<' : signed/unsigned mismatch
-c:\users\kepor_000\desktop\colourtest\colourtest\tilemanager.cpp(155): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
-c:\users\kepor_000\desktop\colourtest\colourtest\tilemanager.cpp(171): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
-c:\users\kepor_000\desktop\colourtest\colourtest\tilemanager.cpp(175): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
+﻿  Skipping... (no relevant changes detected)
+  SceneManager.cpp
+  Player.cpp
+  Main.cpp
   ColourTest.vcxproj -> C:\Users\kepor_000\Desktop\ColourTest\Debug\ColourTest.exe
           1 file(s) copied.

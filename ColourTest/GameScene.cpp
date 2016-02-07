@@ -2,6 +2,7 @@
 #include "GameScene.h"
 #include <iostream>
 #include "XBoxController.h"
+#include "PowerUpManager.h"
 
 GameScene::GameScene(sf::Font* font){
 	m_buttons.push_back(Button(sf::Vector2f(800 - 50, 600 - 50), sf::Vector2f(50, 50), "||", font));
@@ -18,9 +19,19 @@ GameScene::GameScene(sf::Font* font){
 	m_finishColour.setOrigin(250, 10);
 	m_finishColour.setPosition(400, 540);
 
+	m_splitFinish = std::vector<sf::RectangleShape>(3);
+	m_splitFinish[0].setFillColor(sf::Color::Red);
+	m_splitFinish[1].setFillColor(sf::Color::Green);
+	m_splitFinish[2].setFillColor(sf::Color::Blue);
+
 	m_playerColour = sf::RectangleShape(sf::Vector2f(500, 20));
 	m_playerColour.setOrigin(250, 10);
 	m_playerColour.setPosition(400, 560);
+
+	m_splitPlayer = std::vector<sf::RectangleShape>(3);
+	m_splitPlayer[0].setFillColor(sf::Color::Red);
+	m_splitPlayer[1].setFillColor(sf::Color::Green);
+	m_splitPlayer[2].setFillColor(sf::Color::Blue);
 }
 
 GameScene::~GameScene(){
@@ -143,9 +154,33 @@ void GameScene::draw(sf::RenderWindow* window){
 	TileManager::getInstance()->draw(window);
 	window->setTitle(std::to_string(m_attempts));
 	
-	m_playerColour.setFillColor(m_player->getColour());
-	window->draw(m_finishColour);
-	window->draw(m_playerColour);
+	sf::Color currPlayer = m_player->getColour();
+	m_playerColour.setFillColor(currPlayer);
+	int colourWidth = currPlayer.r + currPlayer.g + currPlayer.b;
+	if (colourWidth != 0){
+		m_splitPlayer[0].setSize(sf::Vector2f(500 * currPlayer.r / colourWidth, 20));
+		m_splitPlayer[1].setSize(sf::Vector2f(500 * currPlayer.g / colourWidth, 20));
+		m_splitPlayer[2].setSize(sf::Vector2f(500 * currPlayer.b / colourWidth, 20));
+	}
+	int widthSoFar = 0;
+	for (int i = 0; i < 3; i++)
+	{
+		m_splitPlayer[i].setOrigin(0, 10);
+		m_splitPlayer[i].setPosition(150 + widthSoFar, 560);
+		widthSoFar += m_splitPlayer[i].getSize().x;
+	}
+	
+	if (PowerUpManager::getInstance()->checkActive(PowerUp::Type::COLOURSPLIT)){
+		for (int i = 0; i < 3; i++)
+		{
+			window->draw(m_splitFinish[i]);
+			window->draw(m_splitPlayer[i]);
+		}
+	}
+	else {
+		window->draw(m_playerColour);
+		window->draw(m_finishColour);
+	}
 
 	m_player->draw(window);
 	sf::RectangleShape r(sf::Vector2f(40, 40));
@@ -155,13 +190,26 @@ void GameScene::draw(sf::RenderWindow* window){
 	{
 		m_buttons[i].draw(window);
 	}
+	PowerUpManager::getInstance()->draw(window);
 }
 
 void GameScene::start(){
 	SoundManager::getInstance()->playSpatial(0);
 	int tileSize = 500 / TileManager::getInstance()->getSize();
 	SoundManager::getInstance()->initSpatial(TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize));
-	m_finishColour.setFillColor(TileManager::getInstance()->getFinishColor());
+	sf::Color currFinish = TileManager::getInstance()->getFinishColor();
+	m_finishColour.setFillColor(currFinish);
+	int colourWidth = currFinish.r + currFinish.g + currFinish.b;
+	m_splitFinish[0].setSize(sf::Vector2f(500 * currFinish.r / colourWidth, 20));
+	m_splitFinish[1].setSize(sf::Vector2f(500 * currFinish.g / colourWidth, 20));
+	m_splitFinish[2].setSize(sf::Vector2f(500 * currFinish.b / colourWidth, 20));
+	int widthSoFar = 0;
+	for (int i = 0; i < 3; i++)
+	{
+		m_splitFinish[i].setOrigin(0, 10);
+		m_splitFinish[i].setPosition(150 + widthSoFar, 540);
+		widthSoFar += m_splitFinish[i].getSize().x;
+	}
 }
 
 void GameScene::stop(){
@@ -193,6 +241,9 @@ void GameScene::nextRoom(){
 		}
 		// move to next room
 		else {
+			// reset powerups
+			PowerUpManager::getInstance()->newRoom();
+
 			// increase the size of the rooms
 			m_currSize += 2;
 			TileManager::getInstance()->initialise(m_currSize);
@@ -210,7 +261,19 @@ void GameScene::nextRoom(){
 			m_player->goalFinder();
 			m_player->setPos(sf::Vector2f(-1, TileManager::getInstance()->getSize() / 2));
 
-			m_finishColour.setFillColor(TileManager::getInstance()->getFinishColor());
+			sf::Color currFinish = TileManager::getInstance()->getFinishColor();
+			m_finishColour.setFillColor(currFinish);
+			int colourWidth = currFinish.r + currFinish.g + currFinish.b;
+			m_splitFinish[0].setSize(sf::Vector2f(500 * currFinish.r / colourWidth, 20));
+			m_splitFinish[1].setSize(sf::Vector2f(500 * currFinish.g / colourWidth, 20));
+			m_splitFinish[2].setSize(sf::Vector2f(500 * currFinish.b / colourWidth, 20));
+			int widthSoFar = 0;
+			for (int i = 0; i < 3; i++)
+			{
+				m_splitFinish[i].setOrigin(0, 10);
+				m_splitFinish[i].setPosition(150 + widthSoFar, 540);
+				widthSoFar += m_splitFinish[i].getSize().x;
+			}
 		}
 		AchievementManager::getInstance()->roomOver();
 	}
@@ -222,6 +285,8 @@ void GameScene::resetRoom() {
 		SceneManager::getInstance()->goToScene(SceneID::GAMEOVER);
 	}
 	else{
+		// reset powerups
+		PowerUpManager::getInstance()->resetRoom();
 		TileManager::getInstance()->resetRoom();
 		m_player->setPos(sf::Vector2f(-1, TileManager::getInstance()->getSize() / 2));
 		m_player->resetColour();

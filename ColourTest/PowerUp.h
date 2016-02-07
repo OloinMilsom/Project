@@ -14,11 +14,16 @@ public:
 	void draw(sf::RenderWindow * window) const;
 	
 	bool isSteppedOn(int x, int y);
+	Type getType();
+	bool getActive();
+
+	void setActive(bool);
 private:
 	Type m_type;
 	sf::Vector2f m_pos;
 	sf::Vector2f m_tileCoords;
 	sf::CircleShape m_shape;
+	bool m_active;
 };
 
 #endif

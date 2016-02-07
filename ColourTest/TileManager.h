@@ -15,8 +15,7 @@ private:
 	Tile * m_finish;
 	int m_currentSize;
 	sf::Texture tex;
-	std::vector<PowerUp> m_powerUps;
-	PowerUp::Type m_powerUpType;
+	
 
 public:
 	~TileManager();
@@ -40,7 +39,6 @@ public:
 
 	//int checkAdjacent(int x, int y) const;
 	bool floodFillCheck(int x, int y, int targetX, int targetY) const;
-	void updatePowerUp(int x, int y);
 
 	void resetUsed();
 	void resetChecked();

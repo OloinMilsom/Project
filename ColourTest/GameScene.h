@@ -18,6 +18,8 @@ private:
 	Player * m_player;
 	sf::RectangleShape m_finishColour;
 	sf::RectangleShape m_playerColour;
+	std::vector<sf::RectangleShape> m_splitPlayer;
+	std::vector<sf::RectangleShape> m_splitFinish;
 
 	void nextRoom();
 	void resetRoom();
