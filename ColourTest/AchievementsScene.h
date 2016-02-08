@@ -2,6 +2,7 @@
 #define ACHIEVEMENTSSSCENE_H
 
 #include "Scene.h"
+#include "AchievementManager.h"
 
 class AchievementsScene : public Scene{
 public:
@@ -14,6 +15,7 @@ public:
 
 private:
 	sf::Sprite m_sprBackground;
+	std::vector<sf::Text> m_achievements;
 };
 
 #endif

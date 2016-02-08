@@ -11,7 +11,8 @@ AchievementManager::AchievementManager(){
 	while (myfile.good()){
 		std::getline(myfile, key, ',');
 		std::getline(myfile, value, '\n');
-		m_achievements.insert(std::make_pair(key, value == "1"));
+		if (key != "")
+			m_achievements.insert(std::make_pair(key, value == "1"));
 	}
 	myfile.close();
 }
@@ -38,11 +39,11 @@ AchievementManager* AchievementManager::getInstance(){
 }
 
 void AchievementManager::update(){
-	if (!m_achievements["3x3 Straight Across"] && m_roomComplete && m_roomSize == 3 && m_numberOfSteps == 4)
+	if (!m_achievements["3x3 Straight Across"] && m_roomComplete && m_roomSize == 3 && m_numberOfSteps == 3)
 	{
 		m_achievements["3x3 Straight Across"] = true;
 	}
-	if (!m_achievements["5x5 Straight Across"] && m_roomComplete && m_roomSize == 5 && m_numberOfSteps == 4)
+	if (!m_achievements["5x5 Straight Across"] && m_roomComplete && m_roomSize == 5 && m_numberOfSteps == 5)
 	{
 		m_achievements["5x5 Straight Across"] = true;
 	}
@@ -55,6 +56,10 @@ void AchievementManager::roomOver(){
 
 void AchievementManager::gameOver(){
 	m_roomSize = 3;
+}
+
+std::map<std::string, bool> AchievementManager::getAchievements(){
+	return m_achievements;
 }
 
 void AchievementManager::setRoomSize(int arg){

@@ -17,6 +17,8 @@ public:
 	void roomOver();
 	void gameOver();
 
+	std::map<std::string, bool> getAchievements();
+
 	void setRoomSize(int);
 	void incrementSteps();
 	void setRoomComplete(bool);

@@ -15,7 +15,7 @@ SceneManager::SceneManager(){
 	m_font.loadFromFile("C:\\Windows\\Fonts\\Arial.TTF");
 	m_scenes.push_back(new MenuScene(&m_font));
 	m_scenes.push_back(new GameScene(&m_font));
-	m_scenes.push_back(new TimedGameScene());
+	m_scenes.push_back(new TimedGameScene(&m_font));
 	m_scenes.push_back(new GameOverScene(&m_font, "You Lose!", SceneID::GAME));
 	m_scenes.push_back(new GameOverScene(&m_font, "You Win!", SceneID::GAME));
 	m_scenes.push_back(new GameOverScene(&m_font, "Time's up!", SceneID::TIMEDGAME));

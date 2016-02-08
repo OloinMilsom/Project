@@ -15,6 +15,14 @@ AchievementsScene::AchievementsScene(sf::Font* font){
 	m_sprBackground.setTextureRect(sf::IntRect(0, 0, m_sprBackground.getLocalBounds().width, m_sprBackground.getLocalBounds().height));
 	m_sprBackground.setScale(800 / m_sprBackground.getLocalBounds().width, 640 / m_sprBackground.getLocalBounds().height);
 
+	std::map<std::string, bool> achievements = AchievementManager::getInstance()->getAchievements();
+	int i = 0;
+	for (std::map<std::string, bool>::iterator iter = achievements.begin(); iter != achievements.end(); iter++)
+	{
+		m_achievements.push_back(sf::Text(iter->first + "\t" + (iter->second ? "Unlocked" : "Locked"), *font, 24));
+		m_achievements[i].setPosition(20, 10 + (30 * i));
+		i++;
+	}
 }
 
 AchievementsScene::~AchievementsScene(){
@@ -85,12 +93,22 @@ void AchievementsScene::draw(sf::RenderWindow* window){
 	{
 		m_buttons[i].draw(window);
 	}
+	for (int i = 0; i < m_achievements.size(); i++)
+	{
+		window->draw(m_achievements[i]);
+	}
 }
 
 void AchievementsScene::start(){
-
+	std::map<std::string, bool> achievements = AchievementManager::getInstance()->getAchievements();
+	int i = 0;
+	for (std::map<std::string, bool>::iterator iter = achievements.begin(); iter != achievements.end(); iter++)
+	{
+		m_achievements[i].setString(iter->first + "\t" + (iter->second ? "Unlocked" : "Locked"));
+		i++;
+	}
 }
 
 void AchievementsScene::stop(){
-
+	buttonsStop();
 }

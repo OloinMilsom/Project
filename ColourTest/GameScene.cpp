@@ -186,6 +186,8 @@ void GameScene::stop(){
 	m_player->goalFinder();
 
 	AchievementManager::getInstance()->roomOver();
+	PowerUpManager::getInstance()->newRoom();
+	buttonsStop();
 }
 
 void GameScene::nextRoom(){
@@ -258,6 +260,10 @@ void GameScene::checkWin(){
 	// room complete
 	if (m_player->getPos() == sf::Vector2f(TileManager::getInstance()->getSize(), TileManager::getInstance()->getSize() / 2)) {
 		GameScene::nextRoom();
+	}
+	else if (m_player->getPos() == sf::Vector2f(TileManager::getInstance()->getSize() - 1, TileManager::getInstance()->getSize() / 2) && 
+			m_player->getColour() == TileManager::getInstance()->getFinishColor()) {
+		AchievementManager::getInstance()->setRoomComplete(true);
 	}
 }
 

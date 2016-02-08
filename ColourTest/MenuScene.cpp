@@ -113,5 +113,5 @@ void MenuScene::start(){
 }
 
 void MenuScene::stop(){
-
+	buttonsStop();
 }

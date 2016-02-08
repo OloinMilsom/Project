@@ -61,5 +61,5 @@ void GameOverScene::start(){
 }
 
 void GameOverScene::stop(){
-
+	buttonsStop();
 }

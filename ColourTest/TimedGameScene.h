@@ -6,7 +6,7 @@
 
 class TimedGameScene : public Scene{
 public:
-	TimedGameScene();
+	TimedGameScene(sf::Font* font);
 	~TimedGameScene();
 	void update(sf::Event* e, sf::RenderWindow* window);
 	void draw(sf::RenderWindow* window);

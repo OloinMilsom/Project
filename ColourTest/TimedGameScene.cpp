@@ -2,7 +2,9 @@
 #include "TimedGameScene.h"
 #include "XBoxController.h"
 
-TimedGameScene::TimedGameScene(){
+TimedGameScene::TimedGameScene(sf::Font* font){
+	m_buttons.push_back(Button(sf::Vector2f(800 - 50, 600 - 50), sf::Vector2f(50, 50), "||", font));
+
 	m_currSize = 3;
 	m_timer = 9;
 	TileManager::getInstance()->initialise(m_currSize);
@@ -34,6 +36,21 @@ void TimedGameScene::update(sf::Event* e, sf::RenderWindow* window){
 	}
 	//keyboard controls
 	TimedGameScene::keyboardControls(e, window);
+
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{
+		if (m_buttons[0].isClicked(sf::Vector2f(sf::Mouse::getPosition(*window).x, sf::Mouse::getPosition(*window).y))) {
+			SceneManager::getInstance()->goToPause(SceneID::TIMEDGAME);
+			m_buttons[0].setSelected(false);
+		}
+	}
+	if (e->type == sf::Event::MouseMoved) {
+		for (int i = 0; i < m_buttons.size(); i++)
+		{
+			m_buttons[i].isMouseOver(sf::Vector2f(sf::Mouse::getPosition(*window).x,
+				sf::Mouse::getPosition(*window).y));
+		}
+	}
 }
 
 void TimedGameScene::draw(sf::RenderWindow* window){
@@ -46,6 +63,10 @@ void TimedGameScene::draw(sf::RenderWindow* window){
 	sf::RectangleShape r(sf::Vector2f(40, 40));
 	r.setFillColor(m_player->getColour());
 	window->draw(r);
+	for (int i = 0; i < m_buttons.size(); i++)
+	{
+		m_buttons[i].draw(window);
+	}
 }
 
 void TimedGameScene::start(){
@@ -64,6 +85,7 @@ void TimedGameScene::stop(){
 	m_player->resetColour();
 	m_player->addColour(TileManager::getInstance()->getStartColor());
 	m_player->goalFinder();
+	buttonsStop();
 }
 
 void TimedGameScene::nextRoom(){

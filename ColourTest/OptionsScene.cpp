@@ -106,5 +106,5 @@ void OptionsScene::start(){
 }
 
 void OptionsScene::stop(){
-
+	buttonsStop();
 }

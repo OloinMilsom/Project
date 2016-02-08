@@ -38,11 +38,11 @@ void PauseScene::update(sf::Event* e, sf::RenderWindow* window){
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
 			if (m_buttons[0].isClicked(sf::Vector2f(mousePos.x, mousePos.y))) {
-				SceneManager::getInstance()->goToScene(SceneID::GAME);
+				SceneManager::getInstance()->goToScene(cameFrom);
 			}
 			if (m_buttons[1].isClicked(sf::Vector2f(mousePos.x, mousePos.y))) {
 				SceneManager::getInstance()->goToScene(SceneID::MENU);
-				SceneManager::getInstance()->stopScene(SceneID::GAME);
+				SceneManager::getInstance()->stopScene(cameFrom);
 			}
 		}
 		if (e->type == sf::Event::MouseMoved) {
@@ -101,7 +101,7 @@ void PauseScene::start( ){
 }
 
 void PauseScene::stop(){
-
+	buttonsStop();
 }
 
 void PauseScene::setFrom(SceneID from){
