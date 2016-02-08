@@ -42,45 +42,10 @@ void GameScene::update(sf::Event* e, sf::RenderWindow* window){
 	m_player->update();
 	int tileSize = 500 / TileManager::getInstance()->getSize();
 	SoundManager::getInstance()->updateSpatial(m_player->getWorldPos() + sf::Vector2f(tileSize, tileSize), m_player->getVel());
+	GameScene::checkWin();
 
 	if (XBoxController::isConnected(0)) {
-		if (XBoxController::isStickMoving(0, XBoxController::XBoxStick::Left)) {
-			sf::Vector2f dir = XBoxController::getStickDirection(0, XBoxController::XBoxStick::Left);
-			if (dir.x * dir.x > dir.y * dir.y) {
-				if (dir.x > 0) {
-					m_player->move(Direction::RIGHT);
-				}
-				else {
-					m_player->move(Direction::LEFT);
-				}
-			}
-			else {
-				if (dir.y > 0) {
-					m_player->move(Direction::DOWN);
-				}
-				else {
-					m_player->move(Direction::UP);
-				}
-			}
-		}
-		if (XBoxController::isDPadPressed(0, Direction::LEFT)){
-			m_player->move(Direction::LEFT);
-		}
-		if (XBoxController::isDPadPressed(0, Direction::UP)){
-			m_player->move(Direction::UP);
-		}
-		if (XBoxController::isDPadPressed(0, Direction::RIGHT)){
-			m_player->move(Direction::RIGHT);
-		}
-		if (XBoxController::isDPadPressed(0, Direction::DOWN)){
-			m_player->move(Direction::DOWN);
-		}
-		if (XBoxController::isButtonPressed(0, XBoxController::XboxButton::A)){
-			nextRoom();
-		}
-		if (XBoxController::isButtonPressed(0, XBoxController::XboxButton::B)){
-			resetRoom();
-		}
+		GameScene::xboxControls();		
 	}
 
 	while (window->pollEvent(*e))
@@ -128,10 +93,6 @@ void GameScene::update(sf::Event* e, sf::RenderWindow* window){
 			else if (e->key.code == sf::Keyboard::R)
 			{
 				resetRoom();
-			}
-			else if (e->key.code == sf::Keyboard::F)
-			{
-				nextRoom();
 			}
 		}
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
@@ -229,54 +190,52 @@ void GameScene::stop(){
 
 void GameScene::nextRoom(){
 	int tileSize = 500 / TileManager::getInstance()->getSize();
-	// room complete
-	if (m_player->getPos() == sf::Vector2f(TileManager::getInstance()->getSize(), TileManager::getInstance()->getSize() / 2)) {
-		// game complete
-		if (m_currSize == 11){
-			// switch scene
-			SceneManager::getInstance()->goToScene(SceneID::GAMEWON);
-			SoundManager::getInstance()->initSpatial(TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize));
-			SoundManager::getInstance()->playEffect(1);
+	// game complete
+	if (m_currSize == 11){
+		// switch scene
+		SceneManager::getInstance()->goToScene(SceneID::GAMEWON);
+		SoundManager::getInstance()->initSpatial(TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize));
+		SoundManager::getInstance()->playEffect(1);
 
-		}
-		// move to next room
-		else {
-			// reset powerups
-			PowerUpManager::getInstance()->newRoom();
-
-			// increase the size of the rooms
-			m_currSize += 2;
-			TileManager::getInstance()->initialise(m_currSize);
-
-			// find new tile size
-			tileSize = 500 / TileManager::getInstance()->getSize();
-
-			// update spatial sound effects
-			SoundManager::getInstance()->initSpatial(TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize));
-			SoundManager::getInstance()->playEffect(1);
-
-			// find the new path
-			m_player->resetColour();
-			m_player->setPos(sf::Vector2f(0, TileManager::getInstance()->getSize() / 2));
-			m_player->goalFinder();
-			m_player->setPos(sf::Vector2f(-1, TileManager::getInstance()->getSize() / 2));
-
-			sf::Color currFinish = TileManager::getInstance()->getFinishColor();
-			m_finishColour.setFillColor(currFinish);
-			int colourWidth = currFinish.r + currFinish.g + currFinish.b;
-			m_splitFinish[0].setSize(sf::Vector2f(500 * currFinish.r / colourWidth, 20));
-			m_splitFinish[1].setSize(sf::Vector2f(500 * currFinish.g / colourWidth, 20));
-			m_splitFinish[2].setSize(sf::Vector2f(500 * currFinish.b / colourWidth, 20));
-			int widthSoFar = 0;
-			for (int i = 0; i < 3; i++)
-			{
-				m_splitFinish[i].setOrigin(0, 10);
-				m_splitFinish[i].setPosition(150 + widthSoFar, 540);
-				widthSoFar += m_splitFinish[i].getSize().x;
-			}
-		}
-		AchievementManager::getInstance()->roomOver();
 	}
+	// move to next room
+	else {
+		// reset powerups
+		PowerUpManager::getInstance()->newRoom();
+
+		// increase the size of the rooms
+		m_currSize += 2;
+		TileManager::getInstance()->initialise(m_currSize);
+
+		// find new tile size
+		tileSize = 500 / TileManager::getInstance()->getSize();
+
+		// update spatial sound effects
+		SoundManager::getInstance()->initSpatial(TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize));
+		SoundManager::getInstance()->playEffect(1);
+
+		// find the new path
+		m_player->resetColour();
+		m_player->setPos(sf::Vector2f(0, TileManager::getInstance()->getSize() / 2));
+		m_player->goalFinder();
+		m_player->setPos(sf::Vector2f(-1, TileManager::getInstance()->getSize() / 2));
+
+		sf::Color currFinish = TileManager::getInstance()->getFinishColor();
+		m_finishColour.setFillColor(currFinish);
+		int colourWidth = currFinish.r + currFinish.g + currFinish.b;
+		m_splitFinish[0].setSize(sf::Vector2f(500 * currFinish.r / colourWidth, 20));
+		m_splitFinish[1].setSize(sf::Vector2f(500 * currFinish.g / colourWidth, 20));
+		m_splitFinish[2].setSize(sf::Vector2f(500 * currFinish.b / colourWidth, 20));
+		int widthSoFar = 0;
+		for (int i = 0; i < 3; i++)
+		{
+			m_splitFinish[i].setOrigin(0, 10);
+			m_splitFinish[i].setPosition(150 + widthSoFar, 540);
+			widthSoFar += m_splitFinish[i].getSize().x;
+		}
+	}
+	AchievementManager::getInstance()->roomOver();
+	
 }
 
 void GameScene::resetRoom() {
@@ -293,4 +252,48 @@ void GameScene::resetRoom() {
 	}
 
 	AchievementManager::getInstance()->roomOver();
+}
+
+void GameScene::checkWin(){
+	// room complete
+	if (m_player->getPos() == sf::Vector2f(TileManager::getInstance()->getSize(), TileManager::getInstance()->getSize() / 2)) {
+		GameScene::nextRoom();
+	}
+}
+
+void GameScene::xboxControls(){
+	if (XBoxController::isStickMoving(0, XBoxController::XBoxStick::Left)) {
+		sf::Vector2f dir = XBoxController::getStickDirection(0, XBoxController::XBoxStick::Left);
+		if (dir.x * dir.x > dir.y * dir.y) {
+			if (dir.x > 0) {
+				m_player->move(Direction::RIGHT);
+			}
+			else {
+				m_player->move(Direction::LEFT);
+			}
+		}
+		else {
+			if (dir.y > 0) {
+				m_player->move(Direction::DOWN);
+			}
+			else {
+				m_player->move(Direction::UP);
+			}
+		}
+	}
+	if (XBoxController::isDPadPressed(0, Direction::LEFT)){
+		m_player->move(Direction::LEFT);
+	}
+	if (XBoxController::isDPadPressed(0, Direction::UP)){
+		m_player->move(Direction::UP);
+	}
+	if (XBoxController::isDPadPressed(0, Direction::RIGHT)){
+		m_player->move(Direction::RIGHT);
+	}
+	if (XBoxController::isDPadPressed(0, Direction::DOWN)){
+		m_player->move(Direction::DOWN);
+	}
+	if (XBoxController::isButtonPressed(0, XBoxController::XboxButton::B)){
+		resetRoom();
+	}
 }

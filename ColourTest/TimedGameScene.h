@@ -20,6 +20,9 @@ private:
 
 	void nextRoom();
 	void resetRoom();
+	void checkWin();
+	void xboxControls();
+	void keyboardControls(sf::Event* e, sf::RenderWindow* window);
 };
 
 #endif // !TIMEDGAMESCENE_H

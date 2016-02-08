@@ -23,6 +23,8 @@ private:
 
 	void nextRoom();
 	void resetRoom();
+	void checkWin();
+	void xboxControls();
 };
 
 #endif
