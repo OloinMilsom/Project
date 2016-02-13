@@ -8,6 +8,7 @@ class PowerUpManager{
 public:
 	static PowerUpManager * getInstance();
 
+	void update();
 	void draw(sf::RenderWindow * window);
 
 	void addPowerUp(PowerUp powerUp);

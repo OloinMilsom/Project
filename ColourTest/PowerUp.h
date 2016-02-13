@@ -12,7 +12,8 @@ public:
 	
 	PowerUp(float size = 0.0f, sf::Vector2f position = sf::Vector2f(0, 0), sf::Vector2f coords = sf::Vector2f(0, 0));
 	void draw(sf::RenderWindow * window) const;
-	
+	void update();
+
 	bool isSteppedOn(int x, int y);
 	Type getType();
 	bool getActive();
@@ -21,9 +22,11 @@ public:
 private:
 	Type m_type;
 	sf::Vector2f m_pos;
+	sf::Vector2f m_vel;
 	sf::Vector2f m_tileCoords;
 	sf::CircleShape m_shape;
 	bool m_active;
+	bool m_moving;
 };
 
 #endif

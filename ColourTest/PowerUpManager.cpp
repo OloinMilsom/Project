@@ -14,6 +14,13 @@ PowerUpManager* PowerUpManager::getInstance(){
 	return m_instance;
 }
 
+void PowerUpManager::update(){
+	for (std::vector<PowerUp>::iterator iter = m_powerUps.begin(); iter != m_powerUps.end(); iter++)
+	{
+		iter->update();
+	}
+}
+
 void PowerUpManager::draw(sf::RenderWindow * window){
 	for (std::vector<PowerUp>::iterator iter = m_powerUps.begin(); iter != m_powerUps.end(); iter++)
 	{
