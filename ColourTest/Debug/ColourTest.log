@@ -1,2 +1,3 @@
 ﻿  PowerUp.cpp
+c:\users\kepor_000\desktop\colourtest\colourtest\powerup.cpp(87): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
   ColourTest.vcxproj -> C:\Users\kepor_000\Desktop\ColourTest\Debug\ColourTest.exe

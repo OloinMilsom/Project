@@ -62,5 +62,6 @@ void PowerUpManager::resetRoom(){
 	for (std::vector<PowerUp>::iterator iter = m_powerUps.begin(); iter != m_powerUps.end(); iter++)
 	{
 		iter->setActive(false);
+		iter->reset();
 	}
 }

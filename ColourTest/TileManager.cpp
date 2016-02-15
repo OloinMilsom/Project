@@ -40,6 +40,12 @@ void TileManager::initialise(int size){
 	float tileSize = 500.0f / m_currentSize;
 	tex.loadFromFile("res/images/path.png");
 	sf::Sprite spr(tex);
+
+	delete m_start;
+	delete m_finish;
+	m_start = new Tile(150 - tileSize, (m_currentSize / 2) * tileSize, tileSize, sf::Color::Black, spr);
+	m_finish = new Tile(150 + m_currentSize * tileSize, (m_currentSize / 2) * tileSize, tileSize, sf::Color::Black, spr);
+
 	for (int i = 0; i < m_currentSize * m_currentSize; i++)
 	{
 		sf::Color above = sf::Color(1, 2, 3);
@@ -63,7 +69,7 @@ void TileManager::initialise(int size){
 
 		if (rand() % 25 > 23 ){
 
-			PowerUpManager::getInstance()->addPowerUp(PowerUp(tileSize / 8, m_tiles[i]->getPos(), sf::Vector2f(i % m_currentSize, i / m_currentSize)));
+			PowerUpManager::getInstance()->addPowerUp(PowerUp(tileSize / 8, m_tiles[i]->getPos(), sf::Vector2f(i % m_currentSize, i / m_currentSize), m_start->getPos() + sf::Vector2f(tileSize / 2, tileSize / 2)));
 		}
 	}
 	for (int i = 0; i < m_currentSize * m_currentSize; i++)
@@ -101,10 +107,7 @@ void TileManager::initialise(int size){
 			}
 		}
 	}
-	delete m_start;
-	delete m_finish;
-	m_start = new Tile(150 - tileSize, (m_currentSize / 2) * tileSize, tileSize, sf::Color::Black, spr);
-	m_finish = new Tile(150 + m_currentSize * tileSize, (m_currentSize / 2) * tileSize, tileSize, sf::Color::Black, spr);
+	
 	m_start->setUsed(true);
 
 	AchievementManager::getInstance()->setRoomSize(size);

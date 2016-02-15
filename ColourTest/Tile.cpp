@@ -11,8 +11,9 @@ Tile::Tile(int x, int y, float size, sf::Color col, sf::Sprite sprite ) : m_pos(
 	m_shape.setFillColor(m_col);
 	
 	m_sprite.setPosition(m_pos);
-	float scale = size / 24;
-	m_sprite.setTextureRect(sf::IntRect(24, 24, 24, 24));
+	m_texWidth = m_sprite.getGlobalBounds().width / 3;
+	float scale = size / m_texWidth;
+	m_sprite.setTextureRect(sf::IntRect(m_texWidth, m_texWidth, m_texWidth, m_texWidth));
 
 	m_sprite.setScale(scale, scale);
 
@@ -58,8 +59,9 @@ Tile::Tile(int x, int y, float size, sf::Color above, sf::Color left, sf::Sprite
 
 	m_originalCol = m_col;
 	m_sprite.setPosition(m_pos);
-	float scale = ceil(size) / 24;
-	m_sprite.setTextureRect(sf::IntRect(24,24,24,24));
+	m_texWidth = m_sprite.getGlobalBounds().width / 3;
+	float scale = ceil(size) / m_texWidth;
+	m_sprite.setTextureRect(sf::IntRect(m_texWidth, m_texWidth, m_texWidth, m_texWidth));
 
 	m_sprite.setScale(scale, scale);
 	m_enterDir = Direction::NONE;
@@ -127,16 +129,16 @@ void Tile::setEnterDirection(Direction arg) {
 	m_enterDir = arg;
 	switch (arg) {
 	case Direction::UP :
-		m_sprite.setTextureRect(sf::IntRect(24, 96, 24, 24));
+		m_sprite.setTextureRect(sf::IntRect(m_texWidth, m_texWidth * 4, m_texWidth, m_texWidth));
 		break;
 	case Direction::LEFT:
-		m_sprite.setTextureRect(sf::IntRect(24, 72, 24, 24));
+		m_sprite.setTextureRect(sf::IntRect(m_texWidth, m_texWidth * 3, m_texWidth, m_texWidth));
 		break;
 	case Direction::DOWN:
-		m_sprite.setTextureRect(sf::IntRect(0, 96, 24, 24));
+		m_sprite.setTextureRect(sf::IntRect(0, m_texWidth * 4, m_texWidth, m_texWidth));
 		break;
 	case Direction::RIGHT:
-		m_sprite.setTextureRect(sf::IntRect(0, 72, 24, 24));
+		m_sprite.setTextureRect(sf::IntRect(0, m_texWidth * 3, m_texWidth, m_texWidth));
 		break;
 	}
 }
@@ -145,43 +147,43 @@ void Tile::setExitDirection(Direction arg) {
 	m_exitDir = arg;
 	if (m_enterDir == Direction::UP) {
 		if (m_exitDir == Direction::LEFT) 
-			m_sprite.setTextureRect(sf::IntRect(48, 48, 24, 24));
+			m_sprite.setTextureRect(sf::IntRect(m_texWidth * 2, m_texWidth * 2, m_texWidth, m_texWidth));
 
 		else if (m_exitDir == Direction::DOWN)
-			m_sprite.setTextureRect(sf::IntRect(0, 24, 24, 24));
+			m_sprite.setTextureRect(sf::IntRect(0, m_texWidth, m_texWidth, m_texWidth));
 
 		else if (m_exitDir == Direction::RIGHT)
-			m_sprite.setTextureRect(sf::IntRect(0, 48, 24, 24));
+			m_sprite.setTextureRect(sf::IntRect(0, m_texWidth * 2, m_texWidth, m_texWidth));
 	}
 	else if (m_enterDir == Direction::LEFT) {
 		if (m_exitDir == Direction::DOWN)
-			m_sprite.setTextureRect(sf::IntRect(48, 0, 24, 24));
+			m_sprite.setTextureRect(sf::IntRect(m_texWidth * 2, 0, m_texWidth, m_texWidth));
 
 		else if (m_exitDir == Direction::RIGHT)
-			m_sprite.setTextureRect(sf::IntRect(24, 0, 24, 24));
+			m_sprite.setTextureRect(sf::IntRect(m_texWidth, 0, m_texWidth, m_texWidth));
 
 		else if (m_exitDir == Direction::UP)
-			m_sprite.setTextureRect(sf::IntRect(48, 48, 24, 24));
+			m_sprite.setTextureRect(sf::IntRect(m_texWidth * 2, m_texWidth * 2, m_texWidth, m_texWidth));
 	}
 	else if (m_enterDir == Direction::DOWN) {
 		if (m_exitDir == Direction::RIGHT)
-			m_sprite.setTextureRect(sf::IntRect(0, 0, 24, 24));
+			m_sprite.setTextureRect(sf::IntRect(0, 0, m_texWidth, m_texWidth));
 
 		else if (m_exitDir == Direction::UP)
-			m_sprite.setTextureRect(sf::IntRect(0, 24, 24, 24));
+			m_sprite.setTextureRect(sf::IntRect(0, m_texWidth, m_texWidth, m_texWidth));
 
 		else if (m_exitDir == Direction::LEFT)
-			m_sprite.setTextureRect(sf::IntRect(48, 0, 24, 24));
+			m_sprite.setTextureRect(sf::IntRect(m_texWidth * 2, 0, m_texWidth, m_texWidth));
 	}
 	else if (m_enterDir == Direction::RIGHT) {
 		if (m_exitDir == Direction::UP)
-			m_sprite.setTextureRect(sf::IntRect(0, 48, 24, 24));
+			m_sprite.setTextureRect(sf::IntRect(0, m_texWidth * 2, m_texWidth, m_texWidth));
 
 		else if (m_exitDir == Direction::LEFT)
-			m_sprite.setTextureRect(sf::IntRect(24, 0, 24, 24));
+			m_sprite.setTextureRect(sf::IntRect(m_texWidth, 0, m_texWidth, m_texWidth));
 
 		else if (m_exitDir == Direction::DOWN)
-			m_sprite.setTextureRect(sf::IntRect(0, 0, 24, 24));
+			m_sprite.setTextureRect(sf::IntRect(0, 0, m_texWidth, m_texWidth));
 	}
 }
 
@@ -200,5 +202,5 @@ void Tile::reset(){
 	m_enterDir = Direction::NONE;
 	m_enterDir = Direction::NONE;
 
-	m_sprite.setTextureRect(sf::IntRect(24, 24, 24, 24));
+	m_sprite.setTextureRect(sf::IntRect(m_texWidth, m_texWidth, m_texWidth, m_texWidth));
 }

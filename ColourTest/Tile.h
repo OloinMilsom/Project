@@ -18,6 +18,7 @@ private:
 	Direction m_enterDir;
 	Direction m_exitDir;
 	bool m_hasPowerUp;
+	int m_texWidth;
 
 public:
 	Tile();
