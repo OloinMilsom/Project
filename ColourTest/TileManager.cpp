@@ -178,6 +178,14 @@ void TileManager::setFinalColour(sf::Color current){
 	m_finish->setColour(current);
 }
 
+void TileManager::setStartDirection(){
+	m_start->setEnterDirection(Direction::RIGHT);
+}
+
+void TileManager::setFinalDirection(){
+	m_finish->setEnterDirection(Direction::LEFT);
+}
+
 //int TileManager::checkAdjacent(int x, int y) const{
 //	int result = 0;
 //	if (x > 0 && !m_tiles[(x-1) + y * m_currentSize]->getUsed()){
@@ -251,8 +259,10 @@ void TileManager::resetRoom(){
 	for (int i = 0; i < m_currentSize * m_currentSize; i++)
 	{
 		if (m_tiles[i]->getUsed()) {
-			m_tiles[i]->reset();
+			m_tiles[i]->reset(true);
 		}
 	}
-	m_start->setColour(sf::Color::Black);
+	m_start->reset(true);
+	m_finish->reset(false);
+	// m_start->setColour(sf::Color::Black);
 }

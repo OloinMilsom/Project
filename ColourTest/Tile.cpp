@@ -195,9 +195,11 @@ void Tile::addWalls(Direction direction){
 	m_walls.push_back(Wall(direction, m_pos, m_size));
 }
 
-void Tile::reset(){
-	m_col = m_originalCol;
-	m_shape.setFillColor(m_col);
+void Tile::reset(bool col){
+	if (col){
+		m_col = m_originalCol;
+		m_shape.setFillColor(m_col);
+	}
 	m_used = false;
 	m_enterDir = Direction::NONE;
 	m_enterDir = Direction::NONE;

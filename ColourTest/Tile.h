@@ -44,7 +44,7 @@ public:
 	void setHasPowerUp(bool);
 
 	void addWalls(Direction direction);
-	void reset();
+	void reset(bool col);
 };
 
 #endif // !TILE_H

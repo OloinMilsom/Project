@@ -64,6 +64,10 @@ sf::Vector2f Player::getVel() const{
 	return m_vel;
 }
 
+bool Player::getMoving() const{
+	return m_moving;
+}
+
 void Player::setPos(sf::Vector2f pos){
 	m_pos = pos;
 	m_worldPos = sf::Vector2f(m_pos.x * (500 / TileManager::getInstance()->getSize()) + 150,
@@ -284,6 +288,7 @@ void Player::move(Direction d){
 			if (m_pos.x == TileManager::getInstance()->getSize() - 1 && m_pos.y == TileManager::getInstance()->getSize() / 2){
 				if (getColour() == TileManager::getInstance()->getFinishColor()){
 					TileManager::getInstance()->setExitDirection(m_pos, d);
+					TileManager::getInstance()->setFinalDirection();
 					m_pos.x += 1;
 					m_targetPos.x += 500 / TileManager::getInstance()->getSize();
 					m_moving = true;
@@ -292,7 +297,10 @@ void Player::move(Direction d){
 				}
 			}
 			else if (m_pos.x == -1 || canMove(d) && m_pos.x < TileManager::getInstance()->getSize()){
-				TileManager::getInstance()->setExitDirection(m_pos, d);
+				if (m_pos.x == -1)
+					TileManager::getInstance()->setStartDirection();
+				else
+					TileManager::getInstance()->setExitDirection(m_pos, d);
 				m_pos.x += 1;
 				m_targetPos.x += 500 / TileManager::getInstance()->getSize();
 				addColour(TileManager::getInstance()->colourAt(m_pos.x, m_pos.y));

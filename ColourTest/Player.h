@@ -29,6 +29,7 @@ public:
 	sf::Vector2f getWorldPos() const;
 	Direction getDir() const;
 	sf::Vector2f getVel() const;
+	bool getMoving() const;
 	void setPos(sf::Vector2f);
 	void resetColour();
 	void addColour(sf::Color c);

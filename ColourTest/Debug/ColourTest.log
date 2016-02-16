@@ -1,3 +1,30 @@
-﻿  PowerUp.cpp
-c:\users\kepor_000\desktop\colourtest\colourtest\powerup.cpp(87): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+﻿  Player.cpp
+c:\users\kepor_000\desktop\colourtest\colourtest\player.cpp(11): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\player.cpp(223): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\player.cpp(224): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\player.cpp(227): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\player.cpp(228): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\player.cpp(231): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\player.cpp(232): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\player.cpp(235): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\player.cpp(236): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\player.cpp(251): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\player.cpp(255): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\player.cpp(265): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\player.cpp(269): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\player.cpp(279): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\player.cpp(283): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\player.cpp(306): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\player.cpp(311): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\player.cpp(323): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\player.cpp(325): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\player.cpp(335): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\player.cpp(337): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\player.cpp(342): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\player.cpp(344): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\player.cpp(349): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\player.cpp(351): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\player.cpp(356): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\player.cpp(358): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\player.cpp(239): warning C4715: 'Player::canMove' : not all control paths return a value
   ColourTest.vcxproj -> C:\Users\kepor_000\Desktop\ColourTest\Debug\ColourTest.exe

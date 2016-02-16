@@ -259,7 +259,7 @@ void GameScene::resetRoom() {
 
 void GameScene::checkWin(){
 	// room complete
-	if (m_player->getPos() == sf::Vector2f(TileManager::getInstance()->getSize(), TileManager::getInstance()->getSize() / 2)) {
+	if (m_player->getPos() == sf::Vector2f(TileManager::getInstance()->getSize(), TileManager::getInstance()->getSize() / 2) && !m_player->getMoving()) {
 		GameScene::nextRoom();
 	}
 	else if (m_player->getPos() == sf::Vector2f(TileManager::getInstance()->getSize() - 1, TileManager::getInstance()->getSize() / 2) && 

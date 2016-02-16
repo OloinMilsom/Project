@@ -36,6 +36,8 @@ public:
 	void setEnterDirection(sf::Vector2f pos, Direction dir);
 	void setExitDirection(sf::Vector2f pos, Direction dir);
 	void setFinalColour(sf::Color current);
+	void setStartDirection();
+	void setFinalDirection();
 
 	//int checkAdjacent(int x, int y) const;
 	bool floodFillCheck(int x, int y, int targetX, int targetY) const;
