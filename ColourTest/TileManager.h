@@ -15,8 +15,8 @@ private:
 	Tile * m_finish;
 	int m_currentSize;
 	sf::Texture tex;
+	std::vector<sf::Sprite> m_edgeSprites;
 	
-
 public:
 	~TileManager();
 	static TileManager * getInstance();

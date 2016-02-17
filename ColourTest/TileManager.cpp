@@ -46,6 +46,28 @@ void TileManager::initialise(int size){
 	m_start = new Tile(150 - tileSize, (m_currentSize / 2) * tileSize, tileSize, sf::Color::Black, spr);
 	m_finish = new Tile(150 + m_currentSize * tileSize, (m_currentSize / 2) * tileSize, tileSize, sf::Color::Black, spr);
 
+	m_edgeSprites.clear();
+	int edgeImages = (150 / tileSize) + 1;
+	for (size_t i = 0; i < edgeImages; i++)
+	{
+		for (int j = 0; j < size; j++)
+		{
+			sf::Sprite s = spr;
+			s.setTextureRect(sf::IntRect(96, 144, 48, 48));
+			s.setPosition(150 - (i + 1) * tileSize, tileSize * j);
+			s.setScale(tileSize / 48, tileSize / 48);
+			m_edgeSprites.push_back(s);
+		}
+		for (int j = 0; j < size; j++)
+		{
+			sf::Sprite s = spr;
+			s.setTextureRect(sf::IntRect(96, 144, 48, 48));
+			s.setPosition(650 + i * tileSize, tileSize * j);
+			s.setScale(tileSize / 48, tileSize / 48);
+			m_edgeSprites.push_back(s);
+		}
+	}
+
 	for (int i = 0; i < m_currentSize * m_currentSize; i++)
 	{
 		sf::Color above = sf::Color(1, 2, 3);
@@ -114,6 +136,10 @@ void TileManager::initialise(int size){
 }
 
 void TileManager::draw(sf::RenderWindow * window) const{
+	for (int i = 0; i < m_edgeSprites.size(); i++)
+	{
+		window->draw(m_edgeSprites[i]);
+	}
 	for (int i = 0; i < m_tiles.size(); i++)
 	{
 		m_tiles[i]->draw(window);
