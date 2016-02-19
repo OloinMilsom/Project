@@ -10,7 +10,8 @@ enum class SceneID{
 	TIMEGAMEOVER,
 	OPTIONS,
 	ACHIEVEMENTS,
-	PAUSE
+	PAUSE,
+	TUTORIAL
 };
 
 #endif

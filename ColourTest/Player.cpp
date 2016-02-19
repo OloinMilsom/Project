@@ -34,13 +34,14 @@ void Player::update(){
 		m_worldPos = m_targetPos;
 	}
 	if (m_moving){
+		int roomSize = TileManager::getInstance()->getSize();
 		sf::Vector2f towards = m_targetPos - m_worldPos;
 		float towardsLength = sqrt(towards.x * towards.x + towards.y * towards.y);
-		towards /= towardsLength * 10.0f;
+		towards /= towardsLength;
 		m_vel += towards;
 		float velLength = sqrt(m_vel.x * m_vel.x + m_vel.y * m_vel.y);
 		m_vel /= velLength;
-		m_worldPos += m_vel;		
+		m_worldPos += m_vel * (30.0f / roomSize);
 	}
 }
 

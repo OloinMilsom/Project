@@ -1,13 +1,4 @@
-﻿  TileManager.cpp
-c:\users\kepor_000\desktop\colourtest\colourtest\tilemanager.cpp(46): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
-c:\users\kepor_000\desktop\colourtest\colourtest\tilemanager.cpp(47): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
-c:\users\kepor_000\desktop\colourtest\colourtest\tilemanager.cpp(50): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-c:\users\kepor_000\desktop\colourtest\colourtest\tilemanager.cpp(51): warning C4018: '<' : signed/unsigned mismatch
-c:\users\kepor_000\desktop\colourtest\colourtest\tilemanager.cpp(79): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
-c:\users\kepor_000\desktop\colourtest\colourtest\tilemanager.cpp(94): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-c:\users\kepor_000\desktop\colourtest\colourtest\tilemanager.cpp(139): warning C4018: '<' : signed/unsigned mismatch
-c:\users\kepor_000\desktop\colourtest\colourtest\tilemanager.cpp(143): warning C4018: '<' : signed/unsigned mismatch
-c:\users\kepor_000\desktop\colourtest\colourtest\tilemanager.cpp(180): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
-c:\users\kepor_000\desktop\colourtest\colourtest\tilemanager.cpp(196): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
-c:\users\kepor_000\desktop\colourtest\colourtest\tilemanager.cpp(200): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
+﻿  RainDrop.cpp
+c:\users\kepor_000\desktop\colourtest\colourtest\raindrop.cpp(4): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\raindrop.cpp(5): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
   ColourTest.vcxproj -> C:\Users\kepor_000\Desktop\ColourTest\Debug\ColourTest.exe

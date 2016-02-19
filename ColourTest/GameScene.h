@@ -3,6 +3,7 @@
 
 #include "Scene.h"
 #include "Player.h"
+#include "RainDrop.h"
 
 class GameScene : public Scene{
 public:
@@ -20,6 +21,9 @@ private:
 	sf::RectangleShape m_playerColour;
 	std::vector<sf::RectangleShape> m_splitPlayer;
 	std::vector<sf::RectangleShape> m_splitFinish;
+	sf::Sprite m_overlay;
+	sf::Sprite m_raindropSprite;
+	std::vector<RainDrop> m_raindrops;
 
 	void nextRoom();
 	void resetRoom();

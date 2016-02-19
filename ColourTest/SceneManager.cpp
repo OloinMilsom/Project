@@ -7,6 +7,7 @@
 #include "OptionsScene.h"
 #include "AchievementsScene.h"
 #include "PauseScene.h"
+#include "TutorialScene.h"
 
 SceneManager* SceneManager::m_instance = nullptr;
 
@@ -22,6 +23,7 @@ SceneManager::SceneManager(){
 	m_scenes.push_back(new OptionsScene(&m_font));
 	m_scenes.push_back(new AchievementsScene(&m_font));
 	m_scenes.push_back(new PauseScene(&m_font));
+	m_scenes.push_back(new TutorialScene(&m_font));
 }
 
 SceneManager* SceneManager::getInstance(){

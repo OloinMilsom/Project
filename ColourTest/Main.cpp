@@ -45,6 +45,7 @@ int main()
 {
 	// Create the main window 
 	sf::RenderWindow window(sf::VideoMode(800, 600, 32), "ColourTest");
+	window.setFramerateLimit(60);
 	window.setPosition(sf::Vector2i(0, 0));
 	srand(time(0));
 

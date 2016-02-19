@@ -11,6 +11,7 @@ Tile::Tile(int x, int y, float size, sf::Color col, sf::Sprite sprite ) : m_pos(
 	m_shape.setFillColor(m_col);
 	
 	m_sprite.setPosition(m_pos);
+
 	m_texWidth = m_sprite.getGlobalBounds().width / 3;
 	float scale = size / m_texWidth;
 	m_sprite.setTextureRect(sf::IntRect(m_texWidth, m_texWidth, m_texWidth, m_texWidth));
@@ -192,7 +193,7 @@ void Tile::setHasPowerUp(bool arg){
 }
 
 void Tile::addWalls(Direction direction){
-	m_walls.push_back(Wall(direction, m_pos, m_size));
+	m_walls.push_back(Wall(direction, m_pos, m_size, m_sprite));
 }
 
 void Tile::reset(bool col){

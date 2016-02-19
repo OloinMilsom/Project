@@ -32,6 +32,16 @@ GameScene::GameScene(sf::Font* font){
 	m_splitPlayer[0].setFillColor(sf::Color::Red);
 	m_splitPlayer[1].setFillColor(sf::Color::Green);
 	m_splitPlayer[2].setFillColor(sf::Color::Blue);
+
+	sf::Texture* tex = new sf::Texture();
+	tex->loadFromFile("res/images/overlay.png");
+	m_overlay.setTexture(*tex);
+	m_overlay.setPosition(0, 0);
+	m_overlay.setTextureRect(sf::IntRect(0,0,800,500));
+
+	sf::Texture* tex2 = new sf::Texture();
+	tex2->loadFromFile("res/images/raindrop.png");
+	m_raindropSprite.setTexture(*tex2);
 }
 
 GameScene::~GameScene(){
@@ -43,6 +53,20 @@ void GameScene::update(sf::Event* e, sf::RenderWindow* window){
 	int tileSize = 500 / TileManager::getInstance()->getSize();
 	SoundManager::getInstance()->updateSpatial(m_player->getWorldPos() + sf::Vector2f(tileSize, tileSize), m_player->getVel());
 	PowerUpManager::getInstance()->update();
+
+	m_raindrops.push_back(RainDrop(m_raindropSprite));
+
+	for (std::vector<RainDrop>::iterator iter = m_raindrops.begin(); iter != m_raindrops.end(); iter++) {
+		iter->update();
+	}
+	for (std::vector<RainDrop>::iterator iter = m_raindrops.begin(); iter != m_raindrops.end(); iter++)
+	{
+		if (!iter->getAlive()){
+			m_raindrops.erase(iter);
+			break;
+		}
+	}
+
 	GameScene::checkWin();
 
 	if (XBoxController::isConnected(0)) {
@@ -153,6 +177,13 @@ void GameScene::draw(sf::RenderWindow* window){
 		m_buttons[i].draw(window);
 	}
 	PowerUpManager::getInstance()->draw(window);
+
+	for (int i = 0; i < m_raindrops.size(); i++)
+	{
+		m_raindrops[i].draw(window);
+	}
+
+	window->draw(m_overlay);
 }
 
 void GameScene::start(){

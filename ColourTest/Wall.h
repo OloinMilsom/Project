@@ -6,14 +6,15 @@
 
 class Wall {
 public:
-	Wall(Direction dir = Direction::UP, sf::Vector2f pos = sf::Vector2f(0, 0), int size = 0);
+	Wall();
+	Wall(Direction dir, sf::Vector2f pos, float size, sf::Sprite spr);
 	void draw(sf::RenderWindow * window) const;
 	Direction getDir() const;
 private:
 	Direction m_dir;
 	sf::Vector2f m_pos;
 	int m_size;
-	sf::RectangleShape m_shape;
+	sf::Sprite m_sprite;
 };
 
 #endif
