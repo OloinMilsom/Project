@@ -1,6 +1,8 @@
 #include "XBoxController.h"
 
-std::vector<bool> XBoxController::wasPressed(10, false);
+std::vector<bool> XBoxController::buttonWasPressed(10, false);
+std::vector<bool> XBoxController::stickWasPressed(2, false);
+std::vector<bool> XBoxController::dPadWasPressed(4, false);
 
 bool XBoxController::isStickMoving(unsigned int joystick, XBoxStick stick){
 	float x;
@@ -9,14 +11,28 @@ bool XBoxController::isStickMoving(unsigned int joystick, XBoxStick stick){
 	case XBoxStick::Left:
 		x = getAxisPosition(joystick, Axis::X);
 		y = getAxisPosition(joystick, Axis::Y);
-		if (sqrt((x * x) + (y * y)) > DEAD_ZONE)
-			return true;
+		if (sqrt((x * x) + (y * y)) > DEAD_ZONE){
+			if (!stickWasPressed[0]){
+				stickWasPressed[0] = true;
+				return true;
+			}
+		}
+		else {
+			stickWasPressed[0] = false;
+		}
 		break;
 	case XBoxStick::Right:
 		x = getAxisPosition(joystick, Axis::U);
 		y = getAxisPosition(joystick, Axis::R);
-		if (sqrt((x * x) + (y * y)) > DEAD_ZONE)
-			return true;
+		if (sqrt((x * x) + (y * y)) > DEAD_ZONE) {
+			if (!stickWasPressed[1]){
+				stickWasPressed[1] = true;
+				return true;
+			}
+		}
+		else {
+			stickWasPressed[1] = false;
+		}
 		break;
 	default:
 		return false;
@@ -44,13 +60,13 @@ sf::Vector2f XBoxController::getStickDirection(unsigned int joystick, XBoxStick 
 
 bool XBoxController::isButtonPressed(unsigned int joystick, XboxButton button){
 	if (Joystick::isButtonPressed(joystick, static_cast<int>(button))) {
-		if (!wasPressed[static_cast<int>(button)]) {
-			wasPressed[static_cast<int>(button)] = true;
+		if (!buttonWasPressed[static_cast<int>(button)]) {
+			buttonWasPressed[static_cast<int>(button)] = true;
 			return true;
 		}
 	}
 	else {
-		wasPressed[static_cast<int>(button)] = false;
+		buttonWasPressed[static_cast<int>(button)] = false;
 	}
 	return false;
 }
@@ -58,20 +74,48 @@ bool XBoxController::isButtonPressed(unsigned int joystick, XboxButton button){
 bool XBoxController::isDPadPressed(unsigned int joystick, Direction direction){
 	switch (direction){
 	case Direction::UP:
-		if (getAxisPosition(joystick, Axis::PovY) == 100)
-			return true;
+		if (getAxisPosition(joystick, Axis::PovY) == 100) {
+			if (!dPadWasPressed[0]){
+				dPadWasPressed[0] = true;
+				return true;
+			}
+		}
+		else {
+			dPadWasPressed[0] = false;
+		}
 		break;
 	case Direction::LEFT:
-		if (getAxisPosition(joystick, Axis::PovX) == -100)
-			return true;
+		if (getAxisPosition(joystick, Axis::PovX) == -100){
+			if (!dPadWasPressed[1]){
+				dPadWasPressed[1] = true;
+				return true;
+			}
+		}
+		else {
+			dPadWasPressed[1] = false;
+		}
 		break;
 	case Direction::DOWN:
-		if (getAxisPosition(joystick, Axis::PovY) == -100)
-			return true;
+		if (getAxisPosition(joystick, Axis::PovY) == -100) {
+			if (!dPadWasPressed[2]){
+				dPadWasPressed[2] = true;
+				return true;
+			}
+		}
+		else {
+			dPadWasPressed[2] = false;
+		}
 		break;
 	case Direction::RIGHT:
-		if (getAxisPosition(joystick, Axis::PovX) == 100)
-			return true;
+		if (getAxisPosition(joystick, Axis::PovX) == 100) {
+			if (!dPadWasPressed[3]){
+				dPadWasPressed[3] = true;
+				return true;
+			}
+		}
+		else {
+			dPadWasPressed[3] = false;
+		}
 		break;
 	default:
 		return false;

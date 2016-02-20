@@ -91,7 +91,7 @@
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="RainDrop.h">
-      <Filter>Header Files\Scenes</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

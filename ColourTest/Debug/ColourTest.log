@@ -1,4 +1,37 @@
-﻿  RainDrop.cpp
-c:\users\kepor_000\desktop\colourtest\colourtest\raindrop.cpp(4): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-c:\users\kepor_000\desktop\colourtest\colourtest\raindrop.cpp(5): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+﻿  PauseScene.cpp
+c:\users\kepor_000\desktop\colourtest\colourtest\pausescene.cpp(15): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\pausescene.cpp(39): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\pausescene.cpp(42): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\pausescene.cpp(48): warning C4018: '<' : signed/unsigned mismatch
+c:\users\kepor_000\desktop\colourtest\colourtest\pausescene.cpp(50): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\pausescene.cpp(58): warning C4018: '<' : signed/unsigned mismatch
+c:\users\kepor_000\desktop\colourtest\colourtest\pausescene.cpp(66): warning C4018: '<' : signed/unsigned mismatch
+c:\users\kepor_000\desktop\colourtest\colourtest\pausescene.cpp(82): warning C4018: '<' : signed/unsigned mismatch
+c:\users\kepor_000\desktop\colourtest\colourtest\pausescene.cpp(90): warning C4018: '<' : signed/unsigned mismatch
+c:\users\kepor_000\desktop\colourtest\colourtest\pausescene.cpp(116): warning C4018: '<' : signed/unsigned mismatch
+  OptionsScene.cpp
+c:\users\kepor_000\desktop\colourtest\colourtest\optionsscene.cpp(16): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\optionsscene.cpp(40): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\optionsscene.cpp(43): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\optionsscene.cpp(46): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\optionsscene.cpp(51): warning C4018: '<' : signed/unsigned mismatch
+c:\users\kepor_000\desktop\colourtest\colourtest\optionsscene.cpp(53): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\optionsscene.cpp(61): warning C4018: '<' : signed/unsigned mismatch
+c:\users\kepor_000\desktop\colourtest\colourtest\optionsscene.cpp(69): warning C4018: '<' : signed/unsigned mismatch
+c:\users\kepor_000\desktop\colourtest\colourtest\optionsscene.cpp(85): warning C4018: '<' : signed/unsigned mismatch
+c:\users\kepor_000\desktop\colourtest\colourtest\optionsscene.cpp(93): warning C4018: '<' : signed/unsigned mismatch
+c:\users\kepor_000\desktop\colourtest\colourtest\optionsscene.cpp(121): warning C4018: '<' : signed/unsigned mismatch
+  AchievementsScene.cpp
+c:\users\kepor_000\desktop\colourtest\colourtest\achievementsscene.cpp(14): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\achievementsscene.cpp(22): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\achievementsscene.cpp(46): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\achievementsscene.cpp(51): warning C4018: '<' : signed/unsigned mismatch
+c:\users\kepor_000\desktop\colourtest\colourtest\achievementsscene.cpp(53): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\achievementsscene.cpp(61): warning C4018: '<' : signed/unsigned mismatch
+c:\users\kepor_000\desktop\colourtest\colourtest\achievementsscene.cpp(69): warning C4018: '<' : signed/unsigned mismatch
+c:\users\kepor_000\desktop\colourtest\colourtest\achievementsscene.cpp(85): warning C4018: '<' : signed/unsigned mismatch
+c:\users\kepor_000\desktop\colourtest\colourtest\achievementsscene.cpp(93): warning C4018: '<' : signed/unsigned mismatch
+c:\users\kepor_000\desktop\colourtest\colourtest\achievementsscene.cpp(115): warning C4018: '<' : signed/unsigned mismatch
+c:\users\kepor_000\desktop\colourtest\colourtest\achievementsscene.cpp(119): warning C4018: '<' : signed/unsigned mismatch
+  Generating Code...
   ColourTest.vcxproj -> C:\Users\kepor_000\Desktop\ColourTest\Debug\ColourTest.exe

@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "TimedGameScene.h"
-#include "XBoxController.h"
 #include "PowerUpManager.h"
 
 TimedGameScene::TimedGameScene(sf::Font* font){

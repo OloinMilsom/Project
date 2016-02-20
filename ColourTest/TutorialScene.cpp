@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "TutorialScene.h"
-#include "XBoxController.h"
 #include <iostream>
 
 TutorialScene::TutorialScene(sf::Font* font){

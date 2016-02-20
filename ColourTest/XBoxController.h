@@ -8,7 +8,9 @@
 class XBoxController : public sf::Joystick {
 private:
 	static const int DEAD_ZONE = 90;
-	static std::vector<bool> wasPressed;
+	static std::vector<bool> buttonWasPressed;
+	static std::vector<bool> stickWasPressed;
+	static std::vector<bool> dPadWasPressed;
 
 public:
 	enum XboxButton

@@ -1,5 +1,4 @@
 #include "GameOverScene.h"
-#include "XBoxController.h"
 
 GameOverScene::GameOverScene(sf::Font * font, std::string label, SceneID id) : m_cameFrom(id)
 {

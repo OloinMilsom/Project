@@ -2,8 +2,6 @@
 #define BUTTON_H
 
 #include "stdafx.h"
-#include "SceneManager.h"
-#include "SceneID.h"
 
 class Button{
 private:

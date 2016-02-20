@@ -4,6 +4,8 @@
 #include "Button.h"
 #include <vector>
 #include "SoundManager.h"
+#include "SceneManager.h"
+#include "XBoxController.h"
 
 class Button;
 

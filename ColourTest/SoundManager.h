@@ -7,8 +7,6 @@
 #include "fmod_errors.h"
 #include <vector>
 
-#include "Direction.h"
-
 class SoundManager{
 private:
 	static SoundManager * m_instance;

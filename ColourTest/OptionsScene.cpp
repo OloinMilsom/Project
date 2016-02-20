@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "OptionsScene.h"
-#include "XBoxController.h"
 #include <iostream>
 
 OptionsScene::OptionsScene(sf::Font* font){
@@ -68,6 +67,30 @@ void OptionsScene::update(sf::Event* e, sf::RenderWindow* window){
 						m_buttons[i].setSelected(false);
 					}
 					else if (XBoxController::getStickDirection(0, XBoxController::XBoxStick::Left).y > 0 && i < m_buttons.size() - 1) {
+						m_buttons[i + 1].setSelected(true);
+						m_buttons[i].setSelected(false);
+					}
+					anySelected = true;
+					break;
+				}
+			}
+			if (!anySelected) {
+				m_buttons[0].setSelected(true);
+			}
+		}
+		bool down = XBoxController::isDPadPressed(0, Direction::DOWN);
+		bool up = XBoxController::isDPadPressed(0, Direction::UP);
+		if (up || down){
+			bool anySelected = false;
+			for (int i = 0; i < m_buttons.size(); i++)
+			{
+				if (m_buttons[i].getSelected())
+				{
+					if (up && i > 0) {
+						m_buttons[i - 1].setSelected(true);
+						m_buttons[i].setSelected(false);
+					}
+					else if (down && i < m_buttons.size() - 1) {
 						m_buttons[i + 1].setSelected(true);
 						m_buttons[i].setSelected(false);
 					}

@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "GameScene.h"
 #include <iostream>
-#include "XBoxController.h"
 #include "PowerUpManager.h"
 
 GameScene::GameScene(sf::Font* font){
