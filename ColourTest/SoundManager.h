@@ -25,7 +25,6 @@ private:
 	bool m_musicMute;
 	bool m_spatialMute;
 	bool m_reverbMute;
-	//FMOD::ChannelGroup *channelMusic;
 public:
 	~SoundManager();
 	static SoundManager * getInstance();

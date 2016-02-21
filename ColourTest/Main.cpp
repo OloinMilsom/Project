@@ -75,6 +75,7 @@ int main()
 
 		//draw frame items
 		SceneManager::getInstance()->draw(&window);
+		AchievementManager::getInstance()->draw(&window);
 
 		// Finally, display rendered frame on screen 
 		window.display();

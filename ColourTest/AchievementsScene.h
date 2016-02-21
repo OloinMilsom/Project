@@ -14,8 +14,9 @@ public:
 	void stop();
 
 private:
+	int m_currentScreen;
 	sf::Sprite m_sprBackground;
-	std::vector<sf::Text> m_achievements;
+	std::vector<std::pair<sf::RectangleShape, sf::Text>> m_achievements;
 };
 
 #endif

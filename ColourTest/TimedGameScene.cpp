@@ -118,6 +118,12 @@ void TimedGameScene::draw(sf::RenderWindow* window){
 }
 
 void TimedGameScene::start(){
+	TileManager::getInstance()->initialise(m_currSize);
+	m_player->setPos(sf::Vector2f(0, TileManager::getInstance()->getSize() / 2));
+	m_player->resetColour();
+	m_player->addColour(TileManager::getInstance()->getStartColor());
+	m_player->goalFinder();
+
 	m_deltaClock.restart();
 	SoundManager::getInstance()->playSpatial(0);
 	int tileSize = 500 / TileManager::getInstance()->getSize();
@@ -142,11 +148,7 @@ void TimedGameScene::stop(){
 	SoundManager::getInstance()->stopSpatial();
 	m_timer = 10;
 	m_currSize = 3;
-	TileManager::getInstance()->initialise(m_currSize);
-	m_player->setPos(sf::Vector2f(0, TileManager::getInstance()->getSize() / 2));
-	m_player->resetColour();
-	m_player->addColour(TileManager::getInstance()->getStartColor());
-	m_player->goalFinder();
+	
 	buttonsStop();
 
 	PowerUpManager::getInstance()->newRoom();

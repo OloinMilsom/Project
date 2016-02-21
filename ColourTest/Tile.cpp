@@ -5,7 +5,7 @@ Tile::Tile(){
 
 }
 
-Tile::Tile(int x, int y, float size, sf::Color col, sf::Sprite sprite ) : m_pos(sf::Vector2f(x, y)), m_size(size), m_col(col), m_used(false), m_sprite(sprite) {
+Tile::Tile(int x, int y, float size, sf::Color col, sf::Sprite sprite ) : m_pos(sf::Vector2f(x, y)), m_size(size), m_col(col), m_originalCol(col), m_used(false), m_sprite(sprite) {
 	m_shape = sf::RectangleShape(sf::Vector2f(m_size, m_size));
 	m_shape.setPosition(m_pos);
 	m_shape.setFillColor(m_col);

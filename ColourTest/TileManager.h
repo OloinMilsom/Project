@@ -14,13 +14,15 @@ private:
 	Tile * m_start;
 	Tile * m_finish;
 	int m_currentSize;
-	sf::Texture tex;
+	sf::Texture m_tex;
 	std::vector<sf::Sprite> m_edgeSprites;
+	bool m_tutorial;
 	
 public:
 	~TileManager();
 	static TileManager * getInstance();
 	void initialise(int size);
+	void initialiseTutorial(int no);
 	void draw(sf::RenderWindow * window) const;
 
 	Tile * at(int x, int y) const;

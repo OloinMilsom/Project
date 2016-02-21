@@ -42,10 +42,32 @@ void AchievementManager::update(){
 	if (!m_achievements["3x3 Straight Across"] && m_roomComplete && m_roomSize == 3 && m_numberOfSteps == 3)
 	{
 		m_achievements["3x3 Straight Across"] = true;
+		m_notifications.push_back(AchieveNotification("3x3 Straight Across Unlocked", m_font));
 	}
 	if (!m_achievements["5x5 Straight Across"] && m_roomComplete && m_roomSize == 5 && m_numberOfSteps == 5)
 	{
 		m_achievements["5x5 Straight Across"] = true;
+		m_notifications.push_back(AchieveNotification("5x5 Straight Across Unlocked", m_font));
+	}
+	if (!m_notifications.empty()) {
+		for (std::vector<AchieveNotification>::iterator iter = m_notifications.begin(); iter != m_notifications.end(); iter++)
+		{
+			iter->update();
+			if (!iter->getAlive())
+			{
+				m_notifications.erase(iter);
+				break;
+			}
+		}
+	}
+}
+
+void AchievementManager::draw(sf::RenderWindow* window) const{
+	if (!m_notifications.empty()) {
+		for (std::vector<AchieveNotification>::const_iterator iter = m_notifications.begin(); iter != m_notifications.end(); iter++)
+		{
+			iter->draw(window);
+		}
 	}
 }
 
@@ -72,5 +94,9 @@ void AchievementManager::incrementSteps(){
 
 void AchievementManager::setRoomComplete(bool arg){
 	m_roomComplete = arg;
+}
+
+void AchievementManager::setFont(sf::Font* font){
+	m_font = font;
 }
 

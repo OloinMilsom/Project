@@ -1,2 +1,10 @@
 3x3 Straight Across,1
-5x5 Straight Across,1
+5x5 Straight Across,0
+test1,0
+test2,1
+test3,0
+test4,0
+test5,0
+test6,0
+test7,1
+test8,0

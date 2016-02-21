@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClInclude Include="AchievementManager.h" />
     <ClInclude Include="AchievementsScene.h" />
+    <ClInclude Include="AchieveNotification.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Direction.h" />
     <ClInclude Include="GameOverScene.h" />
@@ -39,6 +40,7 @@
   <ItemGroup>
     <ClCompile Include="AchievementManager.cpp" />
     <ClCompile Include="AchievementsScene.cpp" />
+    <ClCompile Include="AchieveNotification.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="GameOverScene.cpp" />
     <ClCompile Include="GameScene.cpp" />

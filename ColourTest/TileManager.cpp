@@ -18,7 +18,7 @@ TileManager::~TileManager(){
 }
 
 TileManager::TileManager() : m_currentSize(0){
-	
+	m_tex.loadFromFile("res/images/path.png");
 }
 
 TileManager * TileManager::getInstance(){
@@ -38,8 +38,7 @@ void TileManager::initialise(int size){
 	}
 	m_currentSize = size;
 	float tileSize = 500.0f / m_currentSize;
-	tex.loadFromFile("res/images/path.png");
-	sf::Sprite spr(tex);
+	sf::Sprite spr(m_tex);
 
 	delete m_start;
 	delete m_finish;
@@ -94,6 +93,14 @@ void TileManager::initialise(int size){
 			PowerUpManager::getInstance()->addPowerUp(PowerUp(tileSize / 8, m_tiles[i]->getPos(), sf::Vector2f(i % m_currentSize, i / m_currentSize), m_start->getPos() + sf::Vector2f(tileSize / 2, tileSize / 2)));
 		}
 	}
+
+	m_start->addWalls(Direction::UP);
+	m_start->addWalls(Direction::LEFT);
+	m_start->addWalls(Direction::DOWN);
+	m_finish->addWalls(Direction::UP);
+	m_finish->addWalls(Direction::RIGHT);
+	m_finish->addWalls(Direction::DOWN);
+
 	for (int i = 0; i < m_currentSize * m_currentSize; i++)
 	{
 		if (!(i / size == size / 2 && (i % size == 0 || i % size == size - 1))){
@@ -131,8 +138,90 @@ void TileManager::initialise(int size){
 	}
 	
 	m_start->setUsed(true);
+	m_tutorial = false;
 
 	AchievementManager::getInstance()->setRoomSize(size);
+}
+
+void TileManager::initialiseTutorial(int no){
+	if (!m_tiles.empty()){
+		for (int i = 0; i < m_currentSize; i++)
+		{
+			delete m_tiles[i];
+		}
+		m_tiles.clear();
+	}
+	m_currentSize = 3;
+	float tileSize = 500.0f / m_currentSize;
+	sf::Sprite spr(m_tex);
+
+	delete m_start;
+	delete m_finish;
+	if (no == 0) {
+		m_start = new Tile(150 - tileSize, tileSize, tileSize, sf::Color::Black, spr);
+		m_finish = new Tile(150 + m_currentSize * tileSize, tileSize, tileSize, sf::Color(255, 85, 255), spr);
+		m_tiles.push_back(new Tile(150, tileSize, tileSize, sf::Color::Blue, spr));
+		m_tiles.push_back(new Tile(150 + tileSize, tileSize, tileSize, sf::Color::Red, spr));
+		m_tiles.push_back(new Tile(150 + tileSize * 2, tileSize, tileSize, sf::Color::White, spr));
+	}
+	else if (no == 1) {
+		m_start = new Tile(150 - tileSize, tileSize, tileSize, sf::Color::Black, spr);
+		m_finish = new Tile(150 + m_currentSize * tileSize, tileSize, tileSize, sf::Color::Magenta, spr);
+		m_tiles.push_back(new Tile(150, tileSize, tileSize, sf::Color::Blue, spr));
+		m_tiles.push_back(new Tile(150 + tileSize, tileSize, tileSize, sf::Color::Red, spr));
+		m_tiles.push_back(new Tile(150 + tileSize * 2, tileSize, tileSize, sf::Color::Magenta, spr));
+	}
+	else if (no == 2) {
+		m_start = new Tile(150 - tileSize, tileSize, tileSize, sf::Color::Black, spr);
+		m_finish = new Tile(150 + m_currentSize * tileSize, tileSize, tileSize, sf::Color::Cyan, spr);
+		m_tiles.push_back(new Tile(150, tileSize, tileSize, sf::Color::Green, spr));
+		m_tiles.push_back(new Tile(150 + tileSize, tileSize, tileSize, sf::Color::Blue, spr));
+		m_tiles.push_back(new Tile(150 + tileSize * 2, tileSize, tileSize, sf::Color::Cyan, spr));
+	}
+	else if (no == 3) {
+		m_start = new Tile(150 - tileSize, tileSize, tileSize, sf::Color::Black, spr);
+		m_finish = new Tile(150 + m_currentSize * tileSize, tileSize, tileSize, sf::Color::Yellow, spr);
+		m_tiles.push_back(new Tile(150, tileSize, tileSize, sf::Color::Red, spr));
+		m_tiles.push_back(new Tile(150 + tileSize, tileSize, tileSize, sf::Color::Green, spr));
+		m_tiles.push_back(new Tile(150 + tileSize * 2, tileSize, tileSize, sf::Color::Yellow, spr));
+	}
+	m_edgeSprites.clear();
+	/*int edgeImages = (150 / tileSize) + 1;
+	for (size_t i = 0; i < edgeImages; i++)
+	{
+		for (int j = 0; j < size; j++)
+		{
+			sf::Sprite s = spr;
+			s.setTextureRect(sf::IntRect(96, 144, 48, 48));
+			s.setPosition(150 - (i + 1) * tileSize, tileSize * j);
+			s.setScale(tileSize / 48, tileSize / 48);
+			m_edgeSprites.push_back(s);
+		}
+		for (int j = 0; j < size; j++)
+		{
+			sf::Sprite s = spr;
+			s.setTextureRect(sf::IntRect(96, 144, 48, 48));
+			s.setPosition(650 + i * tileSize, tileSize * j);
+			s.setScale(tileSize / 48, tileSize / 48);
+			m_edgeSprites.push_back(s);
+		}
+	}*/
+
+	m_start->addWalls(Direction::UP);
+	m_start->addWalls(Direction::LEFT);
+	m_start->addWalls(Direction::DOWN);
+	m_finish->addWalls(Direction::UP);
+	m_finish->addWalls(Direction::RIGHT);
+	m_finish->addWalls(Direction::DOWN);
+	for (int i = 0; i < m_currentSize; i++)
+	{
+		m_tiles[i]->addWalls(Direction::UP);
+		m_tiles[i]->addWalls(Direction::DOWN);
+	}
+
+	m_tutorial = true;
+
+	m_start->setUsed(true);
 }
 
 void TileManager::draw(sf::RenderWindow * window) const{
@@ -149,15 +238,18 @@ void TileManager::draw(sf::RenderWindow * window) const{
 }
 
 Tile * TileManager::at(int x, int y) const {
-	return m_tiles[x + y * m_currentSize];
+	if (!m_tutorial)
+		return m_tiles[x + y * m_currentSize];
+	else
+		return m_tiles[x];
 }
 
 bool TileManager::checkWallAt(int x, int y, Direction dir) const{
-	return m_tiles[x + y * m_currentSize]->checkWall(dir);
+	return at(x,y)->checkWall(dir);
 }
 
 sf::Color TileManager::colourAt(int x, int y) const {
-	return m_tiles[x + y * m_currentSize]->getColour();
+	return at(x, y)->getColour();
 }
 
 sf::Color TileManager::getStartColor() const {
@@ -177,13 +269,13 @@ sf::Vector2f TileManager::getFinishPos() const{
 }
 
 void TileManager::setUsed(sf::Vector2f pos){
-	m_tiles[pos.x + pos.y * m_currentSize]->setUsed(true);
+	at(pos.x, pos.y)->setUsed(true);
 	//m_tiles[pos.x + pos.y * m_currentSize]->setColour(current);
 	
 }
 
 void TileManager::setUsedColour(sf::Color current){
-	for (int i = 0; i < m_currentSize * m_currentSize; i++)
+	for (int i = 0; i < m_tiles.size(); i++)
 	{
 		if (m_tiles[i]->getUsed()) {
 			m_tiles[i]->setColour(current);
@@ -193,11 +285,11 @@ void TileManager::setUsedColour(sf::Color current){
 }
 
 void TileManager::setEnterDirection(sf::Vector2f pos, Direction dir){
-	m_tiles[pos.x + pos.y * m_currentSize]->setEnterDirection(dir);
+	at(pos.x, pos.y)->setEnterDirection(dir);
 }
 
 void TileManager::setExitDirection(sf::Vector2f pos, Direction dir){
-	m_tiles[pos.x + pos.y * m_currentSize]->setExitDirection(dir);
+	at(pos.x, pos.y)->setExitDirection(dir);
 }
 
 void TileManager::setFinalColour(sf::Color current){
@@ -264,7 +356,7 @@ bool TileManager::floodFillCheck(int x, int y, int targetX, int targetY) const{
 
 
 void TileManager::resetUsed(){
-	for (int i = 0; i < m_currentSize * m_currentSize; i++)
+	for (int i = 0; i < m_tiles.size(); i++)
 	{
 		if (m_tiles[i]->getUsed()) {
 			m_tiles[i]->setUsed(false);
@@ -273,7 +365,7 @@ void TileManager::resetUsed(){
 }
 
 void TileManager::resetChecked(){
-	for (int i = 0; i < m_currentSize * m_currentSize; i++)
+	for (int i = 0; i < m_tiles.size(); i++)
 	{
 		if (m_tiles[i]->getChecked()) {
 			m_tiles[i]->setChecked(false);
@@ -282,7 +374,7 @@ void TileManager::resetChecked(){
 }
 
 void TileManager::resetRoom(){
-	for (int i = 0; i < m_currentSize * m_currentSize; i++)
+	for (int i = 0; i < m_tiles.size(); i++)
 	{
 		if (m_tiles[i]->getUsed()) {
 			m_tiles[i]->reset(true);

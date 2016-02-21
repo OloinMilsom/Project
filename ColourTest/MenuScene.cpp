@@ -7,6 +7,7 @@ MenuScene::MenuScene(sf::Font* font){
 	m_buttons.push_back(Button(sf::Vector2f(400, 260), sf::Vector2f(180, 50), "TIME TRIAL", font));
 	m_buttons.push_back(Button(sf::Vector2f(400, 320), sf::Vector2f(220, 50), "ACHIEVEMENTS", font));
 	m_buttons.push_back(Button(sf::Vector2f(400, 380), sf::Vector2f(160, 50), "OPTIONS", font));
+	m_buttons.push_back(Button(sf::Vector2f(400, 440), sf::Vector2f(160, 50), "TUTORIAL", font));
 
 	sf::Texture * backgroundImg = new sf::Texture;
 	backgroundImg->loadFromFile("res/images/Title.jpg");
@@ -40,14 +41,17 @@ void MenuScene::update(sf::Event* e, sf::RenderWindow* window){
 			if (m_buttons[0].isClicked(sf::Vector2f(sf::Mouse::getPosition(*window).x, sf::Mouse::getPosition(*window).y))) {
 				SceneManager::getInstance()->goToScene(SceneID::GAME);
 			}
-			if (m_buttons[1].isClicked(sf::Vector2f(sf::Mouse::getPosition(*window).x, sf::Mouse::getPosition(*window).y))) {
+			else if (m_buttons[1].isClicked(sf::Vector2f(sf::Mouse::getPosition(*window).x, sf::Mouse::getPosition(*window).y))) {
 				SceneManager::getInstance()->goToScene(SceneID::TIMEDGAME);
 			}
-			if (m_buttons[2].isClicked(sf::Vector2f(sf::Mouse::getPosition(*window).x, sf::Mouse::getPosition(*window).y))) {
+			else if(m_buttons[2].isClicked(sf::Vector2f(sf::Mouse::getPosition(*window).x, sf::Mouse::getPosition(*window).y))) {
 				SceneManager::getInstance()->goToScene(SceneID::ACHIEVEMENTS);
 			}
-			if (m_buttons[3].isClicked(sf::Vector2f(sf::Mouse::getPosition(*window).x, sf::Mouse::getPosition(*window).y))) {
+			else if(m_buttons[3].isClicked(sf::Vector2f(sf::Mouse::getPosition(*window).x, sf::Mouse::getPosition(*window).y))) {
 				SceneManager::getInstance()->goToScene(SceneID::OPTIONS);
+			}
+			else if(m_buttons[4].isClicked(sf::Vector2f(sf::Mouse::getPosition(*window).x, sf::Mouse::getPosition(*window).y))) {
+				SceneManager::getInstance()->goToScene(SceneID::TUTORIAL);
 			}
 		}
 		if (e->type == sf::Event::MouseMoved) {

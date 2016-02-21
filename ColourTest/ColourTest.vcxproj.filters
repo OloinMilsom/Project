@@ -93,6 +93,9 @@
     <ClInclude Include="RainDrop.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AchieveNotification.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp">
@@ -162,6 +165,9 @@
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="RainDrop.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AchieveNotification.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

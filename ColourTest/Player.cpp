@@ -287,6 +287,7 @@ void Player::move(Direction d){
 			break;
 		case Direction::RIGHT:
 			if (m_pos.x == TileManager::getInstance()->getSize() - 1 && m_pos.y == TileManager::getInstance()->getSize() / 2){
+				sf::Color c = getColour();
 				if (getColour() == TileManager::getInstance()->getFinishColor()){
 					TileManager::getInstance()->setExitDirection(m_pos, d);
 					TileManager::getInstance()->setFinalDirection();
