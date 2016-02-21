@@ -7,7 +7,7 @@ GameScene::GameScene(sf::Font* font){
 	m_buttons.push_back(Button(sf::Vector2f(800 - 50, 600 - 50), sf::Vector2f(50, 50), "||", font));
 
 	m_currSize = 3;
-	m_attempts = 15;
+	m_attempts = m_currSize * m_currSize;
 	TileManager::getInstance()->initialise(m_currSize);
 
 	m_player = new Player(0, TileManager::getInstance()->getSize() / 2);
@@ -211,8 +211,8 @@ void GameScene::start(){
 }
 
 void GameScene::stop(){
-	m_attempts = 15;
 	m_currSize = 3;
+	m_attempts = m_currSize * m_currSize;
 	int tileSize = 500 / TileManager::getInstance()->getSize();
 	SoundManager::getInstance()->initSpatial(TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize));
 	SoundManager::getInstance()->stopSpatial();
@@ -224,22 +224,28 @@ void GameScene::stop(){
 
 void GameScene::nextRoom(){
 	int tileSize = 500 / TileManager::getInstance()->getSize();
-	// game complete
-	if (m_currSize == 11){
-		// switch scene
-		SceneManager::getInstance()->goToScene(SceneID::GAMEWON);
-		SoundManager::getInstance()->initSpatial(TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize));
-		SoundManager::getInstance()->playEffect(1);
+	//// game complete
+	//if (m_currSize == 11){
+	//	// switch scene
+	//	SceneManager::getInstance()->goToScene(SceneID::GAMEWON);
+	//	SoundManager::getInstance()->initSpatial(TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize));
+	//	SoundManager::getInstance()->playEffect(1);
 
-	}
-	// move to next room
-	else {
+	//}
+	//// move to next room
+	//else {
+		
+
+
 		// reset powerups
 		PowerUpManager::getInstance()->newRoom();
 
 		// increase the size of the rooms
-		m_currSize += 2;
+		if (m_currSize < 11)
+			m_currSize += 2;
 		TileManager::getInstance()->initialise(m_currSize);
+
+		m_attempts += m_currSize * 0.5f;
 
 		// find new tile size
 		tileSize = 500 / TileManager::getInstance()->getSize();
@@ -267,14 +273,14 @@ void GameScene::nextRoom(){
 			m_splitFinish[i].setPosition(150 + widthSoFar, 540);
 			widthSoFar += m_splitFinish[i].getSize().x;
 		}
-	}
+	//}
 	AchievementManager::getInstance()->roomOver();
 	
 }
 
 void GameScene::resetRoom() {
 	m_attempts--;
-	if (m_attempts < 0){
+	if (m_attempts <= 0){
 		SceneManager::getInstance()->goToScene(SceneID::GAMEOVER);
 	}
 	else{

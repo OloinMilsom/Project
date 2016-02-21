@@ -21,8 +21,8 @@ void PowerUp::draw(sf::RenderWindow * window) const{
 }
 
 void PowerUp::update(){
-	if (m_moving && m_pos.x > m_moveTo.x - 5 && m_pos.x < m_moveTo.x + 5 &&
-		m_pos.y > m_moveTo.y - 5 && m_pos.y < m_moveTo.y + 5){
+	if (m_moving && m_pos.x > m_moveTo.x - 10 && m_pos.x < m_moveTo.x + 10 &&
+		m_pos.y > m_moveTo.y - 10 && m_pos.y < m_moveTo.y + 10){
 		m_moving = false;
 		m_exploding = true;
 		makeParticles();
@@ -30,7 +30,7 @@ void PowerUp::update(){
 		m_shape.setPosition(m_pos);
 	}
 	if (m_moving){
-		m_vel.y+= 0.01f;
+		m_vel.y += 0.25f;
 		m_pos += m_vel;
 		m_shape.setPosition(m_pos);
 	}
@@ -63,10 +63,10 @@ bool PowerUp::getActive(){
 void PowerUp::setActive(bool arg){
 	m_active = arg;
 	m_moving = true;
-	m_vel.x = -1;
-	float time = m_pos.x - m_moveTo.x;
+	float time = 30;
+	m_vel.x = -(m_pos.x - m_moveTo.x) / time;
 	float yDist = m_pos.y - m_moveTo.y;
-	m_vel.y = (-yDist - 0.5f * (0.01f) * (time * time)) / time;
+	m_vel.y = (-yDist - 0.5f * (0.25f) * (time * time)) / time;
 }
 
 void PowerUp::reset(){

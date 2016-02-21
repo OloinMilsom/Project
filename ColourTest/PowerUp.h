@@ -27,6 +27,7 @@ private:
 	sf::Vector2f m_vel;
 	sf::Vector2f m_moveTo;
 	sf::Vector2f m_tileCoords;
+
 	sf::CircleShape m_shape;
 	std::vector<std::pair<sf::CircleShape, sf::Vector2f>> m_particles;
 	bool m_active;

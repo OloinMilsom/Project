@@ -67,6 +67,7 @@ void TileManager::initialise(int size){
 		}
 	}
 
+	int noPowerUps = 0;
 	for (int i = 0; i < m_currentSize * m_currentSize; i++)
 	{
 		sf::Color above = sf::Color(1, 2, 3);
@@ -88,8 +89,13 @@ void TileManager::initialise(int size){
 		}
 		m_tiles.push_back(newTile);
 
-		if (rand() % 25 > 23 ){
-
+		int prob = 1;
+		for (int j = 0; j < noPowerUps; j++)
+		{
+			prob *= 10;
+		}
+		if (rand() % (20 + prob) == 0){
+			noPowerUps++;
 			PowerUpManager::getInstance()->addPowerUp(PowerUp(tileSize / 8, m_tiles[i]->getPos(), sf::Vector2f(i % m_currentSize, i / m_currentSize), m_start->getPos() + sf::Vector2f(tileSize / 2, tileSize / 2)));
 		}
 	}
@@ -186,26 +192,6 @@ void TileManager::initialiseTutorial(int no){
 		m_tiles.push_back(new Tile(150 + tileSize * 2, tileSize, tileSize, sf::Color::Yellow, spr));
 	}
 	m_edgeSprites.clear();
-	/*int edgeImages = (150 / tileSize) + 1;
-	for (size_t i = 0; i < edgeImages; i++)
-	{
-		for (int j = 0; j < size; j++)
-		{
-			sf::Sprite s = spr;
-			s.setTextureRect(sf::IntRect(96, 144, 48, 48));
-			s.setPosition(150 - (i + 1) * tileSize, tileSize * j);
-			s.setScale(tileSize / 48, tileSize / 48);
-			m_edgeSprites.push_back(s);
-		}
-		for (int j = 0; j < size; j++)
-		{
-			sf::Sprite s = spr;
-			s.setTextureRect(sf::IntRect(96, 144, 48, 48));
-			s.setPosition(650 + i * tileSize, tileSize * j);
-			s.setScale(tileSize / 48, tileSize / 48);
-			m_edgeSprites.push_back(s);
-		}
-	}*/
 
 	m_start->addWalls(Direction::UP);
 	m_start->addWalls(Direction::LEFT);
