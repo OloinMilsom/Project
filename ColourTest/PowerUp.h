@@ -28,8 +28,11 @@ private:
 	sf::Vector2f m_moveTo;
 	sf::Vector2f m_tileCoords;
 
-	sf::CircleShape m_shape;
-	std::vector<std::pair<sf::CircleShape, sf::Vector2f>> m_particles;
+	sf::Texture* m_texture;
+	sf::Texture* m_explosionTex;
+	sf::Sprite m_sprite;
+
+	std::vector<std::pair<sf::Sprite, sf::Vector2f>> m_particles;
 	bool m_active;
 	bool m_moving;
 	bool m_exploding;

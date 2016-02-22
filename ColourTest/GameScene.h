@@ -22,6 +22,11 @@ private:
 	std::vector<sf::RectangleShape> m_splitPlayer;
 	std::vector<sf::RectangleShape> m_splitFinish;
 	sf::Sprite m_overlay;
+	sf::Sprite m_ui;
+	sf::Text m_scoreLabel;
+	sf::Text m_attemptsLabel;
+	sf::Text m_playerLabel;
+	sf::Text m_finishLabel;
 	sf::Sprite m_raindropSprite;
 	std::vector<RainDrop> m_raindrops;
 

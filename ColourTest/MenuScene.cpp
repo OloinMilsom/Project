@@ -3,21 +3,27 @@
 #include <iostream>
 
 MenuScene::MenuScene(sf::Font* font){
-	m_buttons.push_back(Button(sf::Vector2f(400, 200), sf::Vector2f(100, 50), "PLAY", font));
-	m_buttons.push_back(Button(sf::Vector2f(400, 260), sf::Vector2f(180, 50), "TIME TRIAL", font));
-	m_buttons.push_back(Button(sf::Vector2f(400, 320), sf::Vector2f(220, 50), "ACHIEVEMENTS", font));
-	m_buttons.push_back(Button(sf::Vector2f(400, 380), sf::Vector2f(160, 50), "OPTIONS", font));
-	m_buttons.push_back(Button(sf::Vector2f(400, 440), sf::Vector2f(160, 50), "TUTORIAL", font));
+	m_buttons.push_back(Button(sf::Vector2f(400, 240), sf::Vector2f(220, 50), "PLAY", font));
+	m_buttons.push_back(Button(sf::Vector2f(400, 300), sf::Vector2f(220, 50), "TIME TRIAL", font));
+	m_buttons.push_back(Button(sf::Vector2f(400, 360), sf::Vector2f(220, 50), "ACHIEVEMENTS", font));
+	m_buttons.push_back(Button(sf::Vector2f(400, 420), sf::Vector2f(220, 50), "OPTIONS", font));
+	m_buttons.push_back(Button(sf::Vector2f(400, 480), sf::Vector2f(220, 50), "TUTORIAL", font));
 
-	sf::Texture * backgroundImg = new sf::Texture;
-	backgroundImg->loadFromFile("res/images/Title.jpg");
+	m_backgroundTex = new sf::Texture();
+	m_backgroundTex->loadFromFile("res/images/Title.jpg");
+	m_titleTex = new sf::Texture();
+	m_titleTex->loadFromFile("res/images/name.png");
 
-	m_sprBackground = sf::Sprite();
-	m_sprBackground.setTexture(*backgroundImg);
+	m_sprBackground.setTexture(*m_backgroundTex);
 	m_sprBackground.setPosition(0, 0);
 	m_sprBackground.setTextureRect(sf::IntRect(0, 0, m_sprBackground.getLocalBounds().width, m_sprBackground.getLocalBounds().height));
 	m_sprBackground.setScale(800 / m_sprBackground.getLocalBounds().width, 640 / m_sprBackground.getLocalBounds().height);
 	
+	m_title.setTexture(*m_titleTex);
+	m_title.setOrigin(m_title.getLocalBounds().width / 2, m_title.getLocalBounds().height / 2);
+	m_title.setPosition(400, 100);
+	m_title.setTextureRect(sf::IntRect(0, 0, m_title.getLocalBounds().width, m_title.getLocalBounds().height));
+	m_title.setScale(700 / m_title.getLocalBounds().width, 100 / m_title.getLocalBounds().height);
 }
 
 MenuScene::~MenuScene(){
@@ -129,6 +135,7 @@ void MenuScene::update(sf::Event* e, sf::RenderWindow* window){
 
 void MenuScene::draw(sf::RenderWindow* window){
 	window->draw(m_sprBackground);
+	window->draw(m_title);
 	for (int i = 0; i < m_buttons.size(); i++)
 	{
 		m_buttons[i].draw(window);

@@ -19,6 +19,11 @@ private:
 	const int m_colourDevision = 3;
 	Direction m_dir;
 	bool m_moving;
+
+	sf::Texture* m_texture;
+	sf::Sprite m_sprite;
+	sf::Vector2f m_animationVec;
+	int m_animationCounter;
 public:
 	Player();
 	Player(int x, int y);

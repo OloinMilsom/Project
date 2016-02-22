@@ -15,6 +15,9 @@ public:
 private:
 
 	sf::Sprite m_sprBackground;
+	sf::Texture * m_backgroundTex;
+	sf::Sprite m_title;
+	sf::Texture * m_titleTex;
 };
 
 #endif

@@ -102,13 +102,8 @@ void TimedGameScene::draw(sf::RenderWindow* window){
 
 	TileManager::getInstance()->draw(window);
 	window->setTitle(std::to_string(m_timer));
-	sf::RectangleShape rect(sf::Vector2f(100, 100));
-	rect.setFillColor(m_player->getColour());
-	window->draw(rect);
 	m_player->draw(window);
-	sf::RectangleShape r(sf::Vector2f(40, 40));
-	r.setFillColor(m_player->getColour());
-	window->draw(r);
+
 	for (int i = 0; i < m_buttons.size(); i++)
 	{
 		m_buttons[i].draw(window);

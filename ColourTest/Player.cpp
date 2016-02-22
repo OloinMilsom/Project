@@ -10,21 +10,25 @@ Player::Player(){
 Player::Player(int x, int y){
 	m_pos = sf::Vector2f(x, y);
 	m_moving = false;
+
+	m_worldPos = sf::Vector2f(m_pos.x * (500 / TileManager::getInstance()->getSize()) + 150, m_pos.y * (500 / TileManager::getInstance()->getSize()));
+
+	m_texture = new sf::Texture();
+	m_texture->loadFromFile("res/images/player.png");
+
+	int width = 500 / TileManager::getInstance()->getSize();
+	width /= 2;
+
+	m_animationVec = sf::Vector2f(0, 1);
+	m_sprite.setTexture(*m_texture);
+	m_sprite.setTextureRect(sf::IntRect(48 * m_animationVec.x, 60 * m_animationVec.y, 48, 60));
+	m_sprite.setOrigin(24, 60);
+	m_sprite.setPosition(m_worldPos + sf::Vector2f(width, width * 1.5f));
+	m_sprite.setScale(width / m_sprite.getLocalBounds().width, width / m_sprite.getLocalBounds().width);
 }
 
 void Player::draw(sf::RenderWindow * window) const{
-	sf::CircleShape circ((500 / TileManager::getInstance()->getSize()) * 0.25f);
-	sf::CircleShape facingCirc((500 / TileManager::getInstance()->getSize()) * 0.125f);
-
-	circ.setPosition(getWorldPos() + sf::Vector2f(circ.getRadius(), circ.getRadius()));
-	facingCirc.setPosition(getWorldPos() + sf::Vector2f(circ.getRadius() * 2 + m_vel.x * facingCirc.getRadius() - facingCirc.getRadius(),
-										circ.getRadius() * 2 + m_vel.y * facingCirc.getRadius() - facingCirc.getRadius()));
-
-	circ.setFillColor(sf::Color(100, 100, 100));
-	facingCirc.setFillColor(sf::Color(50, 50, 50));
-
-	window->draw(circ);
-	window->draw(facingCirc);
+	window->draw(m_sprite);
 }
 
 void Player::update(){
@@ -32,8 +36,21 @@ void Player::update(){
 		m_worldPos.y > m_targetPos.y - 5 && m_worldPos.y < m_targetPos.y + 5){
 		m_moving = false;
 		m_worldPos = m_targetPos;
+
+		int width = 500 / TileManager::getInstance()->getSize();
+		width /= 2;
+		m_sprite.setPosition(m_worldPos + sf::Vector2f(width, width * 1.5f));
 	}
 	if (m_moving){
+		m_animationCounter++;
+		if (m_animationCounter > 2)
+		{
+			if (m_animationVec.x < 2)
+				m_animationVec.x++;
+			else
+				m_animationVec.x = 0;
+			m_animationCounter = 0;
+		}
 		int roomSize = TileManager::getInstance()->getSize();
 		sf::Vector2f towards = m_targetPos - m_worldPos;
 		float towardsLength = sqrt(towards.x * towards.x + towards.y * towards.y);
@@ -42,6 +59,28 @@ void Player::update(){
 		float velLength = sqrt(m_vel.x * m_vel.x + m_vel.y * m_vel.y);
 		m_vel /= velLength;
 		m_worldPos += m_vel * (30.0f / roomSize);
+
+		if (m_vel.x * m_vel.x > m_vel.y * m_vel.y) {
+			if (m_vel.x < 0) {
+				m_animationVec.y = 3;
+			}
+			else {
+				m_animationVec.y = 1;
+			}
+		}
+		else {
+			if (m_vel.y < 0) {
+				m_animationVec.y = 0;
+			}
+			else {
+				m_animationVec.y = 2;
+			}
+		}
+		m_sprite.setTextureRect(sf::IntRect(48 * m_animationVec.x, 60 * m_animationVec.y, 48, 60));
+
+		int width = 500 / TileManager::getInstance()->getSize();
+		width /= 2;
+		m_sprite.setPosition(m_worldPos + sf::Vector2f(width, width * 1.5f));
 	}
 }
 
@@ -74,7 +113,12 @@ void Player::setPos(sf::Vector2f pos){
 	m_worldPos = sf::Vector2f(m_pos.x * (500 / TileManager::getInstance()->getSize()) + 150,
 		m_pos.y * (500 / TileManager::getInstance()->getSize()));
 	m_targetPos = m_worldPos;
+	int width = 500 / TileManager::getInstance()->getSize();
+	width /= 2;
+	m_sprite.setPosition(m_worldPos + sf::Vector2f(width, width * 1.5f));
 	m_moving = false;
+
+	m_sprite.setScale(width / m_sprite.getLocalBounds().width, width / m_sprite.getLocalBounds().width);
 }
 
 void Player::resetColour(){

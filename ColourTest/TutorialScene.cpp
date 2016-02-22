@@ -202,8 +202,6 @@ void TutorialScene::stop(){
 	SoundManager::getInstance()->initSpatial(TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize));
 	SoundManager::getInstance()->stopSpatial();
 	m_currTutorial = 0;
-
-	AchievementManager::getInstance()->roomOver();
 	buttonsStop();
 }
 
