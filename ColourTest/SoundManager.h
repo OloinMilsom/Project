@@ -25,6 +25,7 @@ private:
 	bool m_musicMute;
 	bool m_spatialMute;
 	bool m_reverbMute;
+	bool m_fmodisloaded;
 public:
 	~SoundManager();
 	static SoundManager * getInstance();
