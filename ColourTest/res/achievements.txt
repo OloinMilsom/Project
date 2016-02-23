@@ -6,12 +6,10 @@
 7x7 Straight Across,0
 9x9 Straight Across,0
 Baby Steps,1
-Game Over Man,0
 Hard Mode,1
 Long Way Round,1
 Nick of Time,0
 On the Edge,1
 Overpowered,0
 Time to Spare,0
-To Easy,0
 Too Easy,0

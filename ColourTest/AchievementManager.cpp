@@ -106,10 +106,10 @@ void AchievementManager::update(){
 			m_achievements["Time to Spare"] = true;
 			m_notifications.push_back(AchieveNotification("Time to Spare Unlocked", m_font));
 		}
-		if (!m_achievements["To Easy"] && m_currAttempts > 25)
+		if (!m_achievements["Too Easy"] && m_currAttempts > 25)
 		{
-			m_achievements["To Easy"] = true;
-			m_notifications.push_back(AchieveNotification("To Easy Unlocked", m_font));
+			m_achievements["Too Easy"] = true;
+			m_notifications.push_back(AchieveNotification("Too Easy Unlocked", m_font));
 		}
 	}
 	if (!m_achievements["Baby Steps"] && m_tutorialComplete)
