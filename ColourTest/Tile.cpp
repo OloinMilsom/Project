@@ -186,6 +186,19 @@ void Tile::setExitDirection(Direction arg) {
 		else if (m_exitDir == Direction::DOWN)
 			m_sprite.setTextureRect(sf::IntRect(0, 0, m_texWidth, m_texWidth));
 	}
+	else if (m_enterDir == Direction::NONE) {
+		if (m_exitDir == Direction::UP)
+			m_sprite.setTextureRect(sf::IntRect(m_texWidth, m_texWidth * 4, m_texWidth, m_texWidth));
+
+		else if (m_exitDir == Direction::LEFT)
+			m_sprite.setTextureRect(sf::IntRect(m_texWidth, m_texWidth * 3, m_texWidth, m_texWidth));
+
+		else if (m_exitDir == Direction::DOWN)
+			m_sprite.setTextureRect(sf::IntRect(0, m_texWidth * 4, m_texWidth, m_texWidth));
+
+		else if (m_exitDir == Direction::RIGHT)
+			m_sprite.setTextureRect(sf::IntRect(0, m_texWidth * 3, m_texWidth, m_texWidth));
+	}
 }
 
 void Tile::setHasPowerUp(bool arg){

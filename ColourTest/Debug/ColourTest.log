@@ -1,37 +1,12 @@
-﻿Build started 22/02/2016 16:35:06.
-     1>Project "C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\ColourTest\ColourTest.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\SFML-2.3.2\include" /I"C:\FMOD_SoundSystem\FMOD Programmers API Windows\api\inc" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt PowerUp.cpp
-         PowerUp.cpp
-     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\powerup.cpp(96): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\Debug\ColourTest.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\SFML-2.3.2\lib" /LIBPATH:"C:\FMOD_SoundSystem\FMOD Programmers API Windows\api\lib" fmodex_vc.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\Debug\ColourTest.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\Debug\ColourTest.lib" /MACHINE:X86 Debug\AchievementManager.obj
-         Debug\AchievementsScene.obj
-         Debug\AchieveNotification.obj
-         Debug\Button.obj
-         Debug\GameOverScene.obj
-         Debug\GameScene.obj
-         Debug\Main.obj
-         Debug\MenuScene.obj
-         Debug\OptionsScene.obj
-         Debug\PauseScene.obj
-         Debug\Player.obj
-         Debug\PowerUp.obj
-         Debug\PowerUpManager.obj
-         Debug\RainDrop.obj
-         Debug\Scene.obj
-         Debug\SceneManager.obj
-         Debug\SoundManager.obj
-         Debug\stdafx.obj
-         Debug\Tile.obj
-         Debug\TileManager.obj
-         Debug\TimedGameScene.obj
-         Debug\TutorialScene.obj
-         Debug\Wall.obj
-         Debug\XboxController.obj
-         ColourTest.vcxproj -> C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\Debug\ColourTest.exe
-     1>Done Building Project "C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\ColourTest\ColourTest.vcxproj" (Build target(s)).
-
-Build succeeded.
-
-Time Elapsed 00:00:01.55
+﻿  PauseScene.cpp
+c:\users\kepor_000\desktop\colourtest\colourtest\pausescene.cpp(15): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\pausescene.cpp(39): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\pausescene.cpp(42): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\pausescene.cpp(48): warning C4018: '<' : signed/unsigned mismatch
+c:\users\kepor_000\desktop\colourtest\colourtest\pausescene.cpp(50): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+c:\users\kepor_000\desktop\colourtest\colourtest\pausescene.cpp(58): warning C4018: '<' : signed/unsigned mismatch
+c:\users\kepor_000\desktop\colourtest\colourtest\pausescene.cpp(66): warning C4018: '<' : signed/unsigned mismatch
+c:\users\kepor_000\desktop\colourtest\colourtest\pausescene.cpp(82): warning C4018: '<' : signed/unsigned mismatch
+c:\users\kepor_000\desktop\colourtest\colourtest\pausescene.cpp(90): warning C4018: '<' : signed/unsigned mismatch
+c:\users\kepor_000\desktop\colourtest\colourtest\pausescene.cpp(116): warning C4018: '<' : signed/unsigned mismatch
+  ColourTest.vcxproj -> C:\Users\kepor_000\Desktop\ColourTest\Debug\ColourTest.exe

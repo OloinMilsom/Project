@@ -96,7 +96,7 @@ void TileManager::initialise(int size){
 		}
 		if (rand() % (20 + prob) == 0){
 			noPowerUps++;
-			PowerUpManager::getInstance()->addPowerUp(PowerUp(tileSize / 6, m_tiles[i]->getPos(), sf::Vector2f(i % m_currentSize, i / m_currentSize), m_start->getPos() + sf::Vector2f(tileSize / 2, tileSize / 2)));
+			PowerUpManager::getInstance()->addPowerUp(PowerUp(tileSize / 5, m_tiles[i]->getPos(), sf::Vector2f(i % m_currentSize, i / m_currentSize), m_start->getPos() + sf::Vector2f(tileSize / 2, tileSize / 2)));
 		}
 	}
 

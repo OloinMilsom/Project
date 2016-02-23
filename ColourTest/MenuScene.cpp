@@ -129,6 +129,9 @@ void MenuScene::update(sf::Event* e, sf::RenderWindow* window){
 			if (m_buttons[3].getSelected()){
 				SceneManager::getInstance()->goToScene(SceneID::OPTIONS);
 			}
+			if (m_buttons[4].getSelected()) {
+				SceneManager::getInstance()->goToScene(SceneID::TUTORIAL);
+			}
 		}
 	}
 }

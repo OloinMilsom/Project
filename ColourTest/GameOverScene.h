@@ -2,6 +2,7 @@
 #define GAMEOVERSCENE_H
 
 #include "Scene.h"
+#include "AchievementManager.h"
 
 class GameOverScene : public Scene {
 public:
@@ -12,7 +13,10 @@ public:
 	void start();
 	void stop();
 private:
+	sf::Sprite m_sprBackground;
+	sf::Texture * m_backgroundTex;
 	sf::Text m_label;
+	sf::Text m_ScoreLabel;
 	SceneID m_cameFrom;
 };
 

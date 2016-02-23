@@ -47,6 +47,15 @@ bool PowerUpManager::checkActive(PowerUp::Type type){
 	{
 		if (iter->getActive()) {
 			if (iter->getType() == type){
+				if (type == PowerUp::Type::FRESH_START) {
+					iter->setActive(false);
+				}
+				else if (type == PowerUp::Type::MORETIME_ATTEMPTS) {
+					m_powerUps.erase(iter);
+				}
+				else if (type == PowerUp::Type::SCORE) {
+					m_powerUps.erase(iter);
+				}
 				return true;
 			}
 		}

@@ -117,6 +117,9 @@ void Player::setPos(sf::Vector2f pos){
 	width /= 2;
 	m_sprite.setPosition(m_worldPos + sf::Vector2f(width, width * 1.5f));
 	m_moving = false;
+	m_vel = sf::Vector2f(0, 0);
+	m_animationVec = sf::Vector2f(0, 1);
+	m_sprite.setTextureRect(sf::IntRect(48 * m_animationVec.x, 60 * m_animationVec.y, 48, 60));
 
 	m_sprite.setScale(width / m_sprite.getLocalBounds().width, width / m_sprite.getLocalBounds().width);
 }

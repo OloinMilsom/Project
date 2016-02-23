@@ -84,7 +84,6 @@ void AchievementsScene::update(sf::Event* e, sf::RenderWindow* window){
 				m_buttons[i].isMouseOver(sf::Vector2f(mousePos.x, mousePos.y));
 			}
 		}
-		//std::cout << "x: " << sf::Mouse::getPosition().x - window->getView().getViewport().left << "y: " << sf::Mouse::getPosition().y - window->getView().getViewport().top << std::endl;
 	}
 	if (XBoxController::isConnected(0)) {
 		if (XBoxController::isStickMoving(0, XBoxController::XBoxStick::Left)){
@@ -168,6 +167,11 @@ void AchievementsScene::start(){
 	for (std::map<std::string, bool>::iterator iter = achievements.begin(); iter != achievements.end(); iter++)
 	{
 		m_achievements[i].second.setString(iter->first + "\t" + (iter->second ? "Unlocked" : "Locked"));
+		if (iter->second) {
+			m_achievements[i].first.setFillColor(sf::Color(60, 30, 200));
+			m_achievements[i].first.setOutlineColor(sf::Color::White);
+			m_achievements[i].first.setOutlineThickness(3);
+		}
 		i++;
 	}
 }

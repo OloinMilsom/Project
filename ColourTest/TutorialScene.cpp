@@ -7,13 +7,13 @@ TutorialScene::TutorialScene(sf::Font* font){
 	m_player->addColour(TileManager::getInstance()->getStartColor());
 	m_player->goalFinder();
 
-	m_finishColour = sf::RectangleShape(sf::Vector2f(500, 20));
-	m_finishColour.setOrigin(250, 10);
-	m_finishColour.setPosition(400, 540);
+	m_finishColour = sf::RectangleShape(sf::Vector2f(160, 30));
+	m_finishColour.setOrigin(80, 15);
+	m_finishColour.setPosition(200, 535);
 
-	m_playerColour = sf::RectangleShape(sf::Vector2f(500, 20));
-	m_playerColour.setOrigin(250, 10);
-	m_playerColour.setPosition(400, 560);
+	m_playerColour = sf::RectangleShape(sf::Vector2f(160, 30));
+	m_playerColour.setOrigin(80, 15);
+	m_playerColour.setPosition(200, 565);
 
 	sf::Texture* tex = new sf::Texture();
 	tex->loadFromFile("res/images/overlay.png");
@@ -25,12 +25,32 @@ TutorialScene::TutorialScene(sf::Font* font){
 	tex2->loadFromFile("res/images/raindrop.png");
 	m_raindropSprite.setTexture(*tex2);
 
+	sf::Texture* tex3 = new sf::Texture();
+	tex3->loadFromFile("res/images/ui.png");
+	m_ui.setTexture(*tex3);
+	m_ui.setPosition(0, 500);
+	m_ui.setTextureRect(sf::IntRect(0, 0, 800, 100));
+
 	m_topLabel.setFont(*font);
 	m_topLabel.setCharacterSize(24);
 	m_topLabel.setColor(sf::Color::White);
 	m_bottomLabel.setFont(*font);
 	m_bottomLabel.setCharacterSize(24);
 	m_bottomLabel.setColor(sf::Color::White);
+
+	m_playerLabel.setCharacterSize(24);
+	m_playerLabel.setFont(*font);
+	m_playerLabel.setColor(sf::Color::White);
+	m_playerLabel.setString("Player:");
+	m_playerLabel.setOrigin(m_playerLabel.getGlobalBounds().width / 2, m_playerLabel.getGlobalBounds().height / 2);
+	m_playerLabel.setPosition(sf::Vector2f(60, 555));
+
+	m_finishLabel.setCharacterSize(24);
+	m_finishLabel.setFont(*font);
+	m_finishLabel.setColor(sf::Color::White);
+	m_finishLabel.setString("Finish:");
+	m_finishLabel.setOrigin(m_finishLabel.getGlobalBounds().width / 2, m_finishLabel.getGlobalBounds().height / 2);
+	m_finishLabel.setPosition(sf::Vector2f(60, 525));
 }
 
 TutorialScene::~TutorialScene(){
@@ -111,7 +131,7 @@ void TutorialScene::update(sf::Event* e, sf::RenderWindow* window){
 						m_bottomLabel.setOrigin(m_bottomLabel.getGlobalBounds().width / 2, m_bottomLabel.getGlobalBounds().height / 2);
 					}
 					if (m_player->getPos().x == 1) {
-						m_topLabel.setString("Colours combine using and Blend using RGB values");
+						m_topLabel.setString("Colours combine and blend using RGB values");
 						m_topLabel.setOrigin(m_topLabel.getGlobalBounds().width / 2, m_topLabel.getGlobalBounds().height / 2);
 
 						m_bottomLabel.setString("");
@@ -157,22 +177,25 @@ void TutorialScene::draw(sf::RenderWindow* window){
 	window->draw(m_finishColour);
 
 	m_player->draw(window);
-	sf::RectangleShape r(sf::Vector2f(40, 40));
-	r.setFillColor(m_player->getColour());
-	window->draw(r);
-	for (int i = 0; i < m_buttons.size(); i++)
-	{
-		m_buttons[i].draw(window);
-	}
 
+	
 	for (int i = 0; i < m_raindrops.size(); i++)
 	{
 		m_raindrops[i].draw(window);
 	}
 
 	window->draw(m_overlay);
+	window->draw(m_ui);
 	window->draw(m_topLabel);
 	window->draw(m_bottomLabel);
+
+	for (int i = 0; i < m_buttons.size(); i++)
+	{
+		m_buttons[i].draw(window);
+	}
+
+	window->draw(m_playerLabel);
+	window->draw(m_finishLabel);
 }
 
 void TutorialScene::start(){
@@ -186,7 +209,7 @@ void TutorialScene::start(){
 	m_topLabel.setOrigin(m_topLabel.getGlobalBounds().width / 2, m_topLabel.getGlobalBounds().height / 2);
 	m_topLabel.setPosition(400, 60);
 
-	m_bottomLabel.setString("Press D on Keyboard or Left on DPad or Left Stick");
+	m_bottomLabel.setString("Use WASD on Keyboard or DPad or Left\nStick on XBox Controller");
 	m_bottomLabel.setOrigin(m_bottomLabel.getGlobalBounds().width / 2, m_bottomLabel.getGlobalBounds().height / 2);
 	m_bottomLabel.setPosition(400, 400);
 
@@ -195,6 +218,8 @@ void TutorialScene::start(){
 	SoundManager::getInstance()->initSpatial(TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize));
 	sf::Color currFinish = TileManager::getInstance()->getFinishColor();
 	m_finishColour.setFillColor(currFinish);
+
+	AchievementManager::getInstance()->setGameMode(SceneID::TUTORIAL);
 }
 
 void TutorialScene::stop(){
@@ -236,6 +261,7 @@ void TutorialScene::nextRoom(){
 		SoundManager::getInstance()->playEffect(1);
 	}
 	else {
+		AchievementManager::getInstance()->setTutorialComplete(true);
 		SceneManager::getInstance()->goToScene(SceneID::MENU);
 	}
 }

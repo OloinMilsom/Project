@@ -3,6 +3,8 @@
 
 #include "Scene.h"
 #include "Player.h"
+#include "RainDrop.h"
+#include <sstream>
 
 class TimedGameScene : public Scene{
 public:
@@ -15,6 +17,7 @@ public:
 private:
 	int m_currSize;
 	float m_timer;
+	int m_score;
 	Player * m_player;
 	sf::Clock m_deltaClock;
 
@@ -22,6 +25,16 @@ private:
 	sf::RectangleShape m_playerColour;
 	std::vector<sf::RectangleShape> m_splitPlayer;
 	std::vector<sf::RectangleShape> m_splitFinish;
+
+	sf::Sprite m_overlay;
+	sf::Sprite m_ui;
+	sf::Text m_scoreLabel;
+	sf::Text m_timerLabel;
+	sf::Text m_playerLabel;
+	sf::Text m_finishLabel;
+	sf::Text m_powerUpLabel;
+	sf::Sprite m_raindropSprite;
+	std::vector<RainDrop> m_raindrops;
 
 	void nextRoom();
 	void resetRoom();

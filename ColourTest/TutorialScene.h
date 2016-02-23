@@ -20,11 +20,14 @@ private:
 	sf::RectangleShape m_finishColour;
 	sf::RectangleShape m_playerColour;
 	sf::Sprite m_overlay;
+	sf::Sprite m_ui;
 	sf::Sprite m_raindropSprite;
 	std::vector<RainDrop> m_raindrops;
 	int m_currTutorial;
 	sf::Text m_topLabel;
 	sf::Text m_bottomLabel;
+	sf::Text m_playerLabel;
+	sf::Text m_finishLabel;
 
 	void nextRoom();
 	void resetRoom();

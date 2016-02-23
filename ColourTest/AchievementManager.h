@@ -24,19 +24,37 @@ public:
 	void setRoomSize(int);
 	void incrementSteps();
 	void setRoomComplete(bool);
+	void setTutorialComplete(bool);
+	void incrementPowerups();
+	void setGameMode(SceneID);
+	void setAttempts(int);
+	void setTime(float);
 
 	void setFont(sf::Font* font);
+	int getHighScore() const;
+	int getTimedHighScore() const;
+	int getCurrScore() const;
+	void setCurrScore(int);
+	void setTimedCurrScore(int);
 	
 private:
 	AchievementManager();
 
 	std::map<std::string, bool> m_achievements;
 	std::vector<AchieveNotification> m_notifications;
+	int m_highScore;
+	int m_timedHighScore;
+	int m_currScore;
 
 	static AchievementManager* m_instance;
 	int m_roomSize;
 	int m_numberOfSteps;
 	bool m_roomComplete;
+	bool m_tutorialComplete;
+	int m_noOfPickups;
+	int m_currAttempts;
+	float m_currTime;
+
 	SceneID m_currentScene;
 	sf::Font * m_font;
 };

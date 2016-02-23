@@ -53,14 +53,14 @@ GameScene::GameScene(sf::Font* font){
 	m_scoreLabel.setColor(sf::Color::White);
 	m_scoreLabel.setString("Score: 0");
 	m_scoreLabel.setOrigin(m_scoreLabel.getGlobalBounds().width / 2, m_scoreLabel.getGlobalBounds().height / 2);
-	m_scoreLabel.setPosition(sf::Vector2f(500,525));
+	m_scoreLabel.setPosition(sf::Vector2f(370, 525));
 
 	m_attemptsLabel.setCharacterSize(24);
 	m_attemptsLabel.setFont(*font);
 	m_attemptsLabel.setColor(sf::Color::White);
 	m_attemptsLabel.setString("Attempts: " + std::to_string(m_attempts));
 	m_attemptsLabel.setOrigin(m_attemptsLabel.getGlobalBounds().width / 2, m_attemptsLabel.getGlobalBounds().height / 2);
-	m_attemptsLabel.setPosition(sf::Vector2f(500, 555));
+	m_attemptsLabel.setPosition(sf::Vector2f(370, 555));
 
 	m_playerLabel.setCharacterSize(24);
 	m_playerLabel.setFont(*font);
@@ -75,6 +75,13 @@ GameScene::GameScene(sf::Font* font){
 	m_finishLabel.setString("Finish:");
 	m_finishLabel.setOrigin(m_finishLabel.getGlobalBounds().width / 2, m_finishLabel.getGlobalBounds().height / 2);
 	m_finishLabel.setPosition(sf::Vector2f(60, 525));
+
+	m_powerUpLabel.setCharacterSize(24);
+	m_powerUpLabel.setFont(*font);
+	m_powerUpLabel.setColor(sf::Color::White);
+	m_powerUpLabel.setString("Powerup: None");
+	m_powerUpLabel.setOrigin(m_powerUpLabel.getGlobalBounds().width / 2, m_powerUpLabel.getGlobalBounds().height / 2);
+	m_powerUpLabel.setPosition(sf::Vector2f(530, 525));
 }
 
 GameScene::~GameScene(){
@@ -86,6 +93,23 @@ void GameScene::update(sf::Event* e, sf::RenderWindow* window){
 	int tileSize = 500 / TileManager::getInstance()->getSize();
 	SoundManager::getInstance()->updateSpatial(m_player->getWorldPos() + sf::Vector2f(tileSize, tileSize), m_player->getVel());
 	PowerUpManager::getInstance()->update();
+
+	if (PowerUpManager::getInstance()->checkActive(PowerUp::Type::FRESH_START)){
+		TileManager::getInstance()->resetRoom();
+		TileManager::getInstance()->setUsed(m_player->getPos());
+		TileManager::getInstance()->setUsedColour(m_player->getColour());
+		m_powerUpLabel.setString("Powerup: Fresh Start");
+	}
+	if (PowerUpManager::getInstance()->checkActive(PowerUp::Type::MORETIME_ATTEMPTS)){
+		m_attempts += 3;
+		m_attemptsLabel.setString("Attempts: " + std::to_string(m_attempts));
+		m_powerUpLabel.setString("Powerup: Attempts");
+	}
+	if (PowerUpManager::getInstance()->checkActive(PowerUp::Type::SCORE)){
+		m_score++;
+		m_scoreLabel.setString("Score: " + std::to_string(m_score));
+		m_powerUpLabel.setString("Powerup: Score");
+	}
 
 	m_raindrops.push_back(RainDrop(m_raindropSprite));
 
@@ -189,6 +213,7 @@ void GameScene::draw(sf::RenderWindow* window){
 	}
 	
 	if (PowerUpManager::getInstance()->checkActive(PowerUp::Type::COLOURSPLIT)){
+		m_powerUpLabel.setString("Powerup: Colour Split");
 		for (int i = 0; i < 3; i++)
 		{
 			window->draw(m_splitFinish[i]);
@@ -219,18 +244,14 @@ void GameScene::draw(sf::RenderWindow* window){
 	window->draw(m_scoreLabel);
 	window->draw(m_playerLabel);
 	window->draw(m_finishLabel);
+	window->draw(m_powerUpLabel);
 }
 
 void GameScene::start(){
-	TileManager::getInstance()->initialise(m_currSize);
-	m_player->setPos(sf::Vector2f(0, TileManager::getInstance()->getSize() / 2));
-	m_player->resetColour();
-	m_player->addColour(TileManager::getInstance()->getStartColor());
-	m_player->goalFinder();
-
 	SoundManager::getInstance()->playSpatial(0);
 	int tileSize = 500 / TileManager::getInstance()->getSize();
 	SoundManager::getInstance()->initSpatial(TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize));
+	
 	sf::Color currFinish = TileManager::getInstance()->getFinishColor();
 	m_finishColour.setFillColor(currFinish);
 	int colourWidth = currFinish.r + currFinish.g + currFinish.b;
@@ -244,6 +265,8 @@ void GameScene::start(){
 		m_splitFinish[i].setPosition(120 + widthSoFar, 535);
 		widthSoFar += m_splitFinish[i].getSize().x;
 	}
+	AchievementManager::getInstance()->setGameMode(SceneID::GAME);
+	AchievementManager::getInstance()->setAttempts(m_attempts);
 }
 
 void GameScene::stop(){
@@ -254,6 +277,12 @@ void GameScene::stop(){
 	SoundManager::getInstance()->initSpatial(TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize));
 	SoundManager::getInstance()->stopSpatial();
 
+	TileManager::getInstance()->initialise(m_currSize);
+	m_player->setPos(sf::Vector2f(0, TileManager::getInstance()->getSize() / 2));
+	m_player->resetColour();
+	m_player->addColour(TileManager::getInstance()->getStartColor());
+	m_player->goalFinder();
+
 	AchievementManager::getInstance()->roomOver();
 	PowerUpManager::getInstance()->newRoom();
 	buttonsStop();
@@ -261,65 +290,59 @@ void GameScene::stop(){
 
 void GameScene::nextRoom(){
 	int tileSize = 500 / TileManager::getInstance()->getSize();
-	//// game complete
-	//if (m_currSize == 11){
-	//	// switch scene
-	//	SceneManager::getInstance()->goToScene(SceneID::GAMEWON);
-	//	SoundManager::getInstance()->initSpatial(TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize));
-	//	SoundManager::getInstance()->playEffect(1);
-
-	//}
-	//// move to next room
-	//else {
 		
+	m_score++;
+	m_scoreLabel.setString("Score: " + std::to_string(m_score));
 
+	// reset powerups
+	PowerUpManager::getInstance()->newRoom();
 
-		// reset powerups
-		PowerUpManager::getInstance()->newRoom();
+	m_powerUpLabel.setString("Powerup: None");
 
-		// increase the size of the rooms
-		if (m_currSize < 11)
-			m_currSize += 2;
-		TileManager::getInstance()->initialise(m_currSize);
+	// increase the size of the rooms
+	if (m_currSize < 11)
+		m_currSize += 2;
+	TileManager::getInstance()->initialise(m_currSize);
 
-		m_attempts += m_currSize * 0.5f;
-		m_attemptsLabel.setString("Attempts: " + std::to_string(m_attempts));
+	m_attempts += m_currSize * 0.5f;
+	m_attemptsLabel.setString("Attempts: " + std::to_string(m_attempts));
 
-		// find new tile size
-		tileSize = 500 / TileManager::getInstance()->getSize();
+	// find new tile size
+	tileSize = 500 / TileManager::getInstance()->getSize();
 
-		// update spatial sound effects
-		SoundManager::getInstance()->initSpatial(TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize));
-		SoundManager::getInstance()->playEffect(1);
+	// update spatial sound effects
+	SoundManager::getInstance()->initSpatial(TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize));
+	SoundManager::getInstance()->playEffect(1);
 
-		// find the new path
-		m_player->resetColour();
-		m_player->setPos(sf::Vector2f(0, TileManager::getInstance()->getSize() / 2));
-		m_player->goalFinder();
-		m_player->setPos(sf::Vector2f(-1, TileManager::getInstance()->getSize() / 2));
+	// find the new path
+	m_player->resetColour();
+	m_player->setPos(sf::Vector2f(0, TileManager::getInstance()->getSize() / 2));
+	m_player->goalFinder();
+	m_player->setPos(sf::Vector2f(-1, TileManager::getInstance()->getSize() / 2));
 
-		sf::Color currFinish = TileManager::getInstance()->getFinishColor();
-		m_finishColour.setFillColor(currFinish);
-		int colourWidth = currFinish.r + currFinish.g + currFinish.b;
-		m_splitFinish[0].setSize(sf::Vector2f(160 * currFinish.r / colourWidth, 30));
-		m_splitFinish[1].setSize(sf::Vector2f(160 * currFinish.g / colourWidth, 30));
-		m_splitFinish[2].setSize(sf::Vector2f(160 * currFinish.b / colourWidth, 30));
-		int widthSoFar = 0;
-		for (int i = 0; i < 3; i++)
-		{
-			m_splitFinish[i].setOrigin(0, 15);
-			m_splitFinish[i].setPosition(120 + widthSoFar, 535);
-			widthSoFar += m_splitFinish[i].getSize().x;
-		}
-	//}
+	sf::Color currFinish = TileManager::getInstance()->getFinishColor();
+	m_finishColour.setFillColor(currFinish);
+	int colourWidth = currFinish.r + currFinish.g + currFinish.b;
+	m_splitFinish[0].setSize(sf::Vector2f(160 * currFinish.r / colourWidth, 30));
+	m_splitFinish[1].setSize(sf::Vector2f(160 * currFinish.g / colourWidth, 30));
+	m_splitFinish[2].setSize(sf::Vector2f(160 * currFinish.b / colourWidth, 30));
+	int widthSoFar = 0;
+	for (int i = 0; i < 3; i++)
+	{
+		m_splitFinish[i].setOrigin(0, 15);
+		m_splitFinish[i].setPosition(120 + widthSoFar, 535);
+		widthSoFar += m_splitFinish[i].getSize().x;
+	}
+
 	AchievementManager::getInstance()->roomOver();
-	
 }
 
 void GameScene::resetRoom() {
 	m_attempts--;
+	AchievementManager::getInstance()->setAttempts(m_attempts);
 	m_attemptsLabel.setString("Attempts: " + std::to_string(m_attempts));
 	if (m_attempts <= 0){
+		AchievementManager::getInstance()->setCurrScore(m_score);
 		SceneManager::getInstance()->goToScene(SceneID::GAMEOVER);
 	}
 	else{
@@ -330,6 +353,7 @@ void GameScene::resetRoom() {
 		m_player->resetColour();
 	}
 
+	m_powerUpLabel.setString("Powerup: None");
 	AchievementManager::getInstance()->roomOver();
 }
 
@@ -378,5 +402,8 @@ void GameScene::xboxControls(){
 	}
 	if (XBoxController::isButtonPressed(0, XBoxController::XboxButton::B)){
 		resetRoom();
+	}
+	if (XBoxController::isButtonPressed(0, XBoxController::XboxButton::Start)){
+		SceneManager::getInstance()->goToPause(SceneID::GAME);
 	}
 }

@@ -7,6 +7,9 @@ class PowerUp {
 public:
 	enum Type {
 		COLOURSPLIT,
+		MORETIME_ATTEMPTS,
+		SCORE,
+		FRESH_START,
 		NONE
 	};
 	
@@ -36,6 +39,9 @@ private:
 	bool m_active;
 	bool m_moving;
 	bool m_exploding;
+	bool m_visible;
+
+	float m_yAccel = 0.3f;
 
 	void makeParticles();
 };

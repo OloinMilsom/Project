@@ -101,11 +101,11 @@ void PauseScene::update(sf::Event* e, sf::RenderWindow* window){
 		}
 		if (XBoxController::isButtonPressed(0, XBoxController::XboxButton::A)) {
 			if (m_buttons[0].getSelected()) {
-				SceneManager::getInstance()->goToScene(SceneID::GAME);
+				SceneManager::getInstance()->goToScene(cameFrom);
 			}
 			if (m_buttons[1].getSelected()) {
 				SceneManager::getInstance()->goToScene(SceneID::MENU);
-				SceneManager::getInstance()->stopScene(SceneID::GAME);
+				SceneManager::getInstance()->goToScene(cameFrom);
 			}
 		}
 	}
