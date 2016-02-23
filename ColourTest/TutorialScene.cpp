@@ -1,8 +1,6 @@
 #include "TutorialScene.h"
 
 TutorialScene::TutorialScene(sf::Font* font){
-	m_buttons.push_back(Button(sf::Vector2f(800 - 50, 600 - 50), sf::Vector2f(50, 50), "||", font));
-
 	m_player = new Player(0, TileManager::getInstance()->getSize() / 2);
 	m_player->addColour(TileManager::getInstance()->getStartColor());
 	m_player->goalFinder();
@@ -84,17 +82,10 @@ void TutorialScene::update(sf::Event* e, sf::RenderWindow* window){
 	while (window->pollEvent(*e))
 	{
 		// Close window : exit 
-		if (e->type == sf::Event::Closed)
+		if (e->type == sf::Event::Closed){
 			window->close();
-
-		if (e->type == sf::Event::JoystickButtonPressed){
-			std::cout << e->joystickButton.button;
-		}
-		if (e->type == sf::Event::JoystickMoved){
-			std::cout << sf::Joystick::getAxisPosition(0, sf::Joystick::Z);
 		}
 		if (e->type == sf::Event::KeyPressed) {
-			std::cout << e->key.code;
 			if (e->key.code == sf::Keyboard::Escape){
 				window->close();
 			}
@@ -151,19 +142,6 @@ void TutorialScene::update(sf::Event* e, sf::RenderWindow* window){
 				resetRoom();
 			}
 		}
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-		{
-			if (m_buttons[0].isClicked(sf::Vector2f(sf::Mouse::getPosition(*window).x, sf::Mouse::getPosition(*window).y))) {
-				SceneManager::getInstance()->goToPause(SceneID::GAME);
-			}
-		}
-		if (e->type == sf::Event::MouseMoved) {
-			for (int i = 0; i < m_buttons.size(); i++)
-			{
-				m_buttons[i].isMouseOver(sf::Vector2f(sf::Mouse::getPosition(*window).x,
-					sf::Mouse::getPosition(*window).y));
-			}
-		}
 	}
 }
 
@@ -188,11 +166,6 @@ void TutorialScene::draw(sf::RenderWindow* window){
 	window->draw(m_ui);
 	window->draw(m_topLabel);
 	window->draw(m_bottomLabel);
-
-	for (int i = 0; i < m_buttons.size(); i++)
-	{
-		m_buttons[i].draw(window);
-	}
 
 	window->draw(m_playerLabel);
 	window->draw(m_finishLabel);
@@ -224,6 +197,13 @@ void TutorialScene::start(){
 
 void TutorialScene::stop(){
 	int tileSize = 500 / TileManager::getInstance()->getSize();
+
+	TileManager::getInstance()->initialise(3);
+	m_player->setPos(sf::Vector2f(0, TileManager::getInstance()->getSize() / 2));
+	m_player->resetColour();
+	m_player->addColour(TileManager::getInstance()->getStartColor());
+	m_player->goalFinder();
+
 	SoundManager::getInstance()->initSpatial(TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize));
 	SoundManager::getInstance()->stopSpatial();
 	m_currTutorial = 0;

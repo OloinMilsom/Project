@@ -67,7 +67,6 @@ void MenuScene::update(sf::Event* e, sf::RenderWindow* window){
 					sf::Mouse::getPosition(*window).y));
 			}
 		}
-		//std::cout << "x: " << sf::Mouse::getPosition().x - window->getView().getViewport().left << "y: " << sf::Mouse::getPosition().y - window->getView().getViewport().top << std::endl;
 	}
 	if (XBoxController::isConnected(0)) {
 		if (XBoxController::isStickMoving(0, XBoxController::XBoxStick::Left)){

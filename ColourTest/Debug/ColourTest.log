@@ -1,6 +1,19 @@
-﻿Build started 23/02/2016 12:56:30.
+﻿Build started 23/02/2016 13:35:48.
      1>Project "C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\ColourTest\ColourTest.vcxproj" on node 2 (Build target(s)).
-     1>Link:
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\SFML-2.3.2\include" /I"C:\FMOD_SoundSystem\FMOD Programmers API Windows\api\inc" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt TutorialScene.cpp
+         TutorialScene.cpp
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tutorialscene.cpp(61): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tutorialscene.cpp(160): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tutorialscene.cpp(177): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tutorialscene.cpp(191): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tutorialscene.cpp(202): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tutorialscene.cpp(207): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tutorialscene.cpp(233): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tutorialscene.cpp(240): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tutorialscene.cpp(251): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tutorialscene.cpp(257): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+       Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\Debug\ColourTest.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\SFML-2.3.2\lib" /LIBPATH:"C:\FMOD_SoundSystem\FMOD Programmers API Windows\api\lib" fmodex_vc.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\Debug\ColourTest.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\Debug\ColourTest.lib" /MACHINE:X86 Debug\AchievementManager.obj
          Debug\AchievementsScene.obj
          Debug\AchieveNotification.obj
@@ -30,4 +43,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.51
+Time Elapsed 00:00:01.58

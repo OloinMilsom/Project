@@ -1,15 +1,15 @@
-2
+0
 2
 11x11 Straight Across,0
-3x3 Straight Across,1
+3x3 Straight Across,0
 5x5 Straight Across,0
 7x7 Straight Across,0
 9x9 Straight Across,0
 Baby Steps,1
-Hard Mode,1
-Long Way Round,1
+Hard Mode,0
+Long Way Round,0
 Nick of Time,0
-On the Edge,1
+On the Edge,0
 Overpowered,0
 Time to Spare,0
-Too Easy,0
+Too Easy,1

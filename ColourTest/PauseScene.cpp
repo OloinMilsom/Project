@@ -105,7 +105,7 @@ void PauseScene::update(sf::Event* e, sf::RenderWindow* window){
 			}
 			if (m_buttons[1].getSelected()) {
 				SceneManager::getInstance()->goToScene(SceneID::MENU);
-				SceneManager::getInstance()->goToScene(cameFrom);
+				SceneManager::getInstance()->stopScene(cameFrom);
 			}
 		}
 	}

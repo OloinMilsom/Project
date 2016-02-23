@@ -136,14 +136,7 @@ void GameScene::update(sf::Event* e, sf::RenderWindow* window){
 		if (e->type == sf::Event::Closed)
 			window->close();
 
-		if (e->type == sf::Event::JoystickButtonPressed){
-			std::cout << e->joystickButton.button;
-		}
-		if (e->type == sf::Event::JoystickMoved){
-			std::cout << sf::Joystick::getAxisPosition(0, sf::Joystick::Z);
-		}
 		if (e->type == sf::Event::KeyPressed) {
-			std::cout << e->key.code;
 			if (e->key.code == sf::Keyboard::Escape){
 				window->close();
 			}
@@ -265,7 +258,8 @@ void GameScene::start(){
 		m_splitFinish[i].setPosition(120 + widthSoFar, 535);
 		widthSoFar += m_splitFinish[i].getSize().x;
 	}
-	AchievementManager::getInstance()->setGameMode(SceneID::GAME);
+	AchievementManager::getInstance()->setGameMode(SceneID::GAME); 
+	AchievementManager::getInstance()->roomOver();
 	AchievementManager::getInstance()->setAttempts(m_attempts);
 }
 

@@ -262,7 +262,6 @@ void Player::addColour(sf::Color c){
 	{
 		m_blue = 0;
 	}
-	std::cout << "Red: " << m_red << "\t" << "Green: " << m_green << "\t" << "Blue: " << m_blue << "\t" << std::endl;
 }
 
 bool Player::canMove(Direction dir){

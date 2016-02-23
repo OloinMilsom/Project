@@ -236,6 +236,8 @@ void TimedGameScene::start(){
 		widthSoFar += m_splitFinish[i].getSize().x;
 	}
 	AchievementManager::getInstance()->setGameMode(SceneID::TIMEDGAME);
+	AchievementManager::getInstance()->roomOver();
+	AchievementManager::getInstance()->setTime(m_timer);
 }
 
 void TimedGameScene::stop(){
