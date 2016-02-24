@@ -241,6 +241,7 @@ void GameScene::draw(sf::RenderWindow* window){
 }
 
 void GameScene::start(){
+	
 	SoundManager::getInstance()->playSpatial(0);
 	int tileSize = 500 / TileManager::getInstance()->getSize();
 	SoundManager::getInstance()->initSpatial(TileManager::getInstance()->getFinishPos() + sf::Vector2f(tileSize, tileSize));
@@ -264,6 +265,8 @@ void GameScene::start(){
 }
 
 void GameScene::stop(){
+	m_score = 0;
+	m_scoreLabel.setString("Score: " + std::to_string(m_score));
 	m_currSize = 3;
 	m_attempts = m_currSize * m_currSize;
 	m_attemptsLabel.setString("Attempts: " + std::to_string(m_attempts));

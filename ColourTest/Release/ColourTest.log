@@ -1,19 +1,101 @@
-﻿Build started 27/10/2015 14:07:10.
-     1>Project "C:\Users\DeepSeaIsopod\Desktop\ColourTest\ColourTest\ColourTest.vcxproj" on node 2 (Build target(s)).
+﻿Build started 24/02/2016 12:50:41.
+     1>Project "C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\ColourTest\ColourTest.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Main.cpp Player.cpp stdafx.cpp Tile.cpp TileManager.cpp
-         Main.cpp
-     1>c:\users\deepseaisopod\desktop\colourtest\colourtest\stdafx.h(9): fatal error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
-         Player.cpp
-     1>c:\users\deepseaisopod\desktop\colourtest\colourtest\stdafx.h(9): fatal error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
-         stdafx.cpp
-     1>c:\users\deepseaisopod\desktop\colourtest\colourtest\stdafx.h(9): fatal error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
-         Tile.cpp
-     1>c:\users\deepseaisopod\desktop\colourtest\colourtest\stdafx.h(9): fatal error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
-         TileManager.cpp
-     1>c:\users\deepseaisopod\desktop\colourtest\colourtest\stdafx.h(9): fatal error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory
-     1>Done Building Project "C:\Users\DeepSeaIsopod\Desktop\ColourTest\ColourTest\ColourTest.vcxproj" (Build target(s)) -- FAILED.
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\SFML-2.3.2\include" /I"C:\FMOD_SoundSystem\FMOD Programmers API Windows\api\inc" /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt GameScene.cpp TimedGameScene.cpp
+         GameScene.cpp
+     1>GameScene.cpp(94): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>GameScene.cpp(175): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>GameScene.cpp(180): warning C4018: '<' : signed/unsigned mismatch
+     1>GameScene.cpp(183): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>GameScene.cpp(196): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>GameScene.cpp(197): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>GameScene.cpp(198): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>GameScene.cpp(204): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>GameScene.cpp(205): warning C4244: '+=' : conversion from 'const float' to 'int', possible loss of data
+     1>GameScene.cpp(225): warning C4018: '<' : signed/unsigned mismatch
+     1>GameScene.cpp(232): warning C4018: '<' : signed/unsigned mismatch
+     1>GameScene.cpp(247): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>GameScene.cpp(252): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>GameScene.cpp(253): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>GameScene.cpp(254): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>GameScene.cpp(259): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>GameScene.cpp(260): warning C4244: '+=' : conversion from 'const float' to 'int', possible loss of data
+     1>GameScene.cpp(274): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>GameScene.cpp(278): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>GameScene.cpp(304): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
+     1>GameScene.cpp(311): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>GameScene.cpp(316): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>GameScene.cpp(318): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>GameScene.cpp(323): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>GameScene.cpp(324): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>GameScene.cpp(325): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>GameScene.cpp(330): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>GameScene.cpp(331): warning C4244: '+=' : conversion from 'const float' to 'int', possible loss of data
+     1>GameScene.cpp(349): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>GameScene.cpp(359): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>GameScene.cpp(362): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+         TimedGameScene.cpp
+     1>TimedGameScene.cpp(96): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>TimedGameScene.cpp(150): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>TimedGameScene.cpp(156): warning C4018: '<' : signed/unsigned mismatch
+     1>TimedGameScene.cpp(159): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>TimedGameScene.cpp(171): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>TimedGameScene.cpp(172): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>TimedGameScene.cpp(173): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>TimedGameScene.cpp(179): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>TimedGameScene.cpp(180): warning C4244: '+=' : conversion from 'const float' to 'int', possible loss of data
+     1>TimedGameScene.cpp(200): warning C4018: '<' : signed/unsigned mismatch
+     1>TimedGameScene.cpp(208): warning C4018: '<' : signed/unsigned mismatch
+     1>TimedGameScene.cpp(223): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>TimedGameScene.cpp(228): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>TimedGameScene.cpp(229): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>TimedGameScene.cpp(230): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>TimedGameScene.cpp(235): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>TimedGameScene.cpp(236): warning C4244: '+=' : conversion from 'const float' to 'int', possible loss of data
+     1>TimedGameScene.cpp(252): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>TimedGameScene.cpp(256): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>TimedGameScene.cpp(288): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>TimedGameScene.cpp(293): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>TimedGameScene.cpp(295): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>TimedGameScene.cpp(300): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>TimedGameScene.cpp(301): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>TimedGameScene.cpp(302): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>TimedGameScene.cpp(307): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>TimedGameScene.cpp(308): warning C4244: '+=' : conversion from 'const float' to 'int', possible loss of data
+     1>TimedGameScene.cpp(318): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>TimedGameScene.cpp(327): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>TimedGameScene.cpp(330): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\Release\ColourTest.exe" /NOLOGO /LIBPATH:"C:\SFML-2.3.2\lib" /LIBPATH:"C:\FMOD_SoundSystem\FMOD Programmers API Windows\api\lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\Release\ColourTest.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\Release\ColourTest.lib" /MACHINE:X86 /SAFESEH Release\AchievementManager.obj
+         Release\AchievementsScene.obj
+         Release\AchieveNotification.obj
+         Release\Button.obj
+         Release\GameOverScene.obj
+         Release\GameScene.obj
+         Release\Main.obj
+         Release\MenuScene.obj
+         Release\OptionsScene.obj
+         Release\PauseScene.obj
+         Release\Player.obj
+         Release\PowerUp.obj
+         Release\PowerUpManager.obj
+         Release\RainDrop.obj
+         Release\Scene.obj
+         Release\SceneManager.obj
+         Release\SoundManager.obj
+         Release\stdafx.obj
+         Release\Tile.obj
+         Release\TileManager.obj
+         Release\TimedGameScene.obj
+         Release\TutorialScene.obj
+         Release\Wall.obj
+         Release\XboxController.obj
+         Generating code
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(286): warning C4715: 'Player::canMove' : not all control paths return a value
+         Finished generating code
+         ColourTest.vcxproj -> C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\Release\ColourTest.exe
+     1>Done Building Project "C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\ColourTest\ColourTest.vcxproj" (Build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:00.26
+Time Elapsed 00:00:05.30

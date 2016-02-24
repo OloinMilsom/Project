@@ -1,7 +1,7 @@
-﻿Build started 23/02/2016 13:35:48.
+﻿Build started 23/02/2016 14:41:43.
      1>Project "C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\ColourTest\ColourTest.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\SFML-2.3.2\include" /I"C:\FMOD_SoundSystem\FMOD Programmers API Windows\api\inc" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt TutorialScene.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\SFML-2.3.2\include" /I"C:\FMOD_SoundSystem\FMOD Programmers API Windows\api\inc" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt GameOverScene.cpp GameScene.cpp MenuScene.cpp OptionsScene.cpp PauseScene.cpp Player.cpp PowerUp.cpp SoundManager.cpp TileManager.cpp TimedGameScene.cpp TutorialScene.cpp
          TutorialScene.cpp
      1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tutorialscene.cpp(61): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
      1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tutorialscene.cpp(160): warning C4018: '<' : signed/unsigned mismatch
@@ -13,6 +13,197 @@
      1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tutorialscene.cpp(240): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
      1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tutorialscene.cpp(251): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
      1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tutorialscene.cpp(257): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+         TimedGameScene.cpp
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\timedgamescene.cpp(96): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\timedgamescene.cpp(150): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\timedgamescene.cpp(156): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\timedgamescene.cpp(159): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\timedgamescene.cpp(171): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\timedgamescene.cpp(172): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\timedgamescene.cpp(173): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\timedgamescene.cpp(179): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\timedgamescene.cpp(180): warning C4244: '+=' : conversion from 'const float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\timedgamescene.cpp(200): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\timedgamescene.cpp(208): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\timedgamescene.cpp(223): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\timedgamescene.cpp(228): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\timedgamescene.cpp(229): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\timedgamescene.cpp(230): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\timedgamescene.cpp(235): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\timedgamescene.cpp(236): warning C4244: '+=' : conversion from 'const float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\timedgamescene.cpp(249): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\timedgamescene.cpp(253): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\timedgamescene.cpp(285): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\timedgamescene.cpp(290): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\timedgamescene.cpp(292): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\timedgamescene.cpp(297): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\timedgamescene.cpp(298): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\timedgamescene.cpp(299): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\timedgamescene.cpp(304): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\timedgamescene.cpp(305): warning C4244: '+=' : conversion from 'const float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\timedgamescene.cpp(315): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\timedgamescene.cpp(324): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\timedgamescene.cpp(327): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+         TileManager.cpp
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(45): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(46): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(49): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(50): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(79): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(99): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(167): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(168): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(169): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(170): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(171): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(174): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(175): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(176): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(177): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(178): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(181): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(182): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(183): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(184): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(185): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(188): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(189): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(190): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(191): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(192): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(214): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(218): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(258): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(264): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(274): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(278): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(345): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(354): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\tilemanager.cpp(363): warning C4018: '<' : signed/unsigned mismatch
+         SoundManager.cpp
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\soundmanager.cpp(72): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\soundmanager.cpp(80): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\soundmanager.cpp(92): warning C4018: '<' : signed/unsigned mismatch
+         PowerUp.cpp
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\powerup.cpp(111): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+         Player.cpp
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(11): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(24): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(26): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(42): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(79): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(83): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(118): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(122): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(270): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(271): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(274): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(275): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(278): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(279): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(282): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(283): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(298): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(302): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(312): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(316): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(326): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(330): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(354): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(359): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(371): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(373): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(383): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(385): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(390): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(392): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(397): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(399): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(404): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(406): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+         PauseScene.cpp
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\pausescene.cpp(15): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\pausescene.cpp(39): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\pausescene.cpp(42): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\pausescene.cpp(48): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\pausescene.cpp(50): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\pausescene.cpp(58): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\pausescene.cpp(66): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\pausescene.cpp(82): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\pausescene.cpp(90): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\pausescene.cpp(116): warning C4018: '<' : signed/unsigned mismatch
+         OptionsScene.cpp
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\optionsscene.cpp(16): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\optionsscene.cpp(40): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\optionsscene.cpp(43): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\optionsscene.cpp(46): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\optionsscene.cpp(51): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\optionsscene.cpp(53): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\optionsscene.cpp(60): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\optionsscene.cpp(68): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\optionsscene.cpp(84): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\optionsscene.cpp(92): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\optionsscene.cpp(120): warning C4018: '<' : signed/unsigned mismatch
+         MenuScene.cpp
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\menuscene.cpp(19): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\menuscene.cpp(25): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\menuscene.cpp(47): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\menuscene.cpp(50): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\menuscene.cpp(53): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\menuscene.cpp(56): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\menuscene.cpp(59): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\menuscene.cpp(64): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\menuscene.cpp(67): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\menuscene.cpp(74): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\menuscene.cpp(82): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\menuscene.cpp(98): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\menuscene.cpp(106): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\menuscene.cpp(141): warning C4018: '<' : signed/unsigned mismatch
+         GameScene.cpp
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(94): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(175): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(180): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(183): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(196): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(197): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(198): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(204): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(205): warning C4244: '+=' : conversion from 'const float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(225): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(232): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(246): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(251): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(252): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(253): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(258): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(259): warning C4244: '+=' : conversion from 'const float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(271): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(275): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(301): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(308): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(313): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(315): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(320): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(321): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(322): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(327): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(328): warning C4244: '+=' : conversion from 'const float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(346): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(356): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gamescene.cpp(359): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+         GameOverScene.cpp
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gameoverscene.cpp(13): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gameoverscene.cpp(55): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gameoverscene.cpp(58): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gameoverscene.cpp(63): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gameoverscene.cpp(66): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gameoverscene.cpp(73): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gameoverscene.cpp(81): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gameoverscene.cpp(97): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gameoverscene.cpp(105): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\gameoverscene.cpp(137): warning C4018: '<' : signed/unsigned mismatch
+         Generating Code...
+     1>c:\users\deepseaisopod\desktop\currentprojects\colourtest\colourtest\player.cpp(286): warning C4715: 'Player::canMove' : not all control paths return a value
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\Debug\ColourTest.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\SFML-2.3.2\lib" /LIBPATH:"C:\FMOD_SoundSystem\FMOD Programmers API Windows\api\lib" fmodex_vc.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\Debug\ColourTest.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\Debug\ColourTest.lib" /MACHINE:X86 Debug\AchievementManager.obj
          Debug\AchievementsScene.obj
@@ -38,9 +229,10 @@
          Debug\TutorialScene.obj
          Debug\Wall.obj
          Debug\XboxController.obj
+         LINK : C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\Debug\ColourTest.exe not found or not built by the last incremental link; performing full link
          ColourTest.vcxproj -> C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\Debug\ColourTest.exe
      1>Done Building Project "C:\Users\DeepSeaIsopod\Desktop\CurrentProjects\ColourTest\ColourTest\ColourTest.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.58
+Time Elapsed 00:00:13.64

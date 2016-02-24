@@ -1,5 +1,5 @@
 0
-2
+0
 11x11 Straight Across,0
 3x3 Straight Across,0
 5x5 Straight Across,0
@@ -12,4 +12,4 @@ Nick of Time,0
 On the Edge,0
 Overpowered,0
 Time to Spare,0
-Too Easy,1
+Too Easy,0

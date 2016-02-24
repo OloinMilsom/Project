@@ -241,6 +241,9 @@ void TimedGameScene::start(){
 }
 
 void TimedGameScene::stop(){
+
+	m_score = 0;
+	m_scoreLabel.setString("Score: " + std::to_string(m_score));
 	SoundManager::getInstance()->stopSpatial();
 	m_timer = 9;
 	m_currSize = 3;
